@@ -1,0 +1,51 @@
+{
+  "redirects": [
+    {
+      "source": "/contact-us-home-care-assistance/",
+      "destination": "/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/elderly-caregiver-services/",
+      "destination": "/caregiver-support/",
+      "permanent": true
+    },
+    {
+      "source": "/consultancy-elderly-in-home-care/",
+      "destination": "/consulting/",
+      "permanent": true
+    },
+    {
+      "source": "/senior-living-in-usa/",
+      "destination": "/services/",
+      "permanent": true
+    },
+    {
+      "source": "/over-55-communities-is-55-the-right-limit-for-you/",
+      "destination": "/blog/over-55-communities-is-55-the-right-limit-for-you/",
+      "permanent": true
+    },
+    {
+      "source": "/discover-the-ultimate-guide-for-seniors-embrace-the-living-legacy-planner/",
+      "destination": "/blog/discover-the-ultimate-guide-for-seniors-embrace-the-living-legacy-planner/",
+      "permanent": true
+    },
+    {
+      "source": "/buy-the-essential-guide-for-seniors-the-living-legacy-planner/",
+      "destination": "/blog/buy-the-essential-guide-for-seniors-the-living-legacy-planner/",
+      "permanent": true
+    },
+    {
+      "source": "/terms/",
+      "destination": "/terms-conditions/",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
+
