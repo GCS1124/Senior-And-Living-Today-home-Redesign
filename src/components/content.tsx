@@ -1,4 +1,4 @@
-import { useMemo, useState, type ReactNode } from 'react'
+import { useEffect, useMemo, useRef, useState, type FormEvent, type ReactNode } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import {
   CalendarDays,
@@ -213,7 +213,10 @@ export function ContactForm({
   const [searchParams] = useSearchParams()
   const initialInterest =
     searchParams.get('service') ?? defaultInterest ?? 'Senior Care Consulting'
-  const [status, setStatus] = useState<'idle' | 'success'>('idle')
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
+  const [statusMessage, setStatusMessage] = useState('')
+  const [serviceOpen, setServiceOpen] = useState(false)
+  const serviceRef = useRef<HTMLDivElement>(null)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -223,6 +226,28 @@ export function ContactForm({
     marketingSms: false,
     nonMarketingSms: false,
   })
+
+  useEffect(() => {
+    function handlePointerDown(event: PointerEvent) {
+      if (!serviceRef.current?.contains(event.target as Node)) {
+        setServiceOpen(false)
+      }
+    }
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === 'Escape') {
+        setServiceOpen(false)
+      }
+    }
+
+    document.addEventListener('pointerdown', handlePointerDown)
+    document.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.removeEventListener('pointerdown', handlePointerDown)
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [])
 
   const serviceOptions = useMemo(
     () => [
@@ -237,13 +262,58 @@ export function ContactForm({
     [],
   )
 
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    setStatus('sending')
+    setStatusMessage('')
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const payload = (await response.json().catch(() => null)) as
+        | { ok?: boolean; message?: string; error?: string }
+        | null
+
+      if (!response.ok || !payload?.ok) {
+        throw new Error(
+          payload?.error ?? 'We could not send your message right now.',
+        )
+      }
+
+      setStatus('success')
+      setStatusMessage(
+        payload.message ?? 'Thanks. Your message has been sent successfully.',
+      )
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        serviceInterest: initialInterest,
+        message: '',
+        marketingSms: false,
+        nonMarketingSms: false,
+      })
+      setServiceOpen(false)
+    } catch (error) {
+      setStatus('error')
+      setStatusMessage(
+        error instanceof Error
+          ? error.message
+          : 'We could not send your message right now.',
+      )
+    }
+  }
+
   return (
     <form
       className="rounded-[2rem] border border-stone-200 bg-white p-6 shadow-[0_20px_80px_rgba(86,67,41,0.07)] sm:p-8"
-      onSubmit={(event) => {
-        event.preventDefault()
-        setStatus('success')
-      }}
+      onSubmit={handleSubmit}
     >
       <div className="grid gap-5 md:grid-cols-2">
         <label className="grid gap-2">
@@ -284,22 +354,63 @@ export function ContactForm({
         </label>
         <label className="grid gap-2">
           <span className="text-sm font-semibold text-charcoal">Service interest</span>
-          <div className="relative">
-            <select
-              value={formData.serviceInterest}
-              onChange={(event) =>
-                setFormData((current) => ({ ...current, serviceInterest: event.target.value }))
-              }
-              className="w-full appearance-none rounded-2xl border border-stone-300 bg-white px-4 py-3 pr-12 text-base text-charcoal outline-none transition focus:border-gold-400 focus:ring-1 focus:ring-gold-200 focus-visible:outline-none"
+          <div ref={serviceRef} className="relative">
+            <button
+              type="button"
+              aria-haspopup="listbox"
+              aria-expanded={serviceOpen}
+              onClick={() => setServiceOpen((current) => !current)}
+              onKeyDown={(event) => {
+                if (event.key === 'ArrowDown' || event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault()
+                  setServiceOpen(true)
+                }
+              }}
+              className="flex w-full items-center justify-between rounded-2xl border border-stone-300 bg-white px-4 py-3 text-left text-base text-charcoal outline-none transition focus:border-gold-400 focus:ring-2 focus:ring-gold-200"
             >
-              {serviceOptions.map((option) => (
-                <option key={option}>{option}</option>
-              ))}
-            </select>
-            <ChevronDown
-              className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-stone-500"
-              aria-hidden="true"
-            />
+              <span className="min-w-0 truncate">{formData.serviceInterest}</span>
+              <ChevronDown
+                className={cx(
+                  'ml-4 h-4 w-4 shrink-0 text-stone-500 transition-transform',
+                  serviceOpen && 'rotate-180',
+                )}
+                aria-hidden="true"
+              />
+            </button>
+            {serviceOpen ? (
+              <div
+                role="listbox"
+                className="absolute left-0 right-0 top-full z-30 mt-2 max-h-72 overflow-auto rounded-2xl border border-stone-200 bg-white p-2 shadow-[0_24px_60px_rgba(37,37,37,0.16)]"
+              >
+                {serviceOptions.map((option) => {
+                  const selected = option === formData.serviceInterest
+                  return (
+                    <button
+                      key={option}
+                      type="button"
+                      role="option"
+                      aria-selected={selected}
+                      onClick={() => {
+                        setFormData((current) => ({
+                          ...current,
+                          serviceInterest: option,
+                        }))
+                        setServiceOpen(false)
+                      }}
+                      className={cx(
+                        'flex w-full items-center justify-between rounded-xl px-4 py-3 text-left text-base transition',
+                        selected
+                          ? 'bg-ivory-50 text-charcoal'
+                          : 'text-stone-700 hover:bg-stone-100',
+                      )}
+                    >
+                      <span className="min-w-0 pr-4">{option}</span>
+                      {selected ? <Check className="h-4 w-4 text-gold-700" aria-hidden="true" /> : null}
+                    </button>
+                  )
+                })}
+              </div>
+            ) : null}
           </div>
         </label>
       </div>
@@ -366,16 +477,25 @@ export function ContactForm({
           </a>
           .
         </p>
-        <ActionButton type="submit" variant="primary" className="shrink-0">
-          Send Message
+        <ActionButton
+          type="submit"
+          variant="primary"
+          className="shrink-0"
+          disabled={status === 'sending'}
+        >
+          {status === 'sending' ? 'Sending…' : 'Send Message'}
         </ActionButton>
       </div>
 
       {status === 'success' ? (
         <div className="mt-6 rounded-[1.25rem] border border-sage-200 bg-sage-50 px-5 py-4 text-sm leading-7 text-sage-900">
-          Thank you. Your message is ready to be reviewed by the S.A.L.T. team.
-          If this site is connected to a form service, this submission can be
-          routed immediately. For urgent help, call {contact.phoneDisplay}.
+          {statusMessage}
+        </div>
+      ) : null}
+
+      {status === 'error' ? (
+        <div className="mt-6 rounded-[1.25rem] border border-rose-200 bg-rose-50 px-5 py-4 text-sm leading-7 text-rose-900">
+          {statusMessage}
         </div>
       ) : null}
     </form>

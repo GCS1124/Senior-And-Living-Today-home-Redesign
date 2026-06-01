@@ -417,24 +417,28 @@ export function HomePage() {
                     Reach out for consulting, caregiver support, community
                     questions, or help choosing the right planner.
                   </p>
-                  <div className="grid gap-4 text-sm text-stone-600 sm:grid-cols-2">
+                  <div className="grid gap-4 text-sm text-stone-600">
                     <a
                       href={contact.phoneHref}
-                      className="flex items-center gap-3 rounded-[1.2rem] border border-stone-200 bg-ivory-50 px-4 py-4 transition hover:border-gold-300"
+                      className="grid w-full grid-cols-[auto_minmax(0,1fr)] items-center gap-3 rounded-[1.2rem] border border-stone-200 bg-ivory-50 px-4 py-4 transition hover:border-gold-300"
                     >
-                      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-gold-700">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-gold-700">
                         <PhoneCall className="h-5 w-5" />
                       </span>
-                      <span>{contact.phoneDisplay}</span>
+                      <span className="min-w-0 break-words text-[15px]">
+                        {contact.phoneDisplay}
+                      </span>
                     </a>
                     <a
                       href={contact.emailHref}
-                      className="flex items-center gap-3 rounded-[1.2rem] border border-stone-200 bg-ivory-50 px-4 py-4 transition hover:border-gold-300"
+                      className="grid w-full grid-cols-[auto_minmax(0,1fr)] items-center gap-3 rounded-[1.2rem] border border-stone-200 bg-ivory-50 px-4 py-4 transition hover:border-gold-300"
                     >
-                      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-gold-700">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-gold-700">
                         <ArrowRight className="h-5 w-5" />
                       </span>
-                      <span>{contact.email}</span>
+                      <span className="min-w-0 text-[14px] leading-6 sm:whitespace-nowrap sm:text-[15px] lg:text-base">
+                        {contact.email}
+                      </span>
                     </a>
                   </div>
                 </div>

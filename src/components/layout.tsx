@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import {
   ArrowRight,
   CalendarDays,
@@ -27,6 +27,7 @@ type ActionButtonProps = {
   rel?: string
   icon?: boolean
   onClick?: () => void
+  disabled?: boolean
 }
 
 export function ActionButton({
@@ -40,9 +41,10 @@ export function ActionButton({
   rel,
   icon = true,
   onClick,
+  disabled = false,
 }: ActionButtonProps) {
   const classes = cx(
-    'inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2 focus-visible:ring-offset-ivory',
+    'inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2 focus-visible:ring-offset-ivory disabled:pointer-events-none disabled:opacity-60',
     variant === 'primary' &&
       'bg-gold-500 text-white shadow-soft hover:-translate-y-0.5 hover:bg-gold-600',
     variant === 'secondary' &&
@@ -73,7 +75,12 @@ export function ActionButton({
 
   if (!renderHref) {
     return (
-      <button type={type ?? 'button'} className={classes} onClick={onClick}>
+      <button
+        type={type ?? 'button'}
+        className={classes}
+        onClick={onClick}
+        disabled={disabled}
+      >
         {children}
         {arrow}
       </button>
@@ -223,11 +230,6 @@ export function LogoMark({ compact = false }: { compact?: boolean }) {
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false)
-  const location = useLocation()
-
-  useEffect(() => {
-    setOpen(false)
-  }, [location.pathname])
 
   return (
     <header className="sticky top-0 z-50 border-b border-stone-200/80 bg-ivory-50/95 backdrop-blur-xl">
@@ -239,6 +241,7 @@ export function SiteHeader() {
             <NavLink
               key={item.label}
               to={item.to}
+              onClick={() => setOpen(false)}
               className={({ isActive }) =>
                 cx(
                   'rounded-full px-4 py-2 text-sm font-medium text-stone-600 transition hover:bg-white hover:text-charcoal',
@@ -280,6 +283,7 @@ export function SiteHeader() {
                 <NavLink
                   key={item.label}
                   to={item.to}
+                  onClick={() => setOpen(false)}
                   className={({ isActive }) =>
                     cx(
                       'flex items-center justify-between rounded-2xl border border-stone-200 px-4 py-3 text-base font-medium text-charcoal',
@@ -292,7 +296,12 @@ export function SiteHeader() {
                 </NavLink>
               ))}
             </nav>
-            <ActionButton to="/contact/" variant="primary" className="w-full">
+            <ActionButton
+              to="/contact/"
+              variant="primary"
+              className="w-full"
+              onClick={() => setOpen(false)}
+            >
               Book a Free Consultation
             </ActionButton>
           </Container>
