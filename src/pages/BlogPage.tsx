@@ -72,7 +72,7 @@ export function BlogPage() {
               </div>
             </Reveal>
 
-            <Reveal className="relative">
+            <Reveal className="space-y-4">
               <div className="overflow-hidden rounded-[2.3rem] border border-white/80 bg-white shadow-soft">
                 <img
                   src={featured.image}
@@ -80,7 +80,7 @@ export function BlogPage() {
                   className="h-[31rem] w-full object-cover sm:h-[35rem]"
                 />
               </div>
-              <div className="absolute -bottom-6 left-4 right-4 rounded-[1.6rem] border border-stone-200 bg-white/96 p-5 shadow-soft backdrop-blur">
+              <div className="rounded-[1.6rem] border border-stone-200 bg-white/96 p-5 shadow-soft backdrop-blur">
                 <div className="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-sage-700">
                   <span>{featured.category}</span>
                   <span className="h-1 w-1 rounded-full bg-stone-300" />
@@ -201,16 +201,13 @@ export function BlogPage() {
                   { label: 'Video Learning Center', to: '/videos/' },
                   { label: 'Podcast Interviews', to: '/podcast/' },
                 ].map((item, index) => (
-                  <ActionButton
+                  <article
                     key={item.label}
-                    to={item.to}
-                    variant="secondary"
                     className={
                       index === 1
-                        ? 'w-full rounded-[1.8rem] border border-stone-200 bg-white p-6 text-left shadow-soft'
-                        : 'w-full rounded-[1.8rem] border border-stone-200 bg-white p-6 text-left shadow-soft'
+                        ? 'flex h-full flex-col rounded-[1.6rem] border border-stone-200 bg-sage-50 p-6 shadow-soft'
+                        : 'flex h-full flex-col rounded-[1.6rem] border border-stone-200 bg-white p-6 shadow-soft'
                     }
-                    icon={false}
                   >
                     <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sage-700">
                       Explore next
@@ -218,7 +215,10 @@ export function BlogPage() {
                     <p className="mt-3 font-heading text-3xl leading-tight text-charcoal">
                       {item.label}
                     </p>
-                  </ActionButton>
+                    <ActionButton to={item.to} variant="link" className="mt-6" icon={false}>
+                      Open section
+                    </ActionButton>
+                  </article>
                 ))}
               </div>
             </Reveal>

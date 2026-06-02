@@ -74,7 +74,7 @@ export function AboutPage() {
               </div>
             </Reveal>
 
-            <Reveal className="relative">
+            <Reveal className="space-y-4">
               <div className="relative overflow-hidden rounded-[2.3rem] border border-white/80 bg-white shadow-soft">
                 <img
                   src={founder.image}
@@ -82,7 +82,7 @@ export function AboutPage() {
                   className="h-[31rem] w-full object-cover sm:h-[35rem]"
                 />
               </div>
-              <div className="absolute -bottom-6 left-4 right-4 rounded-[1.7rem] border border-stone-200 bg-white/96 p-5 shadow-soft backdrop-blur">
+              <div className="rounded-[1.7rem] border border-stone-200 bg-white/96 p-5 shadow-soft backdrop-blur">
                 <div className="grid gap-4 sm:grid-cols-3">
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sage-700">
@@ -139,14 +139,10 @@ export function AboutPage() {
           <Container className="py-16 lg:py-20">
             <Reveal>
               <div className="grid gap-8 lg:grid-cols-3">
-                {principles.map((item, index) => (
+                {principles.map((item) => (
                   <div
                     key={item.title}
-                    className={
-                      index === 1
-                        ? 'rounded-[1.9rem] border border-stone-200 bg-white p-6 shadow-soft lg:translate-y-5'
-                        : 'rounded-[1.9rem] border border-stone-200 bg-white p-6 shadow-soft'
-                    }
+                    className="rounded-[1.9rem] border border-stone-200 bg-white p-6 shadow-soft"
                   >
                     <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-sage-100 text-sage-800">
                       {item.icon}

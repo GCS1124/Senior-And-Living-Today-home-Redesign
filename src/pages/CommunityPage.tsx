@@ -63,7 +63,7 @@ export function CommunityPage() {
               </div>
             </Reveal>
 
-            <Reveal className="relative">
+            <Reveal className="space-y-4">
               <div className="overflow-hidden rounded-[2.3rem] border border-white/80 bg-white shadow-soft">
                 <img
                   src={communitySpotlightImage}
@@ -71,7 +71,7 @@ export function CommunityPage() {
                   className="h-[31rem] w-full object-cover sm:h-[35rem]"
                 />
               </div>
-              <div className="absolute -bottom-6 left-4 right-4 rounded-[1.6rem] border border-stone-200 bg-white/96 p-5 shadow-soft backdrop-blur">
+              <div className="rounded-[1.6rem] border border-stone-200 bg-white/96 p-5 shadow-soft backdrop-blur">
                 <div className="grid gap-4 sm:grid-cols-3">
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sage-700">
@@ -187,8 +187,8 @@ export function CommunityPage() {
         <section>
           <Container className="py-16 lg:py-20">
             <Reveal>
-              <div className="grid gap-10 lg:grid-cols-[1fr_0.95fr]">
-                <div className="overflow-hidden rounded-[2.2rem] border border-stone-200 bg-sage-50 shadow-soft">
+              <div className="grid gap-10 lg:grid-cols-[1fr_0.95fr] lg:items-start">
+                <div className="overflow-hidden rounded-[2.2rem] border border-stone-200 bg-sage-50 shadow-soft lg:self-start">
                   <div className="aspect-[16/10]">
                     <img
                       src={saltinesGotTalent.image}

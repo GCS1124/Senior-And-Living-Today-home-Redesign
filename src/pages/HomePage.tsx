@@ -139,8 +139,8 @@ export function HomePage() {
                 </ActionButton>
                 <ActionButton
                   to={homeHero.secondaryCta.to}
-                  variant="secondary"
-                  className="!border-white/20 !bg-white/10 !text-white hover:!border-white/30 hover:!bg-white/15"
+                  variant="ghost"
+                  className="!border-white/25 !bg-transparent !text-white hover:!bg-white/10"
                 >
                   {homeHero.secondaryCta.label}
                 </ActionButton>
@@ -149,15 +149,15 @@ export function HomePage() {
               <div className="grid gap-3 sm:grid-cols-2">
                 <ActionButton
                   to="/resources/"
-                  variant="secondary"
-                  className="w-full !border-white/20 !bg-white/8 !text-white hover:!border-white/30 hover:!bg-white/15"
+                  variant="ghost"
+                  className="w-full !border-white/25 !bg-transparent !text-white hover:!bg-white/10"
                 >
                   Free Resources
                 </ActionButton>
                 <ActionButton
                   to="/community/"
-                  variant="secondary"
-                  className="w-full !border-white/20 !bg-white/8 !text-white hover:!border-white/30 hover:!bg-white/15"
+                  variant="ghost"
+                  className="w-full !border-white/25 !bg-transparent !text-white hover:!bg-white/10"
                 >
                   Join Community
                 </ActionButton>

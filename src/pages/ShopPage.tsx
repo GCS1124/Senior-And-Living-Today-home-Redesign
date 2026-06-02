@@ -285,28 +285,57 @@ export function ShopPage() {
         <section className="bg-ivory-50">
           <Container className="py-16 lg:py-20">
             <Reveal>
-              <div className="grid gap-8 rounded-[2rem] border border-stone-200 bg-white p-6 shadow-soft lg:grid-cols-[1fr_0.9fr] lg:p-8">
+              <div className="grid gap-8 rounded-[2rem] border border-stone-200 bg-white p-6 shadow-soft lg:grid-cols-[0.94fr_1.06fr] lg:p-8">
                 <div className="space-y-5">
                   <SectionHeading
                     eyebrow="Need help choosing?"
                     title="The store link stays visible for quick access"
                     summary="You can keep the external store link in the footer and also route people here when they want product-specific help."
                   />
-                  <ActionButton
-                    href={contact.storeUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    variant="primary"
-                  >
-                    Visit {contact.storeLabel}
-                  </ActionButton>
+                  <div className="flex flex-col gap-3 sm:flex-row">
+                    <ActionButton
+                      href={contact.storeUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      variant="primary"
+                    >
+                      Visit {contact.storeLabel}
+                    </ActionButton>
+                    <ActionButton to="/contact/?service=Store" variant="secondary">
+                      Ask for a recommendation
+                    </ActionButton>
+                  </div>
                 </div>
-                <div className="rounded-[2rem] border border-stone-200 bg-ivory-50 p-6">
-                  <p className="text-sm leading-7 text-stone-600">
-                    A premium shop page should make it easy for visitors to move
-                    between free resources, featured products, and direct
-                    consultation when they need a personal recommendation.
-                  </p>
+                <div className="grid gap-4 sm:grid-cols-3">
+                  {[
+                    {
+                      title: 'Start with the planner',
+                      text: 'Best if you want one calm first step and a clear place to begin.',
+                    },
+                    {
+                      title: 'Browse by need',
+                      text: 'Use the category list to match products to a caregiving or planning goal.',
+                    },
+                    {
+                      title: 'Ask for help',
+                      text: 'When the choice feels uncertain, a consultation can narrow it down.',
+                    },
+                  ].map((item) => (
+                    <div
+                      key={item.title}
+                      className="rounded-[1.4rem] border border-stone-200 bg-ivory-50 p-5 shadow-sm"
+                    >
+                      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sage-700">
+                        Quick path
+                      </p>
+                      <h3 className="mt-3 font-heading text-2xl leading-tight text-charcoal">
+                        {item.title}
+                      </h3>
+                      <p className="mt-3 text-sm leading-7 text-stone-600">
+                        {item.text}
+                      </p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </Reveal>

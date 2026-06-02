@@ -8,7 +8,7 @@ import {
   SiteFooter,
   SiteHeader,
 } from '../components/layout'
-import { BulletList, FaqList, ServiceCard } from '../components/content'
+import { BulletList, FaqList } from '../components/content'
 import { Seo } from '../components/seo'
 
 const serviceLinks = {
@@ -19,6 +19,8 @@ const serviceLinks = {
 } as const
 
 export function ServicesPage() {
+  const chapters = Object.values(servicePages)
+
   return (
     <>
       <Seo
@@ -61,38 +63,55 @@ export function ServicesPage() {
             </Reveal>
 
             <Reveal className="relative">
-              <div className="grid gap-4 rounded-[2.2rem] border border-stone-200 bg-white p-4 shadow-soft">
-                {serviceCards.map((service, index) => (
-                  <div
-                    key={service.slug}
-                    className={
-                      index === 0
-                        ? 'rounded-[1.5rem] bg-charcoal p-5 text-white shadow-soft'
-                        : 'rounded-[1.5rem] bg-ivory-50 p-5 text-charcoal'
-                    }
-                  >
-                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sage-700">
-                      {service.title}
-                    </p>
-                    <p
+              <div className="rounded-[2.2rem] border border-stone-200 bg-white p-4 shadow-soft">
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {serviceCards.map((service, index) => (
+                    <div
+                      key={service.slug}
                       className={
                         index === 0
-                          ? 'mt-3 text-base leading-8 text-stone-300'
-                          : 'mt-3 text-base leading-8 text-stone-600'
+                          ? 'rounded-[1.5rem] bg-charcoal p-5 text-white shadow-soft sm:col-span-2'
+                          : 'rounded-[1.5rem] border border-stone-200 bg-ivory-50 p-5 text-charcoal'
                       }
                     >
-                      {service.summary}
-                    </p>
-                    <ActionButton
-                      to={service.href}
-                      variant={index === 0 ? 'secondary' : 'link'}
-                      className={index === 0 ? 'mt-5 bg-white text-charcoal' : 'mt-5'}
-                      icon={false}
-                    >
-                      Explore
-                    </ActionButton>
-                  </div>
-                ))}
+                      <p
+                        className={
+                          index === 0
+                            ? 'text-xs font-semibold uppercase tracking-[0.24em] text-[#d2a85b]'
+                            : 'text-xs font-semibold uppercase tracking-[0.24em] text-sage-700'
+                        }
+                      >
+                        {index === 0 ? 'Best starting point' : 'Service path'}
+                      </p>
+                      <h2
+                        className={
+                          index === 0
+                            ? 'mt-3 font-heading text-2xl text-white'
+                            : 'mt-3 font-heading text-2xl text-charcoal'
+                        }
+                      >
+                        {service.title}
+                      </h2>
+                      <p
+                        className={
+                          index === 0
+                            ? 'mt-3 max-w-xl text-base leading-8 text-white/75'
+                            : 'mt-3 max-w-xl text-base leading-8 text-stone-600'
+                        }
+                      >
+                        {service.summary}
+                      </p>
+                      <ActionButton
+                        to={service.href}
+                        variant={index === 0 ? 'secondary' : 'link'}
+                        className={index === 0 ? 'mt-5 bg-white text-charcoal' : 'mt-5'}
+                        icon={false}
+                      >
+                        Explore
+                      </ActionButton>
+                    </div>
+                  ))}
+                </div>
               </div>
             </Reveal>
           </Container>
@@ -102,75 +121,71 @@ export function ServicesPage() {
           <Container className="py-16 lg:py-20">
             <Reveal>
               <SectionHeading
-                eyebrow="Service overview"
-                title="Choose the path that fits your current priority"
-                summary="Each service page expands on the same calm, premium structure so families can move through the site without friction."
-              />
-              <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-                {serviceCards.map((service) => (
-                  <ServiceCard
-                    key={service.slug}
-                    title={service.title}
-                    summary={service.summary}
-                    href={service.href}
-                    icon={service.icon}
-                  />
-                ))}
-              </div>
-            </Reveal>
-          </Container>
-        </section>
-
-        <section>
-          <Container className="py-16 lg:py-20">
-            <Reveal>
-              <SectionHeading
                 eyebrow="Service chapters"
                 title="Each offer gets its own clear story"
-                summary="The page below keeps the service paths distinct while still making them easy to compare."
+                summary="The page below keeps the service paths distinct, with the layout changing to fit the tone of each offer."
               />
-              <div className="mt-10 grid gap-6 lg:grid-cols-2">
-                {Object.values(servicePages).map((service, index) => (
-                  <div
-                    key={service.title}
-                    className={
-                      index % 2 === 0
-                        ? 'overflow-hidden rounded-[2rem] border border-stone-200 bg-white shadow-soft'
-                        : 'overflow-hidden rounded-[2rem] border border-stone-200 bg-sage-50 shadow-soft'
-                    }
-                  >
-                    <div className="h-56 bg-ivory-50">
-                      <img
-                        src={service.image}
-                        alt={service.title}
-                        className="h-full w-full object-cover"
-                      />
-                    </div>
-                    <div className="space-y-5 p-6 sm:p-8">
-                      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sage-700">
-                        {service.title}
-                      </p>
-                      <h3 className="font-heading text-3xl text-charcoal">
-                        {service.summary}
-                      </h3>
-                      <p className="text-base leading-8 text-stone-600">
-                        {service.intro}
-                      </p>
-                      <BulletList items={service.highlights} />
-                      <div className="flex flex-wrap gap-3">
-                        <ActionButton
-                          to={serviceLinks[service.title as keyof typeof serviceLinks]}
-                          variant="primary"
-                        >
-                          Read More
-                        </ActionButton>
-                        <ActionButton to="/contact/" variant="secondary">
-                          Book a Free Consultation
-                        </ActionButton>
+              <div className="mt-10 space-y-8">
+                {chapters.map((service, index) => {
+                  const reversed = index % 2 === 1
+
+                  return (
+                    <article
+                      key={service.title}
+                      className={
+                        reversed
+                          ? 'grid overflow-hidden rounded-[2.4rem] border border-stone-200 bg-white shadow-soft lg:grid-cols-[0.96fr_1.04fr]'
+                          : 'grid overflow-hidden rounded-[2.4rem] border border-stone-200 bg-white shadow-soft lg:grid-cols-[1.04fr_0.96fr]'
+                      }
+                    >
+                      <div
+                        className={
+                          reversed
+                            ? 'order-1 lg:order-2'
+                            : 'order-1'
+                        }
+                      >
+                        <div className="h-full min-h-[18rem] bg-ivory-50">
+                          <img
+                            src={service.image}
+                            alt={service.title}
+                            className="h-full w-full object-cover"
+                          />
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                ))}
+
+                      <div
+                        className={
+                          reversed
+                            ? 'order-2 bg-sage-50/70 p-6 sm:p-8 lg:order-1 lg:p-10'
+                            : 'order-2 bg-white p-6 sm:p-8 lg:p-10'
+                        }
+                      >
+                        <p className="text-xs font-semibold uppercase tracking-[0.26em] text-sage-700">
+                          {String(index + 1).padStart(2, '0')} / {service.title}
+                        </p>
+                        <h3 className="mt-4 max-w-2xl font-heading text-3xl leading-tight text-charcoal sm:text-4xl">
+                          {service.summary}
+                        </h3>
+                        <p className="mt-5 max-w-2xl text-base leading-8 text-stone-600">
+                          {service.intro}
+                        </p>
+                        <BulletList items={service.highlights} className="mt-6" />
+                        <div className="mt-7 flex flex-wrap gap-3">
+                          <ActionButton
+                            to={serviceLinks[service.title as keyof typeof serviceLinks]}
+                            variant="primary"
+                          >
+                            Read More
+                          </ActionButton>
+                          <ActionButton to="/contact/" variant="secondary">
+                            Book a Free Consultation
+                          </ActionButton>
+                        </div>
+                      </div>
+                    </article>
+                  )
+                })}
               </div>
             </Reveal>
           </Container>

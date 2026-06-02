@@ -58,7 +58,7 @@ export function ContactPage() {
               </div>
             </Reveal>
 
-            <Reveal className="relative">
+            <Reveal className="space-y-4">
               <div className="overflow-hidden rounded-[2.3rem] border border-white/80 bg-white shadow-soft">
                 <img
                   src={founder.image}
@@ -66,7 +66,7 @@ export function ContactPage() {
                   className="h-[31rem] w-full object-cover sm:h-[35rem]"
                 />
               </div>
-              <div className="absolute -bottom-6 left-4 right-4 rounded-[1.6rem] border border-stone-200 bg-white/96 p-5 shadow-soft backdrop-blur">
+              <div className="rounded-[1.6rem] border border-stone-200 bg-white/96 p-5 shadow-soft backdrop-blur">
                 <div className="grid gap-4 sm:grid-cols-3">
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sage-700">
