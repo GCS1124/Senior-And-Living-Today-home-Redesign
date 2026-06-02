@@ -114,3 +114,63 @@ export function blogPostingSchema({
     },
   }
 }
+
+export function breadcrumbSchema(
+  items: ReadonlyArray<{ name: string; url: string }>,
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: item.url,
+    })),
+  }
+}
+
+export function faqPageSchema(
+  questions: ReadonlyArray<{ question: string; answer: string }>,
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: questions.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
+  }
+}
+
+export function videoObjectSchema({
+  name,
+  description,
+  thumbnailUrl,
+  uploadDate,
+  url,
+  duration,
+}: {
+  name: string
+  description: string
+  thumbnailUrl: string
+  uploadDate: string
+  url: string
+  duration: string
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name,
+    description,
+    thumbnailUrl,
+    uploadDate,
+    duration,
+    embedUrl: url,
+    url,
+  }
+}

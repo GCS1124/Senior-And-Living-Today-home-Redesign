@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:wght@500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -19,10 +19,11 @@
   body {
     min-height: 100vh;
     background:
-      radial-gradient(circle at top left, rgba(200, 169, 106, 0.14), transparent 24%),
-      radial-gradient(circle at bottom right, rgba(141, 155, 131, 0.16), transparent 24%),
-      #faf7f1;
-    color: #252525;
+      radial-gradient(circle at top left, rgba(255, 237, 173, 0.34), transparent 22%),
+      radial-gradient(circle at bottom right, rgba(46, 106, 234, 0.1), transparent 24%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(240, 246, 255, 0.92)),
+      #f0f6ff;
+    color: #122859;
     font-family: 'Inter', system-ui, sans-serif;
     font-size: 1rem;
     line-height: 1.8;
@@ -37,9 +38,9 @@
   h4,
   h5,
   h6 {
-    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-family: 'Source Serif 4', Georgia, serif;
     font-weight: 600;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.015em;
   }
 
   img {
@@ -68,7 +69,7 @@
   }
 
   ::selection {
-    background: rgba(200, 169, 106, 0.28);
+    background: rgba(249, 203, 36, 0.26);
   }
 }
 

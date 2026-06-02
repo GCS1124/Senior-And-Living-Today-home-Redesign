@@ -77,6 +77,40 @@ export function BlogPostPage() {
           </Reveal>
         </Container>
       </section>
+
+      <section className="bg-ivory-50">
+        <Container className="py-16 lg:py-20">
+          <Reveal>
+            <SectionHeading
+              eyebrow="Keep exploring"
+              title="Continue into the resource center, videos, or planner"
+              summary="Each blog post should keep the ecosystem connected, so the next step stays close at hand."
+            />
+            <div className="mt-10 grid gap-6 md:grid-cols-3">
+              {[
+                { label: 'Resource Center', to: '/resources/' },
+                { label: 'Video Learning Center', to: '/videos/' },
+                { label: 'The Living Legacy Planner', to: '/living-legacy-planner/' },
+              ].map((item) => (
+                <ActionButton
+                  key={item.label}
+                  to={item.to}
+                  variant="secondary"
+                  className="w-full rounded-[1.8rem] border border-stone-200 bg-white p-6 text-left shadow-soft"
+                  icon={false}
+                >
+                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sage-700">
+                    Next step
+                  </p>
+                  <p className="mt-3 font-heading text-3xl leading-tight text-charcoal">
+                    {item.label}
+                  </p>
+                </ActionButton>
+              ))}
+            </div>
+          </Reveal>
+        </Container>
+      </section>
       <SiteFooter />
     </>
   )

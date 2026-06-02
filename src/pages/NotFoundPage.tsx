@@ -9,7 +9,7 @@ export function NotFoundPage() {
       <main className="bg-ivory-50">
         <Container className="py-24">
           <div className="mx-auto max-w-2xl rounded-[2rem] border border-stone-200 bg-white p-8 text-center shadow-soft">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold-700">
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sage-700">
               Page not found
             </p>
             <h1 className="mt-4 font-heading text-5xl text-charcoal">
@@ -21,7 +21,7 @@ export function NotFoundPage() {
             </p>
             <Link
               to="/"
-              className="mt-6 inline-flex rounded-full bg-gold-500 px-5 py-3 text-sm font-semibold text-white shadow-soft"
+              className="mt-6 inline-flex rounded-full bg-sage-500 px-5 py-3 text-sm font-semibold text-white shadow-soft hover:bg-sage-600"
             >
               Go Home
             </Link>
@@ -32,4 +32,3 @@ export function NotFoundPage() {
     </>
   )
 }
-

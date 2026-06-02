@@ -10,6 +10,8 @@ import reviewPlannerThoughts from '../assets/live/review-planner-thoughts.png'
 import reviewPlannerAllAges from '../assets/live/review-planner-all-ages.png'
 import reviewUsefulBook from '../assets/live/review-useful-book.png'
 
+export { heroCareImage, plannerFlatlay }
+
 export const communitySpotlightImage = communityPhoto
 
 export const brand = {
@@ -33,9 +35,12 @@ export const contact = {
 export const navigation = [
   { label: 'Home', to: '/' },
   { label: 'About', to: '/about/' },
-  { label: 'Services', to: '/services/' },
+  { label: 'Resources', to: '/resources/' },
+  { label: 'Videos', to: '/videos/' },
+  { label: 'Consultations', to: '/consultations/' },
   { label: 'Community', to: '/community/' },
-  { label: 'Shop / Planners', to: '/shop/' },
+  { label: 'Podcast', to: '/podcast/' },
+  { label: 'Shop', to: '/shop/' },
   { label: 'Blog', to: '/blog/' },
   { label: 'Contact', to: '/contact/' },
 ] as const
@@ -461,3 +466,391 @@ export const legal = {
   privacyTitle: 'Privacy Policy',
   termsTitle: 'Terms & Conditions',
 }
+
+export type ResourceCategory = {
+  slug: string
+  title: string
+  summary: string
+  intro: string
+  image: string
+  sections: ReadonlyArray<{
+    title: string
+    items: ReadonlyArray<string>
+  }>
+  cta: string
+}
+
+export const resourceCategories: ResourceCategory[] = [
+  {
+    slug: 'caregivers',
+    title: 'Caregiver Resources',
+    summary: 'Practical tools for first-time caregivers and busy family supporters.',
+    intro:
+      'This category gives caregivers a calm starting point, with tools that help organize care, prepare for appointments, and reduce the feeling of carrying everything alone.',
+    image: courtneyPortrait,
+    sections: [
+      {
+        title: 'Start here',
+        items: ['First-Time Caregiver Guide', 'Caregiver Checklist', 'Medication Tracking'],
+      },
+      {
+        title: 'When things get busy',
+        items: ['Hospital Preparation', 'Family communication prompts', 'Weekly follow-up reminders'],
+      },
+    ],
+    cta: 'Explore caregiver support',
+  },
+  {
+    slug: 'seniors',
+    title: 'Senior Living',
+    summary: 'Everyday guidance that helps seniors stay organized, informed, and connected.',
+    intro:
+      'Senior living resources should feel practical and respectful. This section helps seniors keep key details in one place while staying focused on comfort, independence, and clarity.',
+    image: heroCareImage,
+    sections: [
+      {
+        title: 'Helpful topics',
+        items: ['Daily routines', 'Downsizing and transitions', 'Living with intention'],
+      },
+      {
+        title: 'Best next steps',
+        items: ['Planner setup', 'Community connection', 'Family check-in conversations'],
+      },
+    ],
+    cta: 'Browse senior living topics',
+  },
+  {
+    slug: 'health',
+    title: 'Health & Wellness',
+    summary: 'Lifestyle guidance around nutrition, movement, and feeling well day to day.',
+    intro:
+      'Aging well includes the small habits that keep the body and mind supported. This page gathers practical wellness ideas that are easy to revisit and share with family.',
+    image: blogSafetyImage,
+    sections: [
+      {
+        title: 'Aging well',
+        items: ['Nutrition', 'Exercise', 'Sleep and recovery'],
+      },
+      {
+        title: 'Supportive routines',
+        items: ['Hydration reminders', 'Appointment prep', 'Simple habit tracking'],
+      },
+    ],
+    cta: 'See wellness resources',
+  },
+  {
+    slug: 'safety',
+    title: 'Senior Safety',
+    summary: 'Fall prevention, scam awareness, and emergency planning made easier.',
+    intro:
+      'Safety content is designed to be useful without feeling alarming. It focuses on the practical steps that protect seniors, homes, and family peace of mind.',
+    image: blogSafetyImage,
+    sections: [
+      {
+        title: 'Core topics',
+        items: ['Fall prevention', 'Scam awareness', 'Emergency planning'],
+      },
+      {
+        title: 'Home checkups',
+        items: ['Detector checks', 'Filter changes', 'Emergency contacts'],
+      },
+    ],
+    cta: 'Open safety resources',
+  },
+  {
+    slug: 'legacy-planning',
+    title: 'Legacy Planning',
+    summary: 'Estate preparation, important documents, and family communication support.',
+    intro:
+      'Legacy planning becomes easier when the right information is gathered calmly and made easy to share. This category connects the planner, conversation guide, and related resources.',
+    image: plannerFlatlay,
+    sections: [
+      {
+        title: 'Legacy essentials',
+        items: ['Estate preparation', 'Important documents', 'Family communication'],
+      },
+      {
+        title: 'Helpful tools',
+        items: ['The Living Legacy Planner', 'Final Arrangement Discussion Guide', 'Memory capture prompts'],
+      },
+    ],
+    cta: 'Open legacy planning',
+  },
+  {
+    slug: 'dementia-alzheimers',
+    title: 'Dementia & Alzheimer\'s',
+    summary: 'Memory care resources and family guides for changing needs.',
+    intro:
+      'Families navigating memory care need information that is calm, specific, and easy to return to. This category keeps the tone practical and human.',
+    image: communitySpotlightImage,
+    sections: [
+      {
+        title: 'Family support',
+        items: ['Memory care routines', 'Communication strategies', 'Plan updates for changing needs'],
+      },
+      {
+        title: 'Guidance topics',
+        items: ['Family readiness', 'Daily structure', 'Caregiver check-ins'],
+      },
+    ],
+    cta: 'Explore memory care resources',
+  },
+]
+
+export type VideoLesson = {
+  slug: string
+  title: string
+  category: string
+  summary: string
+  image: string
+  duration: string
+  transcript: ReadonlyArray<{ heading: string; body: string }>
+  checklist: ReadonlyArray<string>
+  blogPostSlug: string
+}
+
+export const videoLessons: VideoLesson[] = [
+  {
+    slug: 'first-time-caregiver-orientation',
+    title: 'First-Time Caregiver Orientation',
+    category: 'Caregiver Training',
+    summary:
+      'A calm walkthrough of what to do first when a parent or loved one needs support.',
+    image: courtneyPortrait,
+    duration: '8 min',
+    transcript: [
+      {
+        heading: 'Start with the immediate needs',
+        body:
+          'The first step is not to solve everything. It is to map what is urgent, what is emotional, and what can wait until the next conversation.',
+      },
+      {
+        heading: 'Bring structure to the week',
+        body:
+          'Caregiving becomes easier when appointment notes, medication details, and family contact information live in one place.',
+      },
+    ],
+    checklist: [
+      'List urgent needs and next appointments',
+      'Write down key contacts and medications',
+      'Set one weekly family check-in',
+    ],
+    blogPostSlug: 'twice-a-year-twice-the-safety-check-your-detectors-and-change-your-filters',
+  },
+  {
+    slug: 'living-legacy-planner-walkthrough',
+    title: 'Living Legacy Planner Walkthrough',
+    category: 'Living Legacy Planner',
+    summary:
+      'A guided look at how the planner helps document wishes, stories, and important information.',
+    image: plannerFlatlay,
+    duration: '7 min',
+    transcript: [
+      {
+        heading: 'The planning problem',
+        body:
+          'Families often know what matters but do not know where the details are. The planner turns scattered notes into one steady reference.',
+      },
+      {
+        heading: 'How to use it well',
+        body:
+          'Use the planner one section at a time and invite family members in when the conversation feels ready. Small progress is still progress.',
+      },
+    ],
+    checklist: [
+      'Fill in important contacts',
+      'Capture wishes and memories',
+      'Review the planner with family',
+    ],
+    blogPostSlug: 'discover-the-ultimate-guide-for-seniors-embrace-the-living-legacy-planner',
+  },
+  {
+    slug: 'family-preparedness-checklist',
+    title: 'Family Preparedness Checklist',
+    category: 'Family Preparedness',
+    summary:
+      'An easy checklist for organizing emergency planning, home safety, and communication.',
+    image: blogSafetyImage,
+    duration: '6 min',
+    transcript: [
+      {
+        heading: 'What to prepare first',
+        body:
+          'The most useful preparedness work is simple: know who to call, what to grab, and where important documents live.',
+      },
+      {
+        heading: 'Keep it actionable',
+        body:
+          'A checklist only works when it feels repeatable. Build routines that make the plan easy to keep current.',
+      },
+    ],
+    checklist: [
+      'Verify detectors and filters',
+      'Store emergency contacts in one place',
+      'Review the home plan with family',
+    ],
+    blogPostSlug: 'over-55-communities-is-55-the-right-limit-for-you',
+  },
+]
+
+export type PodcastEpisode = {
+  slug: string
+  title: string
+  guests: ReadonlyArray<string>
+  summary: string
+  image: string
+  duration: string
+  transcript: ReadonlyArray<{ heading: string; body: string }>
+  takeaways: ReadonlyArray<string>
+}
+
+export const podcastEpisodes: PodcastEpisode[] = [
+  {
+    slug: 'caregivers-and-the-new-rhythm-of-support',
+    title: 'Caregivers and the New Rhythm of Support',
+    guests: ['Caregivers', 'Family advocates'],
+    summary:
+      'A discussion about what changes when the care role becomes part of everyday life.',
+    image: communitySpotlightImage,
+    duration: '22 min',
+    transcript: [
+      {
+        heading: 'What families feel first',
+        body:
+          'Most people feel pressure before they feel clarity. The episode focuses on how to slow down and organize the next step.',
+      },
+      {
+        heading: 'Why support is easier with structure',
+        body:
+          'The conversation covers reminders, shared calendars, and simple planning systems that keep the load manageable.',
+      },
+    ],
+    takeaways: [
+      'Build one weekly family check-in',
+      'Use a single planning system',
+      'Ask for practical support early',
+    ],
+  },
+  {
+    slug: 'the-story-behind-the-living-legacy-planner',
+    title: 'The Story Behind the Living Legacy Planner',
+    guests: ['Courtney Jones'],
+    summary:
+      'Courtney shares why the planner exists and how it helps families feel prepared.',
+    image: plannerFlatlay,
+    duration: '18 min',
+    transcript: [
+      {
+        heading: 'Why the planner was created',
+        body:
+          'The planner was designed to reduce uncertainty and help families document the important things in one calm place.',
+      },
+      {
+        heading: 'How it supports family conversations',
+        body:
+          'It gives everyone a shared reference point so the conversation feels clearer and less overwhelming.',
+      },
+    ],
+    takeaways: [
+      'One place for wishes and memories',
+      'Shared reference for family conversations',
+      'Helpful for difficult planning moments',
+    ],
+  },
+  {
+    slug: 'planning-with-doctors-attorneys-and-financial-guidance',
+    title: 'Planning With Doctors, Attorneys, and Financial Guidance',
+    guests: ['Doctors', 'Attorneys', 'Financial advisors'],
+    summary:
+      'A practical interview about how families can prepare better questions and arrive more organized.',
+    image: heroCareImage,
+    duration: '26 min',
+    transcript: [
+      {
+        heading: 'Bring a better checklist',
+        body:
+          'Preparation makes professional conversations more productive and less overwhelming for everyone involved.',
+      },
+      {
+        heading: 'Keep the records usable',
+        body:
+          'The best systems are the ones family members can access and understand when they need them most.',
+      },
+    ],
+    takeaways: [
+      'Prepare questions before appointments',
+      'Organize records in one place',
+      'Keep family updated on decisions',
+    ],
+  },
+]
+
+export const plannerLanding = {
+  title: 'The Living Legacy Planner',
+  summary:
+    'A calm planning companion that helps seniors document wishes, memories, and important information in one place.',
+  problem:
+    'Families often know they should plan, but the process feels fragmented and easy to postpone.',
+  solution:
+    'The planner turns scattered questions into a clear, respectful system that keeps everyone aligned.',
+  demo: [
+    'Document final wishes and contacts',
+    'Keep memories and notes together',
+    'Share a calm reference with family',
+  ],
+  testimonials: [
+    'Helpful for families who want one place to organize the conversation.',
+    'A thoughtful tool that keeps the next step from feeling overwhelming.',
+  ],
+  cta: 'Buy the Planner',
+}
+
+export const affiliateProgram = {
+  title: 'Affiliate Program',
+  summary:
+    'Invite bloggers, caregivers, and senior community leaders to share products they trust.',
+  benefits: [
+    '30% commission on planner sales',
+    '50% commission on digital downloads',
+    'Simple tracking and a clear payout path',
+  ],
+  audience: ['Bloggers', 'Caregivers', 'Influencers', 'Senior communities', 'Insurance agents'],
+  cta: 'Apply to Join',
+}
+
+export const partnerProgram = {
+  title: 'Partner Program',
+  summary:
+    'A referral path for caregivers, social workers, senior centers, home care agencies, and financial professionals.',
+  benefits: [
+    'Refer families to trusted resources',
+    'Create a steady referral relationship',
+    'Support people with a clearer next step',
+  ],
+  audience: ['Caregivers', 'Social workers', 'Senior centers', 'Home care agencies', 'Insurance professionals'],
+  cta: 'Become a Senior Living Advocate',
+}
+
+export const subscriptionBox = {
+  title: 'Subscription Box',
+  summary:
+    'A future monthly senior care package with practical digital resources, printed checklists, and educational support.',
+  includes: [
+    'Digital resources',
+    'Printed checklists',
+    'Product samples',
+    'Educational materials',
+  ],
+  cta: 'Join the Waitlist',
+}
+
+export const storeCategories = [
+  'Senior Living',
+  'Caregiver Essentials',
+  'Health & Wellness',
+  'Mobility Aids',
+  'Home Safety',
+  'Emergency Preparedness',
+  'Legacy Planning',
+  'Digital Downloads',
+] as const

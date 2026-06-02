@@ -46,13 +46,13 @@ export function ActionButton({
   const classes = cx(
     'inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2 focus-visible:ring-offset-ivory disabled:pointer-events-none disabled:opacity-60',
     variant === 'primary' &&
-      'bg-gold-500 text-white shadow-soft hover:-translate-y-0.5 hover:bg-gold-600',
+      'bg-sage-500 text-white shadow-soft hover:-translate-y-0.5 hover:bg-sage-600',
     variant === 'secondary' &&
-      'border border-stone-300 bg-white text-charcoal shadow-sm hover:-translate-y-0.5 hover:border-gold-400 hover:text-gold-700',
+      'border border-sage-200 bg-white text-charcoal shadow-sm hover:-translate-y-0.5 hover:border-sage-400 hover:text-sage-700',
     variant === 'ghost' &&
-      'border border-transparent bg-transparent text-charcoal hover:bg-stone-100',
+      'border border-transparent bg-transparent text-charcoal hover:bg-sage-50',
     variant === 'link' &&
-      'px-0 py-0 text-gold-700 hover:text-gold-800',
+      'px-0 py-0 text-sage-700 hover:text-sage-800',
     className,
   )
 
@@ -125,7 +125,7 @@ export function SectionHeading({
   return (
     <div className={cx('max-w-3xl', align === 'center' && 'mx-auto text-center')}>
       {eyebrow ? (
-        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-gold-700">
+        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-sage-700">
           {eyebrow}
         </p>
       ) : null}
@@ -233,10 +233,19 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-stone-200/80 bg-ivory-50/95 backdrop-blur-xl">
+      <div className="border-b border-sage-100 bg-white/80">
+        <Container className="flex flex-wrap items-center justify-center gap-3 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-sage-700 sm:justify-between">
+          <span>Free Planner Downloads</span>
+          <span className="hidden sm:inline">•</span>
+          <span>Book a Free Consultation</span>
+          <span className="hidden md:inline">•</span>
+          <span className="hidden md:inline">Care. Comfort. Community. Clarity.</span>
+        </Container>
+      </div>
       <Container className="flex items-center justify-between py-4">
         <LogoMark />
 
-        <nav className="hidden items-center gap-2 lg:flex">
+        <nav className="hidden items-center gap-1 lg:flex">
           {navigation.map((item) => (
             <NavLink
               key={item.label}
@@ -244,8 +253,8 @@ export function SiteHeader() {
               onClick={() => setOpen(false)}
               className={({ isActive }) =>
                 cx(
-                  'rounded-full px-4 py-2 text-sm font-medium text-stone-600 transition hover:bg-white hover:text-charcoal',
-                  isActive && 'bg-white text-charcoal shadow-sm',
+                  'rounded-full px-3 py-2 text-[0.85rem] font-medium text-stone-600 transition hover:bg-white hover:text-charcoal',
+                  isActive && 'bg-sage-50 text-sage-700 shadow-sm',
                 )
               }
             >
@@ -287,7 +296,7 @@ export function SiteHeader() {
                   className={({ isActive }) =>
                     cx(
                       'flex items-center justify-between rounded-2xl border border-stone-200 px-4 py-3 text-base font-medium text-charcoal',
-                      isActive && 'border-gold-300 bg-ivory-50',
+                      isActive && 'border-sage-300 bg-sage-50',
                     )
                   }
                 >
@@ -313,37 +322,37 @@ export function SiteHeader() {
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-stone-200 bg-charcoal text-stone-100">
+    <footer className="border-t border-sage-100 bg-sage-50 text-charcoal">
       <Container className="py-14">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_1fr_1fr_1fr]">
           <div className="space-y-5">
             <LogoMark compact />
-            <p className="max-w-sm text-base leading-8 text-stone-300">
+            <p className="max-w-sm text-base leading-8 text-stone-600">
               {brand.tagline} Trusted support, planning tools, and community
               resources for seniors and caregivers.
             </p>
-            <div className="grid gap-3 text-sm text-stone-300">
-              <a href={contact.phoneHref} className="inline-flex items-center gap-2 hover:text-white">
+            <div className="grid gap-3 text-sm text-stone-600">
+              <a href={contact.phoneHref} className="inline-flex items-center gap-2 hover:text-sage-700">
                 <Phone className="h-4 w-4" />
                 {contact.phoneDisplay}
               </a>
-              <a href={contact.emailHref} className="inline-flex items-center gap-2 hover:text-white">
+              <a href={contact.emailHref} className="inline-flex items-center gap-2 hover:text-sage-700">
                 <Mail className="h-4 w-4" />
                 {contact.email}
               </a>
               <p className="inline-flex items-start gap-2">
-                <span className="mt-1 h-2 w-2 rounded-full bg-gold-500" />
+                <span className="mt-1 h-2 w-2 rounded-full bg-sage-500" />
                 <span>{contact.mailingAddress}</span>
               </p>
             </div>
           </div>
 
           <div>
-            <h3 className="font-heading text-2xl text-white">Explore</h3>
-            <ul className="mt-4 space-y-3 text-sm text-stone-300">
-              {navigation.slice(0, 4).map((item) => (
+            <h3 className="font-heading text-2xl text-charcoal">Explore</h3>
+            <ul className="mt-4 space-y-3 text-sm text-stone-600">
+              {navigation.slice(0, 5).map((item) => (
                 <li key={item.label}>
-                  <Link className="transition hover:text-white" to={item.to}>
+                  <Link className="transition hover:text-sage-700" to={item.to}>
                     {item.label}
                   </Link>
                 </li>
@@ -352,30 +361,70 @@ export function SiteFooter() {
           </div>
 
           <div>
-            <h3 className="font-heading text-2xl text-white">Resources</h3>
-            <ul className="mt-4 space-y-3 text-sm text-stone-300">
+            <h3 className="font-heading text-2xl text-charcoal">Resources</h3>
+            <ul className="mt-4 space-y-3 text-sm text-stone-600">
               <li>
-                <Link className="transition hover:text-white" to="/shop/">
-                  Shop / Planners
+                <Link className="transition hover:text-sage-700" to="/community/">
+                  Community
                 </Link>
               </li>
               <li>
-                <Link className="transition hover:text-white" to="/blog/">
+                <Link className="transition hover:text-sage-700" to="/podcast/">
+                  Podcast
+                </Link>
+              </li>
+              <li>
+                <Link className="transition hover:text-sage-700" to="/shop/">
+                  Shop
+                </Link>
+              </li>
+              <li>
+                <Link className="transition hover:text-sage-700" to="/living-legacy-planner/">
+                  Living Legacy Planner
+                </Link>
+              </li>
+              <li>
+                <Link className="transition hover:text-sage-700" to="/blog/">
                   Blog
                 </Link>
               </li>
               <li>
-                <a className="transition hover:text-white" href={contact.storeUrl} target="_blank" rel="noreferrer">
+                <Link className="transition hover:text-sage-700" to="/affiliate-program/">
+                  Affiliate Program
+                </Link>
+              </li>
+              <li>
+                <Link className="transition hover:text-sage-700" to="/partner-program/">
+                  Partner Program
+                </Link>
+              </li>
+              <li>
+                <Link className="transition hover:text-sage-700" to="/subscription-box/">
+                  Subscription Box
+                </Link>
+              </li>
+              <li>
+                <a
+                  className="transition hover:text-sage-700"
+                  href={contact.storeUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   Store link
                 </a>
               </li>
               <li>
-                <Link className="transition hover:text-white" to="/privacy-policy/">
+                <Link className="transition hover:text-sage-700" to="/contact/">
+                  Contact
+                </Link>
+              </li>
+              <li>
+                <Link className="transition hover:text-sage-700" to="/privacy-policy/">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link className="transition hover:text-white" to="/terms-conditions/">
+                <Link className="transition hover:text-sage-700" to="/terms-conditions/">
                   Terms &amp; Conditions
                 </Link>
               </li>
@@ -383,8 +432,8 @@ export function SiteFooter() {
           </div>
 
           <div>
-            <h3 className="font-heading text-2xl text-white">Stay Connected</h3>
-            <p className="mt-4 text-sm leading-7 text-stone-300">
+            <h3 className="font-heading text-2xl text-charcoal">Stay Connected</h3>
+            <p className="mt-4 text-sm leading-7 text-stone-600">
               Join the community for tips, webinars, and encouragement that
               make senior life easier to navigate.
             </p>
@@ -399,7 +448,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col gap-4 border-t border-white/10 pt-6 text-sm text-stone-400 md:flex-row md:items-center md:justify-between">
+        <div className="mt-10 flex flex-col gap-4 border-t border-sage-100 pt-6 text-sm text-stone-500 md:flex-row md:items-center md:justify-between">
           <p>© 2025 Senior &amp; Living Today. All rights reserved.</p>
           <p>Care. Comfort. Community. Clarity.</p>
         </div>
@@ -454,7 +503,7 @@ export function PageHero({
           {aside ? <div>{aside}</div> : null}
         </div>
 
-        <div className={cx('relative', reverse && 'lg:order-1')}>
+        <div className={cx('space-y-4', reverse && 'lg:order-1')}>
           <div className="relative overflow-hidden rounded-[2rem] border border-white/70 bg-white shadow-soft">
             <img
               src={image}
@@ -462,12 +511,17 @@ export function PageHero({
               className="h-[28rem] w-full object-cover sm:h-[32rem]"
             />
           </div>
-          <div className="absolute -bottom-6 left-4 max-w-[18rem] rounded-[1.6rem] border border-stone-200 bg-white/95 p-4 shadow-soft backdrop-blur">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold-700">
-              Guided support
-            </p>
-            <p className="mt-2 text-sm leading-7 text-stone-600">
-              Trusted resources, practical next steps, and compassionate
+          <div className="grid gap-4 rounded-[1.5rem] border border-stone-200 bg-white p-4 shadow-soft sm:grid-cols-[1fr_0.9fr]">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sage-700">
+                Guided support
+              </p>
+              <p className="mt-2 font-heading text-2xl text-charcoal">
+                Trusted help, without extra noise
+              </p>
+            </div>
+            <p className="text-sm leading-7 text-stone-600">
+              Practical next steps, readable resources, and compassionate
               support for every stage of the journey.
             </p>
           </div>

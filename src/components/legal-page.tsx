@@ -43,7 +43,7 @@ export function LegalPage({
           <Reveal>
             <div className="flex flex-col items-start justify-between gap-5 rounded-[2rem] border border-stone-200 bg-white p-6 shadow-soft sm:flex-row sm:items-center">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold-700">
+                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sage-700">
                   Questions?
                 </p>
                 <p className="mt-3 text-base leading-7 text-stone-600">

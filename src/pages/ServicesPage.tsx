@@ -3,7 +3,6 @@ import { organizationSchema } from '../data/schema'
 import {
   ActionButton,
   Container,
-  PageHero,
   Reveal,
   SectionHeading,
   SiteFooter,
@@ -23,38 +22,81 @@ export function ServicesPage() {
   return (
     <>
       <Seo
-        title="Services"
+        title="Consultations"
         description="Explore senior care consulting, caregiver support, community webinars, and senior care virtual assistant services from S.A.L.T."
-        canonical="/services/"
+        canonical="/consultations/"
         jsonLd={organizationSchema()}
       />
       <SiteHeader />
       <main>
-        <PageHero
-          title="Clear service paths for seniors, caregivers, and families"
-          summary="S.A.L.T. organizes its core offers into simple journeys so people can quickly find the support, tools, and community that fit their current needs."
-          primaryAction={{ label: 'Book a Free Consultation', to: '/contact/?service=Senior%20Care%20Consulting' }}
-          secondaryAction={{ label: 'Go to the Shop', to: '/shop/' }}
-          image={servicePages.consulting.image}
-          imageAlt="A caregiver and older woman reviewing a planning workbook"
-          aside={
-            <div className="grid gap-3 rounded-[1.5rem] border border-stone-200 bg-white p-5 shadow-sm md:grid-cols-2">
-              {[
-                'Consulting for care decisions',
-                'Support for caregivers and families',
-                'Webinars, courses, and community',
-                'Virtual assistance for daily life',
-              ].map((item) => (
-                <div
-                  key={item}
-                  className="rounded-[1.1rem] bg-ivory-50 px-4 py-4 text-sm leading-7 text-stone-600"
+        <section className="relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(46,106,234,0.14),_transparent_28%),radial-gradient(circle_at_bottom_left,_rgba(255,237,173,0.22),_transparent_30%)]" />
+          <Container className="grid items-start gap-10 py-16 lg:grid-cols-[0.96fr_1.04fr] lg:py-20">
+            <Reveal className="relative z-10 space-y-8">
+              <div className="space-y-6">
+                <p className="text-xs font-semibold uppercase tracking-[0.26em] text-sage-700">
+                  Consultation center
+                </p>
+                <h1 className="max-w-3xl text-4xl font-semibold leading-[1.02] tracking-[-0.045em] text-charcoal sm:text-5xl lg:text-[4.8rem]">
+                  Clear support paths for seniors, caregivers, and families
+                </h1>
+                <p className="max-w-2xl text-base leading-8 text-stone-600 sm:text-lg">
+                  S.A.L.T. organizes consultation, support, community, and
+                  planning resources into simple journeys so people can quickly
+                  find the next step that fits their current need.
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <ActionButton
+                  to="/contact/?service=Senior%20Care%20Consulting"
+                  variant="primary"
                 >
-                  {item}
-                </div>
-              ))}
-            </div>
-          }
-        />
+                  Book a Free Consultation
+                </ActionButton>
+                <ActionButton to="/resources/" variant="secondary">
+                  Explore Resources
+                </ActionButton>
+              </div>
+            </Reveal>
+
+            <Reveal className="relative">
+              <div className="grid gap-4 rounded-[2.2rem] border border-stone-200 bg-white p-4 shadow-soft">
+                {serviceCards.map((service, index) => (
+                  <div
+                    key={service.slug}
+                    className={
+                      index === 0
+                        ? 'rounded-[1.5rem] bg-charcoal p-5 text-white shadow-soft'
+                        : 'rounded-[1.5rem] bg-ivory-50 p-5 text-charcoal'
+                    }
+                  >
+                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sage-700">
+                      {service.title}
+                    </p>
+                    <p
+                      className={
+                        index === 0
+                          ? 'mt-3 text-base leading-8 text-stone-300'
+                          : 'mt-3 text-base leading-8 text-stone-600'
+                      }
+                    >
+                      {service.summary}
+                    </p>
+                    <ActionButton
+                      to={service.href}
+                      variant={index === 0 ? 'secondary' : 'link'}
+                      className={index === 0 ? 'mt-5 bg-white text-charcoal' : 'mt-5'}
+                      icon={false}
+                    >
+                      Explore
+                    </ActionButton>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+          </Container>
+        </section>
 
         <section className="bg-ivory-50">
           <Container className="py-16 lg:py-20">
@@ -82,11 +124,20 @@ export function ServicesPage() {
         <section>
           <Container className="py-16 lg:py-20">
             <Reveal>
-              <div className="grid gap-8 lg:grid-cols-2">
-                {Object.values(servicePages).map((service) => (
+              <SectionHeading
+                eyebrow="Service chapters"
+                title="Each offer gets its own clear story"
+                summary="The page below keeps the service paths distinct while still making them easy to compare."
+              />
+              <div className="mt-10 grid gap-6 lg:grid-cols-2">
+                {Object.values(servicePages).map((service, index) => (
                   <div
                     key={service.title}
-                    className="overflow-hidden rounded-[2rem] border border-stone-200 bg-white shadow-soft"
+                    className={
+                      index % 2 === 0
+                        ? 'overflow-hidden rounded-[2rem] border border-stone-200 bg-white shadow-soft'
+                        : 'overflow-hidden rounded-[2rem] border border-stone-200 bg-sage-50 shadow-soft'
+                    }
                   >
                     <div className="h-56 bg-ivory-50">
                       <img
@@ -96,7 +147,7 @@ export function ServicesPage() {
                       />
                     </div>
                     <div className="space-y-5 p-6 sm:p-8">
-                      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold-700">
+                      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sage-700">
                         {service.title}
                       </p>
                       <h3 className="font-heading text-3xl text-charcoal">
@@ -107,13 +158,13 @@ export function ServicesPage() {
                       </p>
                       <BulletList items={service.highlights} />
                       <div className="flex flex-wrap gap-3">
-                        <ActionButton to={serviceLinks[service.title as keyof typeof serviceLinks]} variant="primary">
+                        <ActionButton
+                          to={serviceLinks[service.title as keyof typeof serviceLinks]}
+                          variant="primary"
+                        >
                           Read More
                         </ActionButton>
-                        <ActionButton
-                          to="/contact/"
-                          variant="secondary"
-                        >
+                        <ActionButton to="/contact/" variant="secondary">
                           Book a Free Consultation
                         </ActionButton>
                       </div>
@@ -128,7 +179,7 @@ export function ServicesPage() {
         <section className="bg-ivory-50">
           <Container className="py-16 lg:py-20">
             <Reveal>
-              <div className="grid gap-10 lg:grid-cols-[1fr_0.92fr]">
+              <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
                 <div className="space-y-6">
                   <SectionHeading
                     eyebrow="What to expect"
@@ -144,7 +195,7 @@ export function ServicesPage() {
                     ]}
                   />
                 </div>
-                <div className="rounded-[2rem] border border-stone-200 bg-white p-6 shadow-soft">
+                <div className="rounded-[2rem] border border-stone-200 bg-white p-6 shadow-soft sm:p-8">
                   <h3 className="font-heading text-3xl text-charcoal">
                     Helpful questions before you choose a service
                   </h3>
@@ -170,6 +221,26 @@ export function ServicesPage() {
                     />
                   </div>
                 </div>
+              </div>
+            </Reveal>
+          </Container>
+        </section>
+
+        <section>
+          <Container className="py-14">
+            <Reveal>
+              <div className="flex flex-col items-start justify-between gap-5 rounded-[2rem] border border-stone-200 bg-white p-6 shadow-soft sm:flex-row sm:items-center">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sage-700">
+                    Next step
+                  </p>
+                  <h3 className="mt-3 font-heading text-3xl text-charcoal">
+                    Not sure which service is right?
+                  </h3>
+                </div>
+                <ActionButton to="/contact/" variant="primary">
+                  Book a Free Consultation
+                </ActionButton>
               </div>
             </Reveal>
           </Container>
