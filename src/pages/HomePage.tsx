@@ -482,23 +482,28 @@ export function HomePage() {
       <main className="overflow-x-clip">
         <section
           id="home"
-          className="scroll-mt-28 overflow-hidden bg-[linear-gradient(180deg,#0b4b97_0%,#1160bf_52%,#f5f9ff_52%,#f5f9ff_100%)] text-white"
+          className="relative scroll-mt-28 overflow-hidden text-white"
+          style={{
+            background:
+              'linear-gradient(180deg, #071f40 0%, #0b3d78 56%, #0f63bf 100%)',
+          }}
         >
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.14),transparent_24%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.08),transparent_22%)]" />
           <Container className="relative grid gap-10 py-16 lg:grid-cols-[1.02fr_0.98fr] lg:py-20">
-            <Reveal className="space-y-8">
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-white/90 backdrop-blur">
+            <Reveal className="space-y-8 rounded-[2.4rem] border border-white/15 bg-sky-950/40 p-6 shadow-[0_30px_90px_rgba(2,12,27,0.28)] backdrop-blur-sm sm:p-8">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/12 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-white/95 backdrop-blur">
                 <Sparkles className="h-4 w-4" aria-hidden="true" />
                 Care. Comfort. Community.
               </div>
 
               <div className="space-y-5">
-                <h1 className="max-w-3xl text-4xl font-semibold leading-[1.02] tracking-[-0.05em] text-white sm:text-5xl lg:text-[4.8rem]">
+                <h1 className="max-w-3xl text-4xl font-semibold leading-[1.02] tracking-[-0.05em] text-white drop-shadow-[0_10px_24px_rgba(2,12,27,0.35)] sm:text-5xl lg:text-[4.8rem]">
                   Enhancing Senior Care Across America
                 </h1>
-                <p className="max-w-2xl text-xl font-medium leading-8 text-blue-100 sm:text-2xl">
+                <p className="max-w-2xl text-xl font-medium leading-8 text-blue-50 drop-shadow-[0_4px_12px_rgba(2,12,27,0.25)] sm:text-2xl">
                   Care, comfort, and community for all.
                 </p>
-                <p className="max-w-2xl text-base leading-8 text-white/78 sm:text-lg">
+                <p className="max-w-2xl text-base leading-8 text-white/92 sm:text-lg">
                   A calm, easy-to-use home for seniors, caregivers, and families
                   to explore support, products, planning tools, and community.
                 </p>
@@ -534,7 +539,7 @@ export function HomePage() {
 
               <div className="grid gap-3 sm:grid-cols-2">
                 <div className="rounded-[1.4rem] border border-white/15 bg-white/10 p-4 backdrop-blur">
-                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/70">
+                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-blue-50">
                     Who we serve
                   </p>
                   <p className="mt-2 text-lg font-semibold text-white">
@@ -542,7 +547,7 @@ export function HomePage() {
                   </p>
                 </div>
                 <div className="rounded-[1.4rem] border border-white/15 bg-white/10 p-4 backdrop-blur">
-                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/70">
+                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-blue-50">
                     Easy access
                   </p>
                   <p className="mt-2 text-lg font-semibold text-white">
@@ -571,7 +576,7 @@ export function HomePage() {
                         className="h-full w-full object-cover"
                       />
                     </div>
-                    <div className="rounded-[1.5rem] border border-white/15 bg-sky-950/65 p-5 text-white shadow-[0_18px_50px_rgba(2,18,44,0.22)] backdrop-blur">
+                    <div className="rounded-[1.5rem] border border-white/15 bg-sky-950/75 p-5 text-white shadow-[0_18px_50px_rgba(2,18,44,0.22)] backdrop-blur">
                       <p className="text-xs font-semibold uppercase tracking-[0.24em] text-blue-100">
                         Family-ready planning
                       </p>
