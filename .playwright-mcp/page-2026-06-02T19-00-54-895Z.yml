@@ -1,0 +1,297 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e5]:
+      - generic [ref=e6]: Accessible senior living
+      - generic [ref=e7]: Schedule a tour today
+      - link "+1 888-416-4264" [ref=e8] [cursor=pointer]:
+        - /url: tel:+18884164264
+        - img [ref=e9]
+        - text: +1 888-416-4264
+    - generic [ref=e13]:
+      - link "Senior Living Calm. Clear. Welcoming." [ref=e14] [cursor=pointer]:
+        - /url: "#home"
+        - img [ref=e16]
+        - generic [ref=e20]:
+          - generic [ref=e21]: Senior Living
+          - generic [ref=e22]: Calm. Clear. Welcoming.
+      - navigation [ref=e23]:
+        - link "Home" [ref=e24] [cursor=pointer]:
+          - /url: "#home"
+        - link "Living Options" [ref=e25] [cursor=pointer]:
+          - /url: "#options"
+        - link "Gallery" [ref=e26] [cursor=pointer]:
+          - /url: "#gallery"
+        - link "Programs" [ref=e27] [cursor=pointer]:
+          - /url: "#programs"
+        - link "Contact" [ref=e28] [cursor=pointer]:
+          - /url: "#contact"
+      - link "Schedule a Tour" [ref=e30] [cursor=pointer]:
+        - /url: "#contact"
+        - text: Schedule a Tour
+        - img [ref=e31]
+  - main [ref=e33]:
+    - generic [ref=e36]:
+      - generic [ref=e37]:
+        - generic [ref=e38]:
+          - img [ref=e39]
+          - text: Senior Living
+        - generic [ref=e42]:
+          - heading "A calm, welcoming place to live well." [level=1] [ref=e43]
+          - paragraph [ref=e44]: Clean spaces, thoughtful care, and simple information make the next step easier for residents and families.
+        - generic [ref=e45]:
+          - link "Schedule a Tour" [ref=e46] [cursor=pointer]:
+            - /url: "#contact"
+            - text: Schedule a Tour
+            - img [ref=e47]
+          - link "Call Now" [ref=e49] [cursor=pointer]:
+            - /url: tel:+18884164264
+            - text: Call Now
+            - img [ref=e50]
+        - generic [ref=e52]:
+          - generic [ref=e53]:
+            - paragraph [ref=e54]: Care levels
+            - paragraph [ref=e55]: Independent, assisted, and memory care
+          - generic [ref=e56]:
+            - paragraph [ref=e57]: Tour style
+            - paragraph [ref=e58]: Photo and virtual previews
+      - generic [ref=e62]:
+        - img "Residents and a care team talking in a bright lounge" [ref=e63]
+        - generic [ref=e65]:
+          - generic [ref=e66]:
+            - paragraph [ref=e67]: Virtual tour
+            - paragraph [ref=e68]: Walk the community before you visit.
+          - generic [ref=e69]:
+            - generic [ref=e70]: ADA-friendly spaces
+            - generic [ref=e71]: Family visits welcome
+      - generic [ref=e72]:
+        - generic [ref=e73]: ADA-friendly spaces
+        - generic [ref=e74]: Family visits welcome
+        - generic [ref=e75]: Easy-to-read information
+        - generic [ref=e76]: Simple scheduling
+    - generic [ref=e79]:
+      - generic [ref=e80]:
+        - generic [ref=e81]:
+          - paragraph [ref=e82]: About the community
+          - heading "Living options made easy to understand" [level=2] [ref=e83]
+          - paragraph [ref=e84]: Clear care levels help families choose with less pressure and more confidence.
+        - link "See floor plans" [ref=e85] [cursor=pointer]:
+          - /url: "#gallery"
+      - generic [ref=e86]:
+        - article [ref=e87]:
+          - img [ref=e89]
+          - paragraph [ref=e92]: Care level
+          - heading "Independent Living" [level=3] [ref=e93]
+          - paragraph [ref=e94]: Private suites, easy routines, and a maintenance-free lifestyle.
+          - generic [ref=e95]:
+            - generic [ref=e96]: Private apartments
+            - generic [ref=e97]: Social activities
+            - generic [ref=e98]: Low upkeep
+          - link "Ask about this level" [ref=e99] [cursor=pointer]:
+            - /url: "#contact"
+        - article [ref=e100]:
+          - img [ref=e102]
+          - paragraph [ref=e104]: Care level
+          - heading "Assisted Living" [level=3] [ref=e105]
+          - paragraph [ref=e106]: Daily support that feels calm, respectful, and personal.
+          - generic [ref=e107]:
+            - generic [ref=e108]: Meals included
+            - generic [ref=e109]: Help when needed
+            - generic [ref=e110]: Friendly staff
+          - link "Ask about this level" [ref=e111] [cursor=pointer]:
+            - /url: "#contact"
+        - article [ref=e112]:
+          - img [ref=e114]
+          - paragraph [ref=e117]: Care level
+          - heading "Memory Care" [level=3] [ref=e118]
+          - paragraph [ref=e119]: A secure setting with familiar routines and thoughtful care.
+          - generic [ref=e120]:
+            - generic [ref=e121]: Secure environment
+            - generic [ref=e122]: Routine support
+            - generic [ref=e123]: Specialized care
+          - link "Ask about this level" [ref=e124] [cursor=pointer]:
+            - /url: "#contact"
+    - generic [ref=e128]:
+      - article [ref=e129]:
+        - paragraph [ref=e130]: Helpful categories
+        - heading "Simple topics for residents and families" [level=2] [ref=e131]
+        - paragraph [ref=e132]: Fast paths to the right information, without clutter.
+        - generic [ref=e133]:
+          - generic [ref=e134]: Senior Living
+          - generic [ref=e135]: Caregiver Essentials
+          - generic [ref=e136]: Health & Wellness
+          - generic [ref=e137]: Mobility Aids
+          - generic [ref=e138]: Home Safety
+          - generic [ref=e139]: Emergency Preparedness
+          - generic [ref=e140]: Legacy Planning
+        - generic [ref=e141]:
+          - paragraph [ref=e142]: Subscription box
+          - paragraph [ref=e143]: A future monthly package with digital resources, printed checklists, product samples, and educational materials.
+      - generic [ref=e144]:
+        - article [ref=e145]:
+          - generic [ref=e146]:
+            - img "Senior planning planner with tea and glasses" [ref=e148]
+            - generic [ref=e149]:
+              - paragraph [ref=e150]: Digital download store
+              - heading "Low-ticket products with high margins" [level=3] [ref=e151]
+              - paragraph [ref=e152]: Offer useful downloads that are easy to buy and easy to share.
+              - generic [ref=e153]:
+                - generic [ref=e154]: $1 Emergency Card
+                - generic [ref=e155]: $1 Medication Tracker
+                - generic [ref=e156]: $3 Hospital Checklist
+                - generic [ref=e157]: $5 Caregiver Toolkit
+              - generic [ref=e158]:
+                - generic [ref=e159]: $9 Emergency Bundle
+                - generic [ref=e160]: $19 Digital Planner
+                - generic [ref=e161]: $49 Family Kit
+        - article [ref=e162]:
+          - img [ref=e164]
+          - heading "Affiliate Marketplace" [level=3] [ref=e169]
+          - paragraph [ref=e170]: Let trusted voices earn commissions by sharing resources.
+          - generic [ref=e171]:
+            - generic [ref=e172]: Bloggers
+            - generic [ref=e173]: Caregivers
+            - generic [ref=e174]: Influencers
+            - generic [ref=e175]: Senior communities
+        - article [ref=e176]:
+          - img [ref=e178]
+          - heading "Partner Program" [level=3] [ref=e180]
+          - paragraph [ref=e181]: Become a Senior Living Advocate and refer families with confidence.
+          - generic [ref=e182]:
+            - generic [ref=e183]: Social workers
+            - generic [ref=e184]: Senior centers
+            - generic [ref=e185]: Home care agencies
+        - article [ref=e186]:
+          - img [ref=e188]
+          - heading "Subscription Box" [level=3] [ref=e191]
+          - paragraph [ref=e192]: A future monthly care package with practical resources and samples.
+          - generic [ref=e193]:
+            - generic [ref=e194]: Digital resources
+            - generic [ref=e195]: Printed checklists
+            - generic [ref=e196]: Educational materials
+    - generic [ref=e199]:
+      - generic [ref=e200]:
+        - generic [ref=e201]:
+          - paragraph [ref=e202]: Photo and virtual tours
+          - heading "See the community before you visit" [level=2] [ref=e203]
+          - paragraph [ref=e204]: Professional photography, floor plan previews, and easy-to-book tours help families feel ready.
+        - link "Book a tour" [ref=e205] [cursor=pointer]:
+          - /url: "#contact"
+      - generic [ref=e206]:
+        - article [ref=e207]:
+          - img "Residents and a care team talking in a bright lounge" [ref=e209]
+          - generic [ref=e210]:
+            - paragraph [ref=e211]: Shared spaces
+            - heading "Warm rooms for conversation and connection" [level=3] [ref=e212]
+            - paragraph [ref=e213]: Bright seating areas and welcoming common spaces set the tone.
+        - generic [ref=e214]:
+          - article [ref=e215]:
+            - generic [ref=e216]:
+              - img "Care team helping a resident with a planning conversation" [ref=e218]
+              - generic [ref=e219]:
+                - paragraph [ref=e220]: Support moments
+                - heading "Care that feels calm and personal" [level=3] [ref=e221]
+                - paragraph [ref=e222]: Families can see the rhythm of daily support before they arrive.
+          - article [ref=e223]:
+            - paragraph [ref=e224]: Virtual tour
+            - heading "Walk the space from home." [level=3] [ref=e225]
+            - generic [ref=e226]:
+              - generic [ref=e227]:
+                - img [ref=e228]
+                - paragraph [ref=e231]: Guided video tours
+              - generic [ref=e232]:
+                - img [ref=e233]
+                - paragraph [ref=e237]: Easy floor plan previews
+              - generic [ref=e238]:
+                - img [ref=e239]
+                - paragraph [ref=e241]: Book a visit anytime
+    - generic [ref=e244]:
+      - generic [ref=e245]:
+        - paragraph [ref=e246]: Testimonials
+        - heading "Simple, clear, and reassuring" [level=2] [ref=e247]
+        - paragraph [ref=e248]: Short, readable feedback that builds trust fast.
+      - generic [ref=e249]:
+        - article [ref=e250]:
+          - generic [ref=e251]:
+            - img [ref=e252]
+            - img [ref=e254]
+            - img [ref=e256]
+            - img [ref=e258]
+            - img [ref=e260]
+          - paragraph [ref=e262]: "\"The layout feels calm, clear, and easy to scan.\""
+          - paragraph [ref=e263]: Family visitor
+        - article [ref=e264]:
+          - generic [ref=e265]:
+            - img [ref=e266]
+            - img [ref=e268]
+            - img [ref=e270]
+            - img [ref=e272]
+            - img [ref=e274]
+          - paragraph [ref=e276]: "\"The care levels were simple to understand right away.\""
+          - paragraph [ref=e277]: Adult child
+        - article [ref=e278]:
+          - generic [ref=e279]:
+            - img [ref=e280]
+            - img [ref=e282]
+            - img [ref=e284]
+            - img [ref=e286]
+            - img [ref=e288]
+          - paragraph [ref=e290]: "\"The tour CTA stands out without overwhelming the page.\""
+          - paragraph [ref=e291]: Prospective resident
+    - generic [ref=e295]:
+      - generic [ref=e296]:
+        - generic [ref=e297]:
+          - paragraph [ref=e298]: Come see for yourself
+          - heading "Ready to schedule a tour?" [level=2] [ref=e299]
+          - paragraph [ref=e300]: Call, email, or send a message. We keep the next step simple.
+        - generic [ref=e301]:
+          - link "Call to Schedule" [ref=e302] [cursor=pointer]:
+            - /url: tel:+18884164264
+            - text: Call to Schedule
+            - img [ref=e303]
+          - link "Email Us" [ref=e305] [cursor=pointer]:
+            - /url: mailto:info@seniorandlivingtoday.com
+            - text: Email Us
+            - img [ref=e306]
+        - generic [ref=e308]:
+          - generic [ref=e309]:
+            - img [ref=e310]
+            - paragraph [ref=e314]: Call
+            - link "+1 888-416-4264" [ref=e315] [cursor=pointer]:
+              - /url: tel:+18884164264
+          - generic [ref=e316]:
+            - img [ref=e317]
+            - paragraph [ref=e320]: Email
+            - link "info@seniorandlivingtoday.com" [ref=e321] [cursor=pointer]:
+              - /url: mailto:info@seniorandlivingtoday.com
+          - generic [ref=e322]:
+            - img [ref=e323]
+            - paragraph [ref=e326]: Visit
+            - paragraph [ref=e327]: Floor plans and tours available
+      - generic [ref=e328]:
+        - paragraph [ref=e329]: Visit checklist
+        - generic [ref=e330]:
+          - paragraph [ref=e333]: Walk the community
+          - paragraph [ref=e336]: Meet the care team
+          - paragraph [ref=e339]: Review floor plans
+        - generic [ref=e340]:
+          - paragraph [ref=e341]: Quick contact
+          - link "info@seniorandlivingtoday.com" [ref=e342] [cursor=pointer]:
+            - /url: mailto:info@seniorandlivingtoday.com
+          - link "+1 888-416-4264" [ref=e343] [cursor=pointer]:
+            - /url: tel:+18884164264
+            - img [ref=e344]
+            - text: +1 888-416-4264
+  - contentinfo [ref=e348]:
+    - generic [ref=e349]:
+      - paragraph [ref=e350]: Senior Living. Clean spaces. Clear next steps.
+      - generic [ref=e351]:
+        - link "Home" [ref=e352] [cursor=pointer]:
+          - /url: "#home"
+        - link "Living Options" [ref=e353] [cursor=pointer]:
+          - /url: "#options"
+        - link "Gallery" [ref=e354] [cursor=pointer]:
+          - /url: "#gallery"
+        - link "Programs" [ref=e355] [cursor=pointer]:
+          - /url: "#programs"
+        - link "Contact" [ref=e356] [cursor=pointer]:
+          - /url: "#contact"

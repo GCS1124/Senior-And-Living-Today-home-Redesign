@@ -1,0 +1,120 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e4]:
+      - generic [ref=e6]:
+        - link [ref=e7] [cursor=pointer]:
+          - /url: "#"
+        - navigation [ref=e8]:
+          - link "About Us" [ref=e9] [cursor=pointer]:
+            - /url: /about-us
+          - link "Contact Us" [ref=e10] [cursor=pointer]:
+            - /url: /contact-us
+          - link "Gallery" [ref=e11] [cursor=pointer]:
+            - /url: /gallery
+          - link "Services" [ref=e12] [cursor=pointer]:
+            - /url: /services
+        - text: 
+    - generic [ref=e16]:
+      - heading "A Delightful Senior Living" [level=1] [ref=e17]
+      - generic [ref=e18]: We provide premier retirement accommodation designed to nurture both mind and body after retirement.
+      - generic [ref=e19]:
+        - link "ENQUIRY NOW" [ref=e20] [cursor=pointer]:
+          - /url: /contact-us
+        - generic [ref=e21]: ", Find your home"
+  - generic [ref=e25]:
+    - generic [ref=e26]: About Us
+    - heading "We offer you unparalleled services -" [level=1] [ref=e27]:
+      - text: We offer you
+      - generic [ref=e28]: unparalleled
+      - text: services -
+    - generic [ref=e29]:
+      - generic [ref=e30]: Welcome to our Senior Living community! Our commitment to you is to provide the highest quality of life, support, and care, with plenty of other amenities and activities to keep you busy and engaged. You're never too old to feel young again!
+      - link "Read More" [ref=e31] [cursor=pointer]:
+        - /url: "#"
+    - generic [ref=e32]:
+      - generic [ref=e34]:
+        - generic [ref=e35]: Independent Living
+        - generic [ref=e36]: We provide the best Independent Living services for those who want to live without any restrictions.
+      - generic [ref=e38]:
+        - generic [ref=e39]: Assisted living
+        - generic [ref=e40]: Our assisted living services are tailored to meet the unique needs of each and every resident.
+      - generic [ref=e42]:
+        - generic [ref=e43]: Senior Living
+        - generic [ref=e44]: We provide all kinds of services related to senior living.
+      - generic [ref=e46]:
+        - generic [ref=e47]: Nursing Home
+        - generic [ref=e48]: We provide the highest quality Nursing Home services to seniors in a comfortable and supportive environment.
+    - link "Read More" [ref=e49] [cursor=pointer]:
+      - /url: /about-us
+  - generic [ref=e52]:
+    - heading "Discover the quality difference with our senior living services ." [level=1] [ref=e53]:
+      - text: Discover the quality difference with our
+      - generic [ref=e54]: senior living services
+      - text: .
+    - region "carousel" [ref=e56]:
+      - generic [ref=e57]:
+        - group "1 of 5" [ref=e58]:
+          - generic [ref=e61]: Independent Living
+        - group [ref=e62]:
+          - generic [ref=e65]: Assisted Living
+        - group [ref=e66]:
+          - generic [ref=e69]: Senior Living
+        - group [ref=e70]:
+          - generic [ref=e73]: Nursing Home
+        - group [ref=e74]:
+          - generic [ref=e77]: Nursing Home
+      - text: 
+      - button "next slide" [ref=e79] [cursor=pointer]:
+        - generic [ref=e80]: 
+  - generic [ref=e83]:
+    - generic [ref=e84]: Testimonial
+    - heading "100+ Happy Customers" [level=1] [ref=e85]:
+      - generic [ref=e86]: 100+ Happy
+      - text: Customers
+  - generic [ref=e87]:
+    - generic [ref=e91]:
+      - generic [ref=e92]:
+        - heading "Come see for yourself!" [level=2] [ref=e93]:
+          - text: Come see for
+          - generic [ref=e94]: yourself!
+        - generic [ref=e95]: No matter what your needs are, we're here to help you find your way with our expertise. So don’t hesitate to reach out, we’ll love to be a part of your after-retirement life. We can't wait to welcome you home!..
+      - form "Enquiry-Form" [ref=e97]:
+        - textbox "Fullname" [ref=e98]
+        - textbox "Email Address" [ref=e99]
+        - textbox "Contact Number" [ref=e100]
+        - button "ENQUIRY NOW" [ref=e102] [cursor=pointer]
+    - generic [ref=e105]:
+      - generic [ref=e107]:
+        - text: At Senior Living, we believe that aging should be considered a time of growth, exploration, and discovery. Our goal is to help seniors live their best possible life, and we are proud to offer superior services that can make that happen.
+        - text: ‍
+        - text: With 24-hour a-day support and assistance, we’ll take care of the needs of every individual enthusiastically.
+      - generic [ref=e108]:
+        - generic [ref=e109]:
+          - generic [ref=e110]: HOME
+          - link "Home" [ref=e111] [cursor=pointer]:
+            - /url: /
+          - link "About Us" [ref=e112] [cursor=pointer]:
+            - /url: /about-us
+          - link "Floor Plans" [ref=e113] [cursor=pointer]:
+            - /url: "#"
+          - link "Gallery" [ref=e114] [cursor=pointer]:
+            - /url: /gallery
+          - link "Amenities" [ref=e115] [cursor=pointer]:
+            - /url: "#"
+        - generic [ref=e116]:
+          - generic [ref=e117]: SERVICES
+          - link "Independent Living" [ref=e118] [cursor=pointer]:
+            - /url: "#"
+          - link "Care Services" [ref=e119] [cursor=pointer]:
+            - /url: "#"
+          - link "Assisted Living" [ref=e120] [cursor=pointer]:
+            - /url: "#"
+          - link "Memory Care" [ref=e121] [cursor=pointer]:
+            - /url: "#"
+          - link "Skilled Nursing" [ref=e122] [cursor=pointer]:
+            - /url: "#"
+      - generic [ref=e123]:
+        - generic [ref=e124]:
+          - text: Senior Living Communities - 101
+          - text: Brightwater Drive, Myrtle Beach, SC 29579
+        - generic [ref=e125]: © Copyright 2022

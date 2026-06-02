@@ -7,6 +7,7 @@
 @layer base {
   html {
     font-size: 17px;
+    scroll-padding-top: 6rem;
     scroll-behavior: smooth;
   }
 
@@ -19,11 +20,10 @@
   body {
     min-height: 100vh;
     background:
-      radial-gradient(circle at top left, rgba(255, 237, 173, 0.34), transparent 22%),
-      radial-gradient(circle at bottom right, rgba(46, 106, 234, 0.1), transparent 24%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(240, 246, 255, 0.92)),
-      #f0f6ff;
-    color: #122859;
+      radial-gradient(circle at top right, rgba(15, 98, 191, 0.12), transparent 24%),
+      radial-gradient(circle at bottom left, rgba(52, 121, 237, 0.1), transparent 22%),
+      linear-gradient(180deg, #f8fbff 0%, #edf5ff 45%, #f8fbff 100%);
+    color: #12315d;
     font-family: 'Inter', system-ui, sans-serif;
     font-size: 1rem;
     line-height: 1.8;
@@ -69,7 +69,7 @@
   }
 
   ::selection {
-    background: rgba(249, 203, 36, 0.26);
+    background: rgba(15, 98, 191, 0.2);
   }
 }
 

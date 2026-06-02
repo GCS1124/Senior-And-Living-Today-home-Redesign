@@ -1,282 +1,443 @@
+import { useEffect, useState } from 'react'
+import type { LucideIcon } from 'lucide-react'
 import {
-  ArrowRight,
-  BookOpen,
+  Building2,
+  CalendarDays,
+  ChevronRight,
   HeartHandshake,
+  Home,
   Mail,
+  MapPinned,
+  Menu,
   PhoneCall,
   ShieldCheck,
   Sparkles,
+  Star,
+  Users,
+  Video,
+  X,
 } from 'lucide-react'
 
-import {
-  blogPosts,
-  brand,
-  communityHighlights,
-  communitySpotlightImage,
-  contact,
-  endorsements,
-  founder,
-  homeHero,
-  products,
-  saltinesGotTalent,
-  trustStrip,
-} from '../data/site'
-import { organizationSchema, websiteSchema } from '../data/schema'
-import { ActionButton, Container, Reveal, SectionHeading, SiteFooter, SiteHeader } from '../components/layout'
-import { BulletList } from '../components/content'
+import communityCircleImage from '../assets/community-circle.png'
+import heroCareImage from '../assets/hero-care.png'
+import plannerFlatlay from '../assets/planner-flatlay.png'
+import { contact } from '../data/site'
+import { ActionButton, Container, Reveal } from '../components/layout'
 import { Seo } from '../components/seo'
 import { cx } from '../lib/cx'
 
-const audiencePaths = [
+type FeatureCard = {
+  title: string
+  summary: string
+  tags: readonly string[]
+  icon: LucideIcon
+}
+
+type ProgramCard = {
+  title: string
+  summary: string
+  tags: readonly string[]
+  icon: LucideIcon
+}
+
+const navigation = [
+  { label: 'Home', href: '#home' },
+  { label: 'Living Options', href: '#options' },
+  { label: 'Gallery', href: '#gallery' },
+  { label: 'Programs', href: '#programs' },
+  { label: 'Contact', href: '#contact' },
+] as const
+
+const heroTrustPoints = [
+  'ADA-friendly spaces',
+  'Family visits welcome',
+  'Easy-to-read information',
+  'Simple scheduling',
+] as const
+
+const livingOptions: readonly FeatureCard[] = [
   {
-    eyebrow: 'For seniors',
-    title: 'Keep wishes, notes, and family details in one calm place.',
-    summary:
-      'Begin with The Living Legacy Planner and download the free daily planner when you want a simple, low-pressure first step.',
-    cta: 'Start with the planner',
-    href: '/shop/#living-legacy-planner',
+    title: 'Independent Living',
+    summary: 'Private suites, easy routines, and a maintenance-free lifestyle.',
+    tags: ['Private apartments', 'Social activities', 'Low upkeep'],
+    icon: Home,
   },
   {
-    eyebrow: 'For caregivers',
-    title: 'Get practical support without carrying the whole load alone.',
-    summary:
-      'Use consulting, check-ins, and clear resources that help caregivers stay organized and confident.',
-    cta: 'Explore caregiver support',
-    href: '/caregiver-support/',
+    title: 'Assisted Living',
+    summary: 'Daily support that feels calm, respectful, and personal.',
+    tags: ['Meals included', 'Help when needed', 'Friendly staff'],
+    icon: HeartHandshake,
   },
   {
-    eyebrow: 'For families',
-    title: 'Turn hard conversations into a clearer shared plan.',
-    summary:
-      'Book consulting, compare care options, and use guided resources that reduce confusion at the next step.',
-    cta: 'Book consulting',
-    href: '/contact/?service=Senior%20Care%20Consulting',
+    title: 'Memory Care',
+    summary: 'A secure setting with familiar routines and thoughtful care.',
+    tags: ['Secure environment', 'Routine support', 'Specialized care'],
+    icon: ShieldCheck,
   },
 ] as const
 
-const serviceHighlights = [
+const resourceCategories = [
+  'Senior Living',
+  'Caregiver Essentials',
+  'Health & Wellness',
+  'Mobility Aids',
+  'Home Safety',
+  'Emergency Preparedness',
+  'Legacy Planning',
+] as const
+
+const programCards: readonly ProgramCard[] = [
   {
-    label: 'Senior Care Consulting',
-    href: '/consulting/',
-    summary:
-      'Personalized guidance for families navigating care options, planning, and next steps.',
+    title: 'Affiliate Marketplace',
+    summary: 'Let trusted voices earn commissions by sharing resources.',
+    tags: ['Bloggers', 'Caregivers', 'Influencers', 'Senior communities'],
+    icon: Users,
   },
   {
-    label: 'Caregiver Support',
-    href: '/caregiver-support/',
-    summary:
-      'Resources and encouragement for people balancing care responsibilities with daily life.',
+    title: 'Partner Program',
+    summary: 'Become a Senior Living Advocate and refer families with confidence.',
+    tags: ['Social workers', 'Senior centers', 'Home care agencies'],
+    icon: CalendarDays,
   },
   {
-    label: 'Community & Webinars',
-    href: '/community/',
-    summary:
-      'Online meetings, classes, and conversations that keep seniors and caregivers connected.',
-  },
-  {
-    label: 'Virtual Assistant Services',
-    href: '/senior-care-virtual-assistant-services/',
-    summary:
-      'Appointment reminders, communication help, and coordination support for busy families.',
+    title: 'Subscription Box',
+    summary: 'A future monthly care package with practical resources and samples.',
+    tags: ['Digital resources', 'Printed checklists', 'Educational materials'],
+    icon: Sparkles,
   },
 ] as const
 
-const plannerBullets = [
-  'Document final wishes in one calm, organized place',
-  'Keep memories, notes, and important details together',
-  'Give family members one clear reference when questions come up',
-  'Make difficult conversations feel more manageable',
+const testimonials = [
+  {
+    quote: 'The layout feels calm, clear, and easy to scan.',
+    label: 'Family visitor',
+  },
+  {
+    quote: 'The care levels were simple to understand right away.',
+    label: 'Adult child',
+  },
+  {
+    quote: 'The tour CTA stands out without overwhelming the page.',
+    label: 'Prospective resident',
+  },
 ] as const
 
-const guideBullets = [
-  'A simple conversation starter for family planning',
-  'Clear prompts that help everyone stay on the same page',
-  'A practical resource when decisions need to be made with care',
-] as const
+function Header() {
+  const [open, setOpen] = useState(false)
 
-const blogFocusPosts = [blogPosts[2], blogPosts[0], blogPosts[1]] as const
+  useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === 'Escape') {
+        setOpen(false)
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [])
+
+  return (
+    <header className="sticky top-0 z-50 border-b border-sky-100/80 bg-white/92 backdrop-blur-xl">
+      <div className="border-b border-sky-100 bg-sky-950 text-white">
+        <Container className="flex flex-wrap items-center justify-between gap-3 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-white/85">
+          <span>Accessible senior living</span>
+          <span className="hidden sm:inline">Schedule a tour today</span>
+          <a
+            href={contact.phoneHref}
+            className="inline-flex items-center gap-2 transition hover:text-white"
+          >
+            <PhoneCall className="h-3.5 w-3.5" aria-hidden="true" />
+            {contact.phoneDisplay}
+          </a>
+        </Container>
+      </div>
+
+      <Container className="relative flex items-center justify-between py-4">
+        <a href="#home" className="group inline-flex items-center gap-3">
+          <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-sky-700 text-white shadow-sm transition group-hover:-translate-y-0.5">
+            <Building2 className="h-6 w-6" aria-hidden="true" />
+          </span>
+          <span className="flex flex-col">
+            <span className="text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-sky-700">
+              Senior Living
+            </span>
+            <span className="mt-1 text-xs text-slate-500">
+              Calm. Clear. Welcoming.
+            </span>
+          </span>
+        </a>
+
+        <nav className="hidden items-center gap-1 lg:flex">
+          {navigation.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              className="rounded-full px-4 py-2 text-sm font-semibold text-slate-600 transition hover:bg-sky-50 hover:text-sky-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2"
+            >
+              {item.label}
+            </a>
+          ))}
+        </nav>
+
+        <div className="hidden items-center gap-3 lg:flex">
+          <ActionButton
+            href="#contact"
+            variant="primary"
+            className="!bg-sky-700 !text-white hover:!bg-sky-800"
+          >
+            Schedule a Tour
+          </ActionButton>
+        </div>
+
+        <button
+          type="button"
+          aria-expanded={open}
+          aria-controls="home-navigation"
+          aria-label="Toggle navigation"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-sky-200 bg-white text-sky-900 shadow-sm lg:hidden"
+          onClick={() => setOpen((current) => !current)}
+        >
+          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
+
+        {open ? (
+          <div
+            id="home-navigation"
+            className="absolute left-0 right-0 top-full mt-3 rounded-[1.5rem] border border-sky-100 bg-white p-4 shadow-[0_20px_70px_rgba(11,53,109,0.12)] lg:hidden"
+          >
+            <nav className="grid gap-2">
+              {navigation.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className="flex items-center justify-between rounded-2xl border border-sky-100 px-4 py-3 text-base font-medium text-slate-700 transition hover:border-sky-200 hover:bg-sky-50"
+                >
+                  <span>{item.label}</span>
+                  <ChevronRight className="h-4 w-4 text-slate-400" />
+                </a>
+              ))}
+            </nav>
+
+            <div className="mt-4 flex flex-col gap-3">
+              <ActionButton
+                href="#contact"
+                variant="primary"
+                className="w-full !bg-sky-700 !text-white hover:!bg-sky-800"
+                onClick={() => setOpen(false)}
+              >
+                Schedule a Tour
+              </ActionButton>
+              <ActionButton
+                href={contact.phoneHref}
+                variant="secondary"
+                className="w-full !border-sky-200 !bg-sky-50 !text-sky-900 hover:!bg-sky-100"
+                onClick={() => setOpen(false)}
+              >
+                Call {contact.phoneDisplay}
+              </ActionButton>
+            </div>
+          </div>
+        ) : null}
+      </Container>
+    </header>
+  )
+}
+
+function SectionLabel({ children }: { children: string }) {
+  return (
+    <p className="text-xs font-semibold uppercase tracking-[0.28em] text-sky-700">
+      {children}
+    </p>
+  )
+}
+
+function TagList({
+  items,
+  className,
+}: {
+  items: readonly string[]
+  className?: string
+}) {
+  return (
+    <div className={cx('flex flex-wrap gap-2', className)}>
+      {items.map((item) => (
+        <span
+          key={item}
+          className="rounded-full border border-sky-100 bg-sky-50 px-3 py-2 text-sm font-medium text-sky-900 shadow-sm"
+        >
+          {item}
+        </span>
+      ))}
+    </div>
+  )
+}
 
 export function HomePage() {
-  const featuredBlog = blogFocusPosts[0]
-  const secondaryBlogs = blogFocusPosts.slice(1)
-
   return (
     <>
       <Seo
-        title={brand.shortName}
-        description={brand.description}
+        title="Senior Living"
+        description="A clean, blue senior living homepage with clear care options, photo and virtual tour sections, simple categories, and strong calls to action."
         canonical="/"
-        jsonLd={[organizationSchema(), websiteSchema()]}
       />
-      <SiteHeader />
-      <main>
-        <section className="relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(200,169,106,0.16),_transparent_30%),radial-gradient(circle_at_bottom_right,_rgba(141,155,131,0.16),_transparent_30%)]" />
-          <Container className="relative grid gap-12 py-14 lg:grid-cols-[1.02fr_0.98fr] lg:py-20">
-            <Reveal className="space-y-8 rounded-[2.6rem] border border-white/10 bg-[#10233f] p-8 text-white shadow-[0_30px_80px_rgba(16,35,63,0.28)] sm:p-10">
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/8 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-[#d2a85b] shadow-sm backdrop-blur">
+
+      <Header />
+
+      <main className="overflow-x-clip">
+        <section
+          id="home"
+          className="scroll-mt-28 overflow-hidden bg-[linear-gradient(180deg,#0b4b97_0%,#0f62bf_52%,#f5f9ff_52%,#f5f9ff_100%)] text-white"
+        >
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.16),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.08),transparent_26%)]" />
+          <Container className="relative grid gap-10 py-16 lg:grid-cols-[1.02fr_0.98fr] lg:py-20">
+            <Reveal className="space-y-8">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-white/90 backdrop-blur">
                 <Sparkles className="h-4 w-4" aria-hidden="true" />
-                {brand.shortName}
+                Senior Living
               </div>
 
-              <div className="space-y-6">
-                <h1 className="max-w-3xl font-heading text-5xl leading-[1.02] tracking-[-0.05em] text-white sm:text-6xl lg:text-[5rem]">
-                  Compassionate guidance{' '}
-                  <span className="block text-[#d2a85b]">for the moments that matter</span>
+              <div className="space-y-5">
+                <h1 className="max-w-3xl text-4xl font-semibold leading-[1.02] tracking-[-0.05em] text-white sm:text-5xl lg:text-[4.9rem]">
+                  A calm, welcoming place to live well.
                 </h1>
-                <p className="max-w-2xl text-base leading-8 text-white/75 sm:text-lg">
-                  {homeHero.summary}
+                <p className="max-w-2xl text-base leading-8 text-white/78 sm:text-lg">
+                  Clean spaces, thoughtful care, and simple information make the
+                  next step easier for residents and families.
                 </p>
               </div>
 
               <div className="flex flex-col gap-3 sm:flex-row">
                 <ActionButton
-                  to={homeHero.primaryCta.to}
+                  href="#contact"
                   variant="primary"
-                  className="!bg-[#d2a85b] !text-[#10233f] hover:!bg-[#c6973f]"
+                  className="!bg-white !text-sky-900 hover:!bg-sky-50"
                 >
-                  {homeHero.primaryCta.label}
+                  Schedule a Tour
                 </ActionButton>
                 <ActionButton
-                  to={homeHero.secondaryCta.to}
-                  variant="ghost"
-                  className="!border-white/25 !bg-transparent !text-white hover:!bg-white/10"
+                  href={contact.phoneHref}
+                  variant="secondary"
+                  className="!border-white/20 !bg-white/10 !text-white hover:!bg-white/15"
                 >
-                  {homeHero.secondaryCta.label}
+                  Call Now
                 </ActionButton>
               </div>
 
               <div className="grid gap-3 sm:grid-cols-2">
-                <ActionButton
-                  to="/resources/"
-                  variant="ghost"
-                  className="w-full !border-white/25 !bg-transparent !text-white hover:!bg-white/10"
-                >
-                  Free Resources
-                </ActionButton>
-                <ActionButton
-                  to="/community/"
-                  variant="ghost"
-                  className="w-full !border-white/25 !bg-transparent !text-white hover:!bg-white/10"
-                >
-                  Join Community
-                </ActionButton>
+                <div className="rounded-[1.4rem] border border-white/15 bg-white/10 p-4 backdrop-blur">
+                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/70">
+                    Care levels
+                  </p>
+                  <p className="mt-2 text-lg font-semibold text-white">
+                    Independent, assisted, and memory care
+                  </p>
+                </div>
+                <div className="rounded-[1.4rem] border border-white/15 bg-white/10 p-4 backdrop-blur">
+                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/70">
+                    Tour style
+                  </p>
+                  <p className="mt-2 text-lg font-semibold text-white">
+                    Photo and virtual previews
+                  </p>
+                </div>
               </div>
             </Reveal>
 
             <Reveal className="relative">
-              <div className="rounded-[2.4rem] border border-white/80 bg-white p-4 shadow-[0_24px_60px_rgba(16,35,63,0.14)]">
-                <div className="relative overflow-hidden rounded-[2rem] bg-ivory-50">
+              <div className="absolute -right-6 top-8 hidden h-24 w-24 rounded-full bg-white/10 blur-2xl lg:block" />
+              <div className="rounded-[2.2rem] border border-white/15 bg-white/10 p-4 shadow-[0_30px_80px_rgba(4,20,48,0.25)] backdrop-blur">
+                <div className="relative overflow-hidden rounded-[1.8rem] bg-sky-900">
                   <img
-                    src={homeHero.image}
-                    alt="Courtney Jones, founder of Senior & Living Today, with The Living Legacy Planner"
-                    className="h-[30rem] w-full object-cover sm:h-[34rem]"
+                    src={communityCircleImage}
+                    alt="Residents and a care team talking in a bright lounge"
+                    className="h-[29rem] w-full object-cover opacity-90"
                   />
-                  <div className="absolute left-4 top-4 rounded-full border border-white/15 bg-[#10233f]/90 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-[#f8e4b0] shadow-lg backdrop-blur">
-                    {brand.tagline}
+                  <div className="absolute inset-0 bg-gradient-to-t from-sky-950/75 via-sky-950/20 to-transparent" />
+
+                  <div className="absolute left-5 right-5 bottom-5 grid gap-3 sm:grid-cols-[1.15fr_0.85fr]">
+                    <div className="rounded-[1.5rem] border border-white/15 bg-sky-950/70 p-4 shadow-[0_20px_50px_rgba(2,18,44,0.22)] backdrop-blur">
+                      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-blue-100">
+                        Virtual tour
+                      </p>
+                      <p className="mt-2 text-2xl font-semibold leading-tight text-white">
+                        Walk the community before you visit.
+                      </p>
+                    </div>
+                    <div className="grid gap-3">
+                      <div className="rounded-[1.25rem] border border-white/15 bg-white/12 p-4 text-sm font-medium text-white backdrop-blur">
+                        ADA-friendly spaces
+                      </div>
+                      <div className="rounded-[1.25rem] border border-white/15 bg-white/12 p-4 text-sm font-medium text-white backdrop-blur">
+                        Family visits welcome
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-
-              <div className="mt-4 grid gap-3 sm:grid-cols-3">
-                <div className="rounded-[1.4rem] border border-[#10233f] bg-[#10233f] p-4 text-white shadow-[0_18px_40px_rgba(16,35,63,0.2)]">
-                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#d2a85b]">
-                    Founded by
-                  </p>
-                  <p className="mt-2 font-heading text-2xl text-white">
-                    {founder.name}
-                  </p>
-                </div>
-                <div className="rounded-[1.4rem] border border-stone-200 bg-white p-4 shadow-soft">
-                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sky-700">
-                    Experience
-                  </p>
-                  <p className="mt-2 text-base leading-7 text-stone-600">
-                    {founder.years}
-                  </p>
-                </div>
-                <div className="rounded-[1.4rem] border border-stone-200 bg-white p-4 shadow-soft">
-                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sky-700">
-                    Focus
-                  </p>
-                  <p className="mt-2 text-base leading-7 text-stone-600">
-                    Planning tools, community, and compassionate support.
-                  </p>
-                </div>
-              </div>
             </Reveal>
+
+            <div className="relative grid gap-3 rounded-[2rem] border border-white/15 bg-white/10 p-4 text-white shadow-[0_20px_60px_rgba(4,20,48,0.18)] backdrop-blur lg:col-span-2 lg:grid-cols-4">
+              {heroTrustPoints.map((point) => (
+                <div
+                  key={point}
+                  className="rounded-[1.25rem] border border-white/10 bg-white/8 px-4 py-4 text-center text-base font-semibold text-white/95"
+                >
+                  {point}
+                </div>
+              ))}
+            </div>
           </Container>
         </section>
 
-        <section className="border-y border-[#18304f] bg-[#10233f]">
-          <Container className="py-7">
-            <Reveal>
-              <div className="grid gap-6 rounded-[2rem] border border-white/10 bg-white/5 p-5 text-white shadow-[0_24px_60px_rgba(16,35,63,0.18)] lg:grid-cols-[0.88fr_1.12fr] lg:items-center lg:p-7">
-                <div className="space-y-3">
-                  <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#d2a85b]">
-                    {brand.tagline}
-                  </p>
-                  <p className="max-w-xl text-base leading-8 text-white/75">
-                    {brand.shortName} exists to help seniors and caregivers feel
-                    informed, respected, prepared, and connected.
-                  </p>
-                </div>
-                <div className="grid gap-3 sm:grid-cols-4">
-                  {trustStrip.map((item) => (
-                    <span
-                      key={item}
-                      className="rounded-[1.2rem] border border-white/10 bg-white/8 px-4 py-4 text-center text-lg font-semibold text-white shadow-sm backdrop-blur"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </Reveal>
-          </Container>
-        </section>
-
-        <section className="bg-ivory-50">
+        <section id="options" className="scroll-mt-28 bg-white">
           <Container className="py-16 lg:py-20">
             <Reveal>
-              <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-                <SectionHeading
-                  eyebrow="Guidance paths"
-                  title="Choose the path that fits where you are right now"
-                  summary="Clear next steps for seniors, caregivers, and families that connect to the right resources without overwhelm or pressure."
-                />
-                <ActionButton to="/consultations/" variant="link" icon={false}>
-                  See consultations
+              <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+                <div className="max-w-3xl space-y-3">
+                  <SectionLabel>About the community</SectionLabel>
+                  <h2 className="text-3xl font-semibold leading-tight text-slate-900 sm:text-4xl lg:text-[3.2rem]">
+                    Living options made easy to understand
+                  </h2>
+                  <p className="max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
+                    Clear care levels help families choose with less pressure and
+                    more confidence.
+                  </p>
+                </div>
+                <ActionButton href="#gallery" variant="link" icon={false}>
+                  See floor plans
                 </ActionButton>
               </div>
 
-              <div className="mt-10 grid gap-4 lg:grid-cols-3">
-                {audiencePaths.map((path, index) => {
-                  const Icon = [BookOpen, HeartHandshake, ShieldCheck][index]
+              <div className="mt-10 grid gap-5 lg:grid-cols-3">
+                {livingOptions.map((option) => {
+                  const Icon = option.icon
+
                   return (
                     <article
-                      key={path.title}
-                      className={cx(
-                        'rounded-[1.8rem] border border-stone-200 p-6 shadow-soft transition duration-300 hover:-translate-y-1',
-                        index === 0 && 'bg-white',
-                        index === 1 && 'bg-sky-50/70',
-                        index === 2 && 'bg-sage-50/70',
-                      )}
+                      key={option.title}
+                      className="rounded-[1.8rem] border border-sky-100 bg-sky-50/70 p-6 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-sky-200"
                     >
-                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-sage-700 shadow-sm">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-sky-700 shadow-sm">
                         <Icon className="h-5 w-5" aria-hidden="true" />
                       </div>
                       <p className="mt-5 text-xs font-semibold uppercase tracking-[0.24em] text-sky-700">
-                        {path.eyebrow}
+                        Care level
                       </p>
-                      <h2 className="mt-3 font-heading text-3xl leading-tight text-charcoal">
-                        {path.title}
-                      </h2>
-                      <p className="mt-3 text-base leading-8 text-stone-600">
-                        {path.summary}
+                      <h3 className="mt-3 text-2xl font-semibold leading-tight text-slate-900">
+                        {option.title}
+                      </h3>
+                      <p className="mt-3 text-base leading-8 text-slate-600">
+                        {option.summary}
                       </p>
-                      <ActionButton to={path.href} variant="link" className="mt-5">
-                        {path.cta}
+                      <TagList items={option.tags} className="mt-5" />
+                      <ActionButton
+                        href="#contact"
+                        variant="link"
+                        icon={false}
+                        className="mt-5"
+                      >
+                        Ask about this level
                       </ActionButton>
                     </article>
                   )
@@ -286,269 +447,229 @@ export function HomePage() {
           </Container>
         </section>
 
-        <section>
+        <section id="programs" className="scroll-mt-28 bg-sky-50/70">
           <Container className="py-16 lg:py-20">
             <Reveal>
               <div className="grid gap-6 lg:grid-cols-[0.92fr_1.08fr]">
-                <article className="rounded-[2.2rem] border border-[#18304f] bg-[#10233f] p-8 text-white shadow-[0_24px_70px_rgba(16,35,63,0.22)] sm:p-10">
-                  <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#d2a85b]">
-                    Services at a glance
-                  </p>
-                  <h2 className="mt-4 font-heading text-4xl leading-tight text-white sm:text-5xl">
-                    Where the guidance begins
+                <article className="rounded-[2rem] border border-sky-100 bg-white p-7 shadow-soft">
+                  <SectionLabel>Helpful categories</SectionLabel>
+                  <h2 className="mt-3 text-3xl font-semibold leading-tight text-slate-900 sm:text-4xl">
+                    Simple topics for residents and families
                   </h2>
-                  <p className="mt-5 max-w-xl text-base leading-8 text-white/75">
-                    A quick preview of the support areas that connect seniors,
-                    caregivers, and families to the right next step.
+                  <p className="mt-4 text-base leading-8 text-slate-600">
+                    Fast paths to the right information, without clutter.
                   </p>
-                  <div className="mt-6 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/8 px-4 py-3 text-sm font-medium text-white/90 backdrop-blur">
-                    <Sparkles className="h-4 w-4 text-[#d2a85b]" aria-hidden="true" />
-                    Planning, support, and practical next steps
-                  </div>
-                  <ActionButton
-                    to="/consultations/"
-                    variant="secondary"
-                    className="mt-6 !border-white/20 !bg-white/10 !text-white hover:!bg-white/15"
-                  >
-                    Explore the service pages
-                  </ActionButton>
-                </article>
 
-                <div className="grid gap-4 md:grid-cols-2">
-                  {serviceHighlights.map((service, index) => (
-                    <article
-                      key={service.label}
-                      className={cx(
-                        'relative overflow-hidden rounded-[1.7rem] border border-stone-200 p-6 shadow-soft transition duration-300 hover:-translate-y-1',
-                        index === 0 && 'self-start bg-white',
-                        index === 1 && 'bg-sky-50/60 md:mt-8',
-                        index === 2 && 'self-start bg-sage-50/60 lg:mt-8',
-                        index === 3 && 'bg-ivory-50 md:col-span-2 lg:col-span-1 lg:mt-16',
-                      )}
-                    >
-                      <div className="absolute right-5 top-4 text-6xl font-heading text-[#10233f]/5">
-                        {String(index + 1).padStart(2, '0')}
-                      </div>
-                      <h3 className="mt-8 font-heading text-3xl leading-tight text-charcoal">
-                        {service.label}
-                      </h3>
-                      <p className="mt-3 max-w-md text-base leading-8 text-stone-600">
-                        {service.summary}
-                      </p>
-                      <ActionButton to={service.href} variant="link" className="mt-5">
-                        Learn more
-                      </ActionButton>
-                    </article>
-                  ))}
-                </div>
-              </div>
-            </Reveal>
-          </Container>
-        </section>
+                  <TagList items={resourceCategories} className="mt-6" />
 
-        <section className="bg-ivory-50">
-          <Container className="py-16 lg:py-20">
-            <Reveal>
-              <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-                <SectionHeading
-                  eyebrow="Featured resources"
-                  title="Planning tools that feel useful, not heavy"
-                  summary=""
-                />
-                <ActionButton to="/shop/" variant="link" icon={false}>
-                  Visit the Store
-                </ActionButton>
-              </div>
-
-              <div className="mt-10 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-                <article className="overflow-hidden rounded-[2rem] border border-stone-200 bg-white shadow-soft">
-                  <div className="grid lg:grid-cols-[0.92fr_1.08fr]">
-                    <div className="min-h-[18rem] bg-ivory-50">
-                      <img
-                        src={products[0].image}
-                        alt={products[0].title}
-                        className="h-full w-full object-cover"
-                      />
-                    </div>
-                    <div className="space-y-5 p-6 sm:p-8">
-                      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sky-700">
-                        {products[0].badge}
-                      </p>
-                      <h2 className="font-heading text-4xl leading-tight text-charcoal">
-                        {products[0].title}
-                      </h2>
-                      <p className="max-w-xl text-base leading-8 text-stone-600">
-                        {products[0].summary}
-                      </p>
-                      <div className="flex flex-wrap gap-3">
-                        <ActionButton to={products[0].href} variant="primary">
-                          {products[0].cta}
-                        </ActionButton>
-                        <ActionButton to={homeHero.secondaryCta.to} variant="secondary">
-                          {homeHero.secondaryCta.label}
-                        </ActionButton>
-                      </div>
-                      <BulletList items={plannerBullets} />
-                    </div>
+                  <div className="mt-6 rounded-[1.5rem] bg-sky-50 p-5">
+                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sky-700">
+                      Subscription box
+                    </p>
+                    <p className="mt-2 text-sm leading-7 text-slate-600">
+                      A future monthly package with digital resources, printed
+                      checklists, product samples, and educational materials.
+                    </p>
                   </div>
                 </article>
 
-                <div className="grid gap-6">
-                  <article className="overflow-hidden rounded-[2rem] border border-stone-200 bg-white shadow-soft">
-                    <div className="grid sm:grid-cols-[0.82fr_1.18fr]">
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <article className="overflow-hidden rounded-[2rem] border border-sky-100 bg-white shadow-soft sm:col-span-2">
+                    <div className="grid sm:grid-cols-[0.92fr_1.08fr]">
                       <div className="min-h-[16rem] bg-sky-50">
                         <img
-                          src={products[1].image}
-                          alt={products[1].title}
+                          src={plannerFlatlay}
+                          alt="Senior planning planner with tea and glasses"
                           className="h-full w-full object-cover"
                         />
                       </div>
                       <div className="space-y-4 p-6 sm:p-7">
                         <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sky-700">
-                          Nostalgic book
+                          Digital download store
                         </p>
-                        <h2 className="font-heading text-3xl leading-tight text-charcoal">
-                          {products[1].title}
-                        </h2>
-                        <p className="text-base leading-8 text-stone-600">
-                          {products[1].summary}
+                        <h3 className="text-2xl font-semibold leading-tight text-slate-900">
+                          Low-ticket products with high margins
+                        </h3>
+                        <p className="text-base leading-8 text-slate-600">
+                          Offer useful downloads that are easy to buy and easy to
+                          share.
                         </p>
-                        <ActionButton to={products[1].href} variant="secondary">
-                          {products[1].cta}
-                        </ActionButton>
+                        <TagList
+                          items={[
+                            '$1 Emergency Card',
+                            '$1 Medication Tracker',
+                            '$3 Hospital Checklist',
+                            '$5 Caregiver Toolkit',
+                          ]}
+                        />
+                        <TagList
+                          items={['$9 Emergency Bundle', '$19 Digital Planner', '$49 Family Kit']}
+                        />
                       </div>
                     </div>
                   </article>
 
-                  <article className="rounded-[2rem] border border-sage-100 bg-sage-50/70 p-6 shadow-soft">
-                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sky-700">
-                      Final Arrangement 10 Point Discussion Guide
-                    </p>
-                    <h2 className="mt-3 font-heading text-3xl leading-tight text-charcoal">
-                      A calm script for hard conversations
-                    </h2>
-                    <BulletList items={guideBullets} className="mt-4" />
-                    <div className="mt-5 flex flex-wrap gap-3">
-                      <ActionButton to="/contact/?service=Senior%20Care%20Consulting" variant="primary">
-                        Request the Guide
-                      </ActionButton>
-                      <ActionButton
-                        href={contact.storeUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        variant="secondary"
+                  {programCards.map((program) => {
+                    const Icon = program.icon
+
+                    return (
+                      <article
+                        key={program.title}
+                        className="rounded-[1.7rem] border border-sky-100 bg-white p-6 shadow-soft"
                       >
-                        Visit the Store
-                      </ActionButton>
-                    </div>
-                  </article>
+                        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-sky-50 text-sky-700">
+                          <Icon className="h-5 w-5" aria-hidden="true" />
+                        </div>
+                        <h3 className="mt-5 text-2xl font-semibold leading-tight text-slate-900">
+                          {program.title}
+                        </h3>
+                        <p className="mt-3 text-base leading-8 text-slate-600">
+                          {program.summary}
+                        </p>
+                        <TagList items={program.tags} className="mt-5" />
+                      </article>
+                    )
+                  })}
                 </div>
               </div>
             </Reveal>
           </Container>
         </section>
 
-        <section>
+        <section id="gallery" className="scroll-mt-28 bg-white">
           <Container className="py-16 lg:py-20">
             <Reveal>
-              <div className="grid gap-8 lg:grid-cols-[0.96fr_1.04fr]">
-                <div className="space-y-6">
-                  <SectionHeading
-                    eyebrow="Community"
-                    title="A place to learn, connect, and feel supported"
-                    summary="Online group meetings, webinars, courses, and senior-friendly conversations keep the community visible and easy to join."
-                  />
-                  <div className="rounded-[2rem] border border-stone-200 bg-white p-6 shadow-soft">
-                    <BulletList items={communityHighlights} />
-                  </div>
-                  <div className="flex flex-wrap gap-3">
-                    <ActionButton to="/community/" variant="primary">
-                      Join the Community
-                    </ActionButton>
-                    <ActionButton to="/blog/" variant="secondary">
-                      Read the Blog
-                    </ActionButton>
-                  </div>
+              <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+                <div className="max-w-3xl space-y-3">
+                  <SectionLabel>Photo and virtual tours</SectionLabel>
+                  <h2 className="text-3xl font-semibold leading-tight text-slate-900 sm:text-4xl lg:text-[3.2rem]">
+                    See the community before you visit
+                  </h2>
+                  <p className="max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
+                    Professional photography, floor plan previews, and easy-to-book
+                    tours help families feel ready.
+                  </p>
                 </div>
-
-                <div className="grid gap-6">
-                  <article className="overflow-hidden rounded-[2rem] border border-stone-200 bg-white shadow-soft">
-                    <div className="bg-ivory-50 p-5">
-                      <img
-                        src={saltinesGotTalent.image}
-                        alt="Saltine’s Got Talent coming soon banner"
-                        className="mx-auto w-full max-w-2xl object-contain object-center"
-                      />
-                    </div>
-                    <div className="space-y-4 p-6">
-                      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sky-700">
-                        Community spotlight
-                      </p>
-                      <h2 className="font-heading text-3xl leading-tight text-charcoal">
-                        {saltinesGotTalent.headline}
-                      </h2>
-                      <p className="text-base leading-8 text-stone-600">
-                        {saltinesGotTalent.summary}
-                      </p>
-                      <ActionButton to="/community/" variant="link">
-                        {saltinesGotTalent.cta}
-                      </ActionButton>
-                    </div>
-                  </article>
-
-                  
-                </div>
+                <ActionButton href="#contact" variant="link" icon={false}>
+                  Book a tour
+                </ActionButton>
               </div>
-              <article className="overflow-hidden rounded-[2rem] mt-7 border border-stone-200 bg-white shadow-soft">
-                    <div className="relative max-h-[36rem]">
-                      <img
-                        src={communitySpotlightImage}
-                        alt="A welcoming community group discussing senior support"
-                        className="h-full min-h-[16rem] w-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-charcoal/55 via-charcoal/15 to-transparent" />
-                      <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/80">
-                          Shared learning
+
+              <div className="mt-10 grid gap-5 lg:grid-cols-[1.12fr_0.88fr]">
+                <article className="overflow-hidden rounded-[2rem] border border-sky-100 bg-white shadow-soft">
+                  <div className="aspect-[4/3] bg-sky-50">
+                    <img
+                      src={communityCircleImage}
+                      alt="Residents and a care team talking in a bright lounge"
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                  <div className="space-y-3 p-6 sm:p-7">
+                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sky-700">
+                      Shared spaces
+                    </p>
+                    <h3 className="text-2xl font-semibold leading-tight text-slate-900">
+                      Warm rooms for conversation and connection
+                    </h3>
+                    <p className="text-base leading-8 text-slate-600">
+                      Bright seating areas and welcoming common spaces set the tone.
+                    </p>
+                  </div>
+                </article>
+
+                <div className="grid gap-5">
+                  <article className="overflow-hidden rounded-[2rem] border border-sky-100 bg-white shadow-soft">
+                    <div className="grid sm:grid-cols-[0.82fr_1.18fr]">
+                      <div className="min-h-[13rem] bg-sky-50">
+                        <img
+                          src={heroCareImage}
+                          alt="Care team helping a resident with a planning conversation"
+                          className="h-full w-full object-cover"
+                        />
+                      </div>
+                      <div className="space-y-3 p-6 sm:p-7">
+                        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sky-700">
+                          Support moments
                         </p>
-                        <p className="mt-2 max-w-xl text-lg leading-8">
-                          The community is designed to feel welcoming, readable,
-                          and easy to return to.
+                        <h3 className="text-2xl font-semibold leading-tight text-slate-900">
+                          Care that feels calm and personal
+                        </h3>
+                        <p className="text-base leading-8 text-slate-600">
+                          Families can see the rhythm of daily support before they
+                          arrive.
                         </p>
                       </div>
                     </div>
                   </article>
+
+                  <article className="rounded-[2rem] border border-sky-100 bg-[linear-gradient(135deg,#0f4f9d_0%,#0b356d_100%)] p-6 text-white shadow-[0_20px_60px_rgba(11,53,109,0.24)]">
+                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-blue-100">
+                      Virtual tour
+                    </p>
+                    <h3 className="mt-3 text-2xl font-semibold leading-tight text-white">
+                      Walk the space from home.
+                    </h3>
+                    <div className="mt-5 grid gap-3 sm:grid-cols-3">
+                      <div className="rounded-[1.25rem] border border-white/12 bg-white/10 p-4">
+                        <Video className="h-5 w-5 text-blue-100" aria-hidden="true" />
+                        <p className="mt-3 text-sm font-medium text-white/90">
+                          Guided video tours
+                        </p>
+                      </div>
+                      <div className="rounded-[1.25rem] border border-white/12 bg-white/10 p-4">
+                        <MapPinned className="h-5 w-5 text-blue-100" aria-hidden="true" />
+                        <p className="mt-3 text-sm font-medium text-white/90">
+                          Easy floor plan previews
+                        </p>
+                      </div>
+                      <div className="rounded-[1.25rem] border border-white/12 bg-white/10 p-4">
+                        <CalendarDays className="h-5 w-5 text-blue-100" aria-hidden="true" />
+                        <p className="mt-3 text-sm font-medium text-white/90">
+                          Book a visit anytime
+                        </p>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
             </Reveal>
           </Container>
         </section>
 
-        <section className="bg-ivory-50">
+        <section id="reviews" className="scroll-mt-28 bg-sky-50/70">
           <Container className="py-16 lg:py-20">
             <Reveal>
-              <SectionHeading
-                eyebrow="Reader trust"
-                title="Reviews that keep the original voice visible"
-                summary=""
-              />
-              <div className="mt-10 grid gap-6 lg:grid-cols-3">
-                {endorsements.map((item) => (
+              <div className="max-w-3xl space-y-3">
+                <SectionLabel>Testimonials</SectionLabel>
+                <h2 className="text-3xl font-semibold leading-tight text-slate-900 sm:text-4xl lg:text-[3.2rem]">
+                  Simple, clear, and reassuring
+                </h2>
+                <p className="max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
+                  Short, readable feedback that builds trust fast.
+                </p>
+              </div>
+
+              <div className="mt-10 grid gap-5 lg:grid-cols-3">
+                {testimonials.map((item) => (
                   <article
                     key={item.label}
-                    className="overflow-hidden rounded-[1.7rem] border border-stone-200 bg-white shadow-[0_15px_50px_rgba(86,67,41,0.06)]"
+                    className="rounded-[1.8rem] border border-sky-100 bg-white p-6 shadow-soft"
                   >
-                    <img
-                      src={item.image}
-                      alt={item.alt}
-                      className="block w-full"
-                    />
-                    <div className="flex items-center justify-between gap-3 border-t border-stone-100 px-5 py-4">
-                      <p className="text-sm font-semibold text-charcoal">
-                        {item.label}
-                      </p>
-                      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-700">
-                        Verified review
-                      </p>
+                    <div className="flex items-center gap-1 text-sky-500">
+                      {Array.from({ length: 5 }).map((_, index) => (
+                        <Star
+                          key={`${item.label}-${index}`}
+                          className="h-4 w-4 fill-current"
+                          aria-hidden="true"
+                        />
+                      ))}
                     </div>
+                    <p className="mt-4 text-base leading-8 text-slate-700">
+                      {`"${item.quote}"`}
+                    </p>
+                    <p className="mt-5 text-xs font-semibold uppercase tracking-[0.22em] text-sky-700">
+                      {item.label}
+                    </p>
                   </article>
                 ))}
               </div>
@@ -556,210 +677,112 @@ export function HomePage() {
           </Container>
         </section>
 
-        <section>
+        <section id="contact" className="scroll-mt-28 bg-[linear-gradient(180deg,#0b4b97_0%,#0b356d_100%)] text-white">
           <Container className="py-16 lg:py-20">
             <Reveal>
-              <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-                <SectionHeading
-                  eyebrow="From the blog"
-                  title="Useful reads for everyday living"
-                  summary="Practical, compassionate, and easy-to-read posts that cover senior care, caregiving, family planning, and lifestyle topics that matter to the community."
-                />
-                <ActionButton to="/blog/" variant="link" icon={false}>
-                  View all posts
-                </ActionButton>
-              </div>
-
-              <div className="mt-10 grid gap-6 lg:grid-cols-[1.12fr_0.88fr]">
-                <article className="overflow-hidden rounded-[2rem] border border-stone-200 bg-white shadow-soft">
-                  <div className="aspect-[4/3] bg-ivory-50">
-                    <img
-                      src={featuredBlog.image}
-                      alt={featuredBlog.title}
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                  <div className="space-y-4 p-6 sm:p-8">
-                    <div className="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-sky-700">
-                      <span>{featuredBlog.category}</span>
-                      <span className="h-1 w-1 rounded-full bg-stone-300" />
-                      <span>{featuredBlog.date}</span>
-                      <span className="h-1 w-1 rounded-full bg-stone-300" />
-                      <span>{featuredBlog.readTime}</span>
-                    </div>
-                    <h2 className="font-heading text-4xl leading-tight text-charcoal">
-                      {featuredBlog.title}
+              <div className="grid gap-8 lg:grid-cols-[1.02fr_0.98fr]">
+                <div className="space-y-6">
+                  <div className="space-y-3">
+                    <SectionLabel>Come see for yourself</SectionLabel>
+                    <h2 className="text-3xl font-semibold leading-tight text-white sm:text-4xl lg:text-[3.2rem]">
+                      Ready to schedule a tour?
                     </h2>
-                    <p className="max-w-2xl text-base leading-8 text-stone-600">
-                      {featuredBlog.excerpt}
+                    <p className="max-w-xl text-base leading-8 text-white/78 sm:text-lg">
+                      Call, email, or send a message. We keep the next step simple.
                     </p>
-                    <ActionButton
-                      to={`/blog/${featuredBlog.slug}/`}
-                      variant="primary"
-                    >
-                      Read the feature story
-                    </ActionButton>
                   </div>
-                </article>
 
-                <div className="grid gap-6">
-                  {secondaryBlogs.map((post) => (
-                    <article
-                      key={post.slug}
-                      className="overflow-hidden rounded-[1.7rem] border border-stone-200 bg-white shadow-soft"
-                    >
-                      <div className="grid sm:grid-cols-[0.82fr_1.18fr]">
-                        <div className="min-h-[12rem] bg-ivory-50">
-                          <img
-                            src={post.image}
-                            alt={post.title}
-                            className="h-full w-full object-cover"
-                          />
-                        </div>
-                        <div className="space-y-3 p-6 sm:p-7">
-                          <div className="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-sky-700">
-                            <span>{post.category}</span>
-                            <span className="h-1 w-1 rounded-full bg-stone-300" />
-                            <span>{post.readTime}</span>
-                          </div>
-                          <h3 className="font-heading text-3xl leading-tight text-charcoal">
-                            {post.title}
-                          </h3>
-                          <p className="text-base leading-7 text-stone-600">
-                            {post.excerpt}
-                          </p>
-                          <ActionButton
-                            to={`/blog/${post.slug}/`}
-                            variant="link"
-                          >
-                            Read more
-                          </ActionButton>
-                        </div>
-                      </div>
-                    </article>
-                  ))}
-
-                  <article className="rounded-[1.7rem] border border-sage-100 bg-sage-50/70 p-6 shadow-soft">
-                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sky-700">
-                      Categories
-                    </p>
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      {[
-                        'Senior safety',
-                        'Caregiver support',
-                        'Senior living',
-                        'Planning',
-                        'Wellness',
-                        'Lifestyle',
-                      ].map((item) => (
-                        <span
-                          key={item}
-                          className="rounded-full border border-stone-200 bg-white px-3 py-2 text-sm font-medium text-stone-700 shadow-sm"
-                        >
-                          {item}
-                        </span>
-                      ))}
-                    </div>
-                  </article>
-                </div>
-              </div>
-            </Reveal>
-          </Container>
-        </section>
-
-        <section className="bg-ivory-50">
-          <Container className="py-16 lg:py-20">
-            <Reveal>
-              <div className="grid gap-8 rounded-[2.2rem] border border-[#18304f] bg-[#10233f] p-6 shadow-[0_24px_70px_rgba(16,35,63,0.22)] lg:grid-cols-[1.02fr_0.98fr] lg:p-8">
-                <div className="space-y-5">
-                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#d2a85b]">
-                    Let’s talk
-                  </p>
-                  <h2 className="font-heading text-4xl text-white sm:text-5xl">
-                    Ready for a clearer next step?
-                  </h2>
-                  <p className="max-w-xl text-base leading-8 text-white/75 sm:text-lg">
-                    Reach out for consulting, caregiver support, community
-                    questions, or help choosing the right planner. 
-                  </p>
                   <div className="flex flex-col gap-3 sm:flex-row">
                     <ActionButton
-                      to="/contact/"
+                      href={contact.phoneHref}
                       variant="primary"
-                      className="!bg-[#d2a85b] !text-[#10233f] hover:!bg-[#c6973f]"
+                      className="!bg-white !text-sky-900 hover:!bg-sky-50"
                     >
-                      Book a Free Consultation
+                      Call to Schedule
                     </ActionButton>
                     <ActionButton
-                      href={contact.phoneHref}
+                      href={contact.emailHref}
                       variant="secondary"
                       className="!border-white/20 !bg-white/10 !text-white hover:!bg-white/15"
                     >
-                      Call {contact.phoneDisplay}
+                      Email Us
                     </ActionButton>
+                  </div>
+
+                  <div className="grid gap-3 sm:grid-cols-3">
+                    <div className="rounded-[1.4rem] border border-white/15 bg-white/10 p-4 backdrop-blur">
+                      <PhoneCall className="h-5 w-5 text-blue-100" aria-hidden="true" />
+                      <p className="mt-3 text-xs font-semibold uppercase tracking-[0.24em] text-blue-100">
+                        Call
+                      </p>
+                      <a
+                        href={contact.phoneHref}
+                        className="mt-2 block text-sm font-medium text-white transition hover:text-blue-100"
+                      >
+                        {contact.phoneDisplay}
+                      </a>
+                    </div>
+
+                    <div className="rounded-[1.4rem] border border-white/15 bg-white/10 p-4 backdrop-blur">
+                      <Mail className="h-5 w-5 text-blue-100" aria-hidden="true" />
+                      <p className="mt-3 text-xs font-semibold uppercase tracking-[0.24em] text-blue-100">
+                        Email
+                      </p>
+                      <a
+                        href={contact.emailHref}
+                        className="mt-2 block text-sm font-medium text-white transition hover:text-blue-100"
+                      >
+                        {contact.email}
+                      </a>
+                    </div>
+
+                    <div className="rounded-[1.4rem] border border-white/15 bg-white/10 p-4 backdrop-blur">
+                      <Home className="h-5 w-5 text-blue-100" aria-hidden="true" />
+                      <p className="mt-3 text-xs font-semibold uppercase tracking-[0.24em] text-blue-100">
+                        Visit
+                      </p>
+                      <p className="mt-2 text-sm font-medium text-white">
+                        Floor plans and tours available
+                      </p>
+                    </div>
                   </div>
                 </div>
 
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <a
-                    href={contact.phoneHref}
-                    className="grid gap-3 rounded-[1.4rem] border border-white/10 bg-white/8 p-5 transition hover:border-[#d2a85b]/40 hover:bg-white/12"
-                  >
-                    <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-sky-700 shadow-sm">
-                      <PhoneCall className="h-5 w-5" aria-hidden="true" />
-                    </span>
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#d2a85b]">
-                        Call
-                      </p>
-                      <p className="mt-2 text-base font-medium text-white">
-                        {contact.phoneDisplay}
-                      </p>
-                    </div>
-                  </a>
-
-                  <a
-                    href={contact.emailHref}
-                    className="grid gap-3 rounded-[1.4rem] border border-white/10 bg-white/8 p-5 transition hover:border-[#d2a85b]/40 hover:bg-white/12"
-                  >
-                    <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-sky-700 shadow-sm">
-                      <Mail className="h-5 w-5" aria-hidden="true" />
-                    </span>
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#d2a85b]">
-                        Email
-                      </p>
-                      <p className="mt-2 text-base font-medium text-white">
-                        {contact.email}
-                      </p>
-                    </div>
-                  </a>
-
-                  <div className="grid gap-3 rounded-[1.4rem] border border-white/10 bg-white/8 p-5 sm:col-span-2">
-                    <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                      <div>
-                        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#d2a85b]">
-                          Mailing address
-                        </p>
-                        <p className="mt-2 text-base leading-7 text-white">
-                          {contact.mailingAddress}
-                        </p>
-                      </div>
-                      <div className="sm:text-right">
-                        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#d2a85b]">
-                          Store
-                        </p>
-                        <a
-                          href={contact.storeUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="mt-2 inline-flex items-center gap-2 text-base font-semibold text-white hover:text-[#f8e4b0]"
+                <div className="rounded-[2rem] border border-white/15 bg-white/10 p-6 shadow-[0_20px_80px_rgba(2,18,44,0.24)] backdrop-blur">
+                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-blue-100">
+                    Visit checklist
+                  </p>
+                  <div className="mt-5 space-y-4">
+                    {['Walk the community', 'Meet the care team', 'Review floor plans'].map(
+                      (item) => (
+                        <div
+                          key={item}
+                          className="flex items-start gap-3 rounded-[1.25rem] border border-white/12 bg-white/8 p-4 text-white"
                         >
-                          {contact.storeLabel}
-                          <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                        </a>
-                      </div>
-                    </div>
+                          <span className="mt-1 h-2.5 w-2.5 rounded-full bg-white" />
+                          <p className="text-sm leading-7 text-white/90">{item}</p>
+                        </div>
+                      ),
+                    )}
+                  </div>
+
+                  <div className="mt-6 rounded-[1.5rem] bg-white p-5 text-sky-950">
+                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sky-700">
+                      Quick contact
+                    </p>
+                    <a
+                      href={contact.emailHref}
+                      className="mt-3 block text-lg font-semibold text-sky-950 transition hover:text-sky-700"
+                    >
+                      {contact.email}
+                    </a>
+                    <a
+                      href={contact.phoneHref}
+                      className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-sky-700 transition hover:text-sky-900"
+                    >
+                      <PhoneCall className="h-4 w-4" aria-hidden="true" />
+                      {contact.phoneDisplay}
+                    </a>
                   </div>
                 </div>
               </div>
@@ -767,7 +790,23 @@ export function HomePage() {
           </Container>
         </section>
       </main>
-      <SiteFooter />
+
+      <footer className="border-t border-sky-100 bg-white">
+        <Container className="flex flex-col gap-4 py-6 text-sm text-slate-600 md:flex-row md:items-center md:justify-between">
+          <p>Senior Living. Clean spaces. Clear next steps.</p>
+          <div className="flex flex-wrap items-center gap-4">
+            {navigation.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                className="transition hover:text-sky-700"
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+        </Container>
+      </footer>
     </>
   )
 }
