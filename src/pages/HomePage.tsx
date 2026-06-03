@@ -279,12 +279,13 @@ function PillList({
   className?: string
 }) {
   return (
-    <div className={cx('flex flex-wrap gap-2', className)}>
+    <div className={cx('flex flex-wrap gap-x-6 gap-y-2', className)}>
       {items.map((item) => (
         <span
           key={item}
-          className="rounded-full border border-sky-100 bg-sky-50 px-3 py-2 text-sm font-medium text-sky-900 shadow-sm"
+          className="inline-flex items-center gap-2 text-sm font-medium text-sky-800"
         >
+          <span className="h-1.5 w-1.5 rounded-full bg-sky-400" aria-hidden="true" />
           {item}
         </span>
       ))}
@@ -351,24 +352,24 @@ function LeadForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="rounded-[2rem] border border-sky-100 bg-white p-6 shadow-soft sm:p-8"
+      className="space-y-5 border-t border-white/20 pt-6"
     >
       <div className="grid gap-5 md:grid-cols-2">
         <label className="grid gap-2">
-          <span className="text-sm font-semibold text-slate-900">Name</span>
+          <span className="text-sm font-semibold text-white/90">Name</span>
           <input
             required
             value={form.name}
             onChange={(event) =>
               setForm((current) => ({ ...current, name: event.target.value }))
             }
-            className="rounded-2xl border border-sky-200 bg-white px-4 py-3 text-base text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-sky-400 focus:ring-2 focus:ring-sky-200"
+            className="border-b border-white/25 bg-transparent px-0 py-3 text-base text-white outline-none transition placeholder:text-white/45 focus:border-white focus:ring-0"
             placeholder="Your name"
           />
         </label>
 
         <label className="grid gap-2">
-          <span className="text-sm font-semibold text-slate-900">Email</span>
+          <span className="text-sm font-semibold text-white/90">Email</span>
           <input
             required
             type="email"
@@ -376,25 +377,25 @@ function LeadForm() {
             onChange={(event) =>
               setForm((current) => ({ ...current, email: event.target.value }))
             }
-            className="rounded-2xl border border-sky-200 bg-white px-4 py-3 text-base text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-sky-400 focus:ring-2 focus:ring-sky-200"
+            className="border-b border-white/25 bg-transparent px-0 py-3 text-base text-white outline-none transition placeholder:text-white/45 focus:border-white focus:ring-0"
             placeholder="you@example.com"
           />
         </label>
 
         <label className="grid gap-2">
-          <span className="text-sm font-semibold text-slate-900">Phone</span>
+          <span className="text-sm font-semibold text-white/90">Phone</span>
           <input
             value={form.phone}
             onChange={(event) =>
               setForm((current) => ({ ...current, phone: event.target.value }))
             }
-            className="rounded-2xl border border-sky-200 bg-white px-4 py-3 text-base text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-sky-400 focus:ring-2 focus:ring-sky-200"
+            className="border-b border-white/25 bg-transparent px-0 py-3 text-base text-white outline-none transition placeholder:text-white/45 focus:border-white focus:ring-0"
             placeholder="(555) 555-5555"
           />
         </label>
 
         <label className="grid gap-2">
-          <span className="text-sm font-semibold text-slate-900">What do you need?</span>
+          <span className="text-sm font-semibold text-white/90">What do you need?</span>
           <select
             value={form.serviceInterest}
             onChange={(event) =>
@@ -403,7 +404,7 @@ function LeadForm() {
                 serviceInterest: event.target.value,
               }))
             }
-            className="rounded-2xl border border-sky-200 bg-white px-4 py-3 text-base text-slate-900 outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-200"
+            className="border-b border-white/25 bg-transparent px-0 py-3 text-base text-white outline-none transition focus:border-white focus:ring-0"
           >
             {inquiryOptions.map((option) => (
               <option key={option} value={option}>
@@ -415,7 +416,7 @@ function LeadForm() {
       </div>
 
       <label className="mt-5 grid gap-2">
-        <span className="text-sm font-semibold text-slate-900">Message</span>
+        <span className="text-sm font-semibold text-white/90">Message</span>
         <textarea
           required
           rows={5}
@@ -423,16 +424,16 @@ function LeadForm() {
           onChange={(event) =>
             setForm((current) => ({ ...current, message: event.target.value }))
           }
-          className="rounded-2xl border border-sky-200 bg-white px-4 py-3 text-base text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-sky-400 focus:ring-2 focus:ring-sky-200"
+          className="border-b border-white/25 bg-transparent px-0 py-3 text-base text-white outline-none transition placeholder:text-white/45 focus:border-white focus:ring-0"
           placeholder="Tell us how we can help."
         />
       </label>
 
-      <div className="mt-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <p className="max-w-2xl text-sm leading-7 text-slate-500">
+      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <p className="max-w-2xl text-sm leading-7 text-white/72">
           Please review our Privacy Policy and Terms &amp; Conditions before
           submitting. If you need immediate help, call{' '}
-          <a href={contact.phoneHref} className="font-semibold text-sky-700">
+          <a href={contact.phoneHref} className="font-semibold text-white">
             {contact.phoneDisplay}
           </a>
           .
@@ -440,7 +441,7 @@ function LeadForm() {
         <ActionButton
           type="submit"
           variant="primary"
-          className="shrink-0 !bg-sky-700 !text-white hover:!bg-sky-800"
+          className="shrink-0 !bg-white !text-sky-900 hover:!bg-sky-50"
           disabled={status === 'sending'}
         >
           {status === 'sending' ? 'Sending...' : 'Submit Now'}
@@ -450,13 +451,13 @@ function LeadForm() {
       {status !== 'idle' ? (
         <div
           className={cx(
-            'mt-6 rounded-[1.25rem] px-5 py-4 text-sm leading-7',
+            'border-l-4 px-5 py-4 text-sm leading-7',
             status === 'success' &&
-              'border border-sky-200 bg-sky-50 text-sky-900',
+              'border-sky-200 bg-white/10 text-white',
             status === 'error' &&
-              'border border-rose-200 bg-rose-50 text-rose-900',
+              'border-rose-200 bg-rose-500/10 text-white',
             status === 'sending' &&
-              'border border-sky-200 bg-sky-50 text-sky-900',
+              'border-sky-200 bg-white/10 text-white',
           )}
           aria-live="polite"
         >
@@ -489,8 +490,8 @@ export function HomePage() {
           }}
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.14),transparent_24%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.08),transparent_22%)]" />
-          <Container className="relative grid gap-10 py-16 lg:grid-cols-[1.02fr_0.98fr] lg:py-20">
-            <Reveal className="space-y-8 rounded-[2.4rem] border border-white/15 bg-sky-950/40 p-6 shadow-[0_30px_90px_rgba(2,12,27,0.28)] backdrop-blur-sm sm:p-8">
+          <Container className="relative grid gap-12 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:py-20">
+            <Reveal className="space-y-8 lg:pt-6">
               <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/12 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-white/95 backdrop-blur">
                 <Sparkles className="h-4 w-4" aria-hidden="true" />
                 Care. Comfort. Community.
@@ -537,68 +538,62 @@ export function HomePage() {
                 </ActionButton>
               </div>
 
-              <div className="grid gap-3 sm:grid-cols-2">
-                <div className="rounded-[1.4rem] border border-white/15 bg-white/10 p-4 backdrop-blur">
+              <div className="grid gap-3 border-t border-white/15 pt-5 sm:grid-cols-2 sm:gap-6">
+                <div className="space-y-2">
                   <p className="text-xs font-semibold uppercase tracking-[0.24em] text-blue-50">
                     Who we serve
                   </p>
-                  <p className="mt-2 text-lg font-semibold text-white">
+                  <p className="text-lg font-semibold text-white">
                     Seniors, caregivers, and families
                   </p>
                 </div>
-                <div className="rounded-[1.4rem] border border-white/15 bg-white/10 p-4 backdrop-blur">
+                <div className="space-y-2 sm:border-l sm:border-white/15 sm:pl-6">
                   <p className="text-xs font-semibold uppercase tracking-[0.24em] text-blue-50">
                     Easy access
                   </p>
-                  <p className="mt-2 text-lg font-semibold text-white">
+                  <p className="text-lg font-semibold text-white">
                     Tours, planner tools, and community support
                   </p>
                 </div>
               </div>
             </Reveal>
 
-            <Reveal className="space-y-4">
-              <div className="rounded-[2.2rem] border border-white/15 bg-white/10 p-4 shadow-[0_30px_80px_rgba(4,20,48,0.25)] backdrop-blur">
-                <div className="grid gap-4">
-                  <div className="overflow-hidden rounded-[1.7rem] bg-sky-900">
-                    <img
-                      src={communitySpotlightImage}
-                      alt="Residents and a care team talking in a bright lounge"
-                      className="h-[18rem] w-full object-cover opacity-90"
-                    />
-                  </div>
+            <Reveal className="space-y-6 lg:pt-8">
+              <div className="overflow-hidden rounded-[1.6rem]">
+                <img
+                  src={communitySpotlightImage}
+                  alt="Residents and a care team talking in a bright lounge"
+                  className="h-[22rem] w-full object-cover md:h-[28rem]"
+                />
+              </div>
 
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <div className="overflow-hidden rounded-[1.5rem] bg-white">
-                      <img
-                        src={products[0].image}
-                        alt={products[0].title}
-                        className="h-full w-full object-cover"
-                      />
-                    </div>
-                    <div className="rounded-[1.5rem] border border-white/15 bg-sky-950/75 p-5 text-white shadow-[0_18px_50px_rgba(2,18,44,0.22)] backdrop-blur">
-                      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-blue-100">
-                        Family-ready planning
-                      </p>
-                      <p className="mt-3 text-2xl font-semibold leading-tight text-white">
-                        Clean guidance for the next step.
-                      </p>
-                      <p className="mt-3 text-sm leading-7 text-white/78">
-                        Keep one clear place for wishes, notes, and important
-                        information.
-                      </p>
-                    </div>
-                  </div>
+              <div className="grid gap-4 border-t border-white/15 pt-5 sm:grid-cols-2">
+                <div className="space-y-2">
+                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-blue-100">
+                    Family-ready planning
+                  </p>
+                  <p className="text-lg font-semibold text-white">
+                    Clean guidance for the next step.
+                  </p>
+                </div>
+                <div className="space-y-2 sm:border-l sm:border-white/15 sm:pl-6">
+                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-blue-100">
+                    Easy access
+                  </p>
+                  <p className="text-lg font-semibold text-white">
+                    One calm place for wishes, notes, and details.
+                  </p>
                 </div>
               </div>
 
-              <div className="grid gap-3 sm:grid-cols-4">
+              <div className="grid gap-3 border-t border-white/15 pt-5 sm:grid-cols-2">
                 {heroTrustPoints.map((point) => (
                   <div
                     key={point}
-                    className="rounded-[1.25rem] border border-white/15 bg-white/10 px-4 py-4 text-center text-sm font-semibold text-white/95 backdrop-blur"
+                    className="flex items-center gap-3 text-sm font-medium text-white/92"
                   >
-                    {point}
+                    <span className="h-1.5 w-1.5 rounded-full bg-white/80" aria-hidden="true" />
+                    <span>{point}</span>
                   </div>
                 ))}
               </div>
@@ -609,7 +604,7 @@ export function HomePage() {
         <section id="about" className="scroll-mt-28 bg-white">
           <Container className="py-16 lg:py-20">
             <Reveal>
-              <div className="grid gap-8 lg:grid-cols-[0.96fr_1.04fr] lg:items-start">
+              <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
                 <div className="space-y-6">
                   <SectionHeader
                     eyebrow="About Us"
@@ -617,7 +612,7 @@ export function HomePage() {
                     summary="We keep the experience calm, premium, and easy to scan, with direct paths for seniors and adult children who need help fast."
                   />
 
-                  <div className="rounded-[2rem] border border-sky-100 bg-sky-50/70 p-6 shadow-soft">
+                  <div className="border-l-2 border-sky-200 pl-5">
                     <p className="text-base leading-8 text-slate-600">
                       {founder.summary}
                     </p>
@@ -632,21 +627,21 @@ export function HomePage() {
                     </ActionButton>
                   </div>
 
-                  <div className="grid gap-3 sm:grid-cols-3">
+                  <div className="grid gap-4 border-t border-sky-100 pt-6 sm:grid-cols-3">
                     {audienceCards.map((card) => {
                       const Icon = card.icon
                       return (
                         <article
                           key={card.title}
-                          className="rounded-[1.5rem] border border-sky-100 bg-white p-5 shadow-soft"
+                          className="space-y-3"
                         >
-                          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-sky-50 text-sky-700">
+                          <div className="flex h-11 w-11 items-center justify-center rounded-full bg-sky-50 text-sky-700">
                             <Icon className="h-5 w-5" aria-hidden="true" />
                           </div>
-                          <h3 className="mt-4 text-lg font-semibold text-slate-900">
+                          <h3 className="text-lg font-semibold text-slate-900">
                             {card.title}
                           </h3>
-                          <p className="mt-2 text-sm leading-7 text-slate-600">
+                          <p className="text-sm leading-7 text-slate-600">
                             {card.summary}
                           </p>
                         </article>
@@ -655,47 +650,45 @@ export function HomePage() {
                   </div>
                 </div>
 
-                <div className="grid gap-4">
-                  <article className="overflow-hidden rounded-[2rem] border border-sky-100 bg-white shadow-soft">
-                    <div className="grid sm:grid-cols-[0.88fr_1.12fr]">
-                      <div className="min-h-[18rem] bg-sky-50">
-                        <img
-                          src={founder.image}
-                          alt={founder.name}
-                          className="h-full w-full object-cover"
-                        />
-                      </div>
-                      <div className="space-y-4 p-6 sm:p-7">
-                        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sky-700">
-                          Founder
-                        </p>
-                        <h3 className="text-2xl font-semibold leading-tight text-slate-900">
-                          {founder.name}
-                        </h3>
-                        <p className="text-base leading-8 text-slate-600">
-                          {founder.title}
-                        </p>
-                        <PillList items={founder.points.slice(0, 3)} />
-                      </div>
+                <div className="space-y-8 border-t border-sky-100 pt-8 lg:border-t-0 lg:pt-0">
+                  <div className="grid gap-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
+                    <div className="overflow-hidden rounded-[1.6rem]">
+                      <img
+                        src={founder.image}
+                        alt={founder.name}
+                        className="h-full min-h-[18rem] w-full object-cover"
+                      />
                     </div>
-                  </article>
+                    <div className="space-y-4">
+                      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sky-700">
+                        Founder
+                      </p>
+                      <h3 className="text-2xl font-semibold leading-tight text-slate-900">
+                        {founder.name}
+                      </h3>
+                      <p className="text-base leading-8 text-slate-600">
+                        {founder.title}
+                      </p>
+                      <PillList items={founder.points.slice(0, 3)} />
+                    </div>
+                  </div>
 
-                  <article className="grid gap-4 rounded-[2rem] border border-sky-100 bg-sky-950 p-6 text-white shadow-[0_20px_60px_rgba(11,53,109,0.22)] sm:grid-cols-3">
+                  <div className="grid gap-4 border-t border-sky-100 pt-6 sm:grid-cols-3">
                     {[
                       ['Care levels', 'Independent, assisted, memory care'],
                       ['Audience', 'Seniors, caregivers, families'],
                       ['Access', 'Simple, readable, mobile-friendly'],
                     ].map(([label, value]) => (
-                      <div key={label} className="rounded-[1.25rem] border border-white/12 bg-white/10 p-4">
-                        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-blue-100">
+                      <div key={label} className="space-y-2">
+                        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sky-700">
                           {label}
                         </p>
-                        <p className="mt-2 text-sm leading-7 text-white/90">
+                        <p className="text-sm leading-7 text-slate-600">
                           {value}
                         </p>
                       </div>
                     ))}
-                  </article>
+                  </div>
                 </div>
               </div>
             </Reveal>
@@ -705,39 +698,39 @@ export function HomePage() {
         <section id="event" className="scroll-mt-28 bg-sky-50/70">
           <Container className="py-16 lg:py-20">
             <Reveal>
-              <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-stretch">
-                <article className="rounded-[2rem] border border-sky-100 bg-[linear-gradient(135deg,#0b4b97_0%,#0f356d_100%)] p-7 text-white shadow-[0_24px_70px_rgba(11,53,109,0.22)] sm:p-8">
+              <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+                <div className="space-y-6 lg:pr-8">
                   <p className="text-xs font-semibold uppercase tracking-[0.28em] text-blue-100">
                     Community event
                   </p>
-                  <h2 className="mt-3 text-3xl font-semibold leading-tight text-white sm:text-4xl">
+                  <h2 className="text-3xl font-semibold leading-tight text-slate-900 sm:text-4xl">
                     Saltine&apos;s Got Talent
                   </h2>
-                  <p className="mt-4 max-w-2xl text-base leading-8 text-white/78 sm:text-lg">
+                  <p className="max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
                     A celebration of senior talent, joy, and shared stories. We
                     keep the tone welcoming, energetic, and easy to join.
                   </p>
-                  <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                  <div className="flex flex-col gap-3 sm:flex-row">
                     <ActionButton
                       href="https://api.leadconnectorhq.com/widget/form/eBUUWJFkBossrt6SUaLo"
                       target="_blank"
                       rel="noreferrer"
                       variant="primary"
-                      className="!bg-white !text-sky-900 hover:!bg-sky-50"
+                      className="!bg-sky-700 !text-white hover:!bg-sky-800"
                     >
                       Register Now
                     </ActionButton>
                     <ActionButton
                       href="#contact"
                       variant="secondary"
-                      className="!border-white/20 !bg-white/10 !text-white hover:!bg-white/15"
+                      className="!border-sky-200 !bg-white !text-sky-800 hover:!bg-sky-50"
                     >
                       Ask a Question
                     </ActionButton>
                   </div>
-                </article>
+                </div>
 
-                <article className="overflow-hidden rounded-[2rem] border border-sky-100 bg-white shadow-soft">
+                <div className="overflow-hidden rounded-[1.6rem]">
                   <div className="relative h-full min-h-[20rem]">
                     <img
                       src={communitySpotlightImage}
@@ -754,7 +747,7 @@ export function HomePage() {
                       </p>
                     </div>
                   </div>
-                </article>
+                </div>
               </div>
             </Reveal>
           </Container>
@@ -769,20 +762,19 @@ export function HomePage() {
                 summary="Three direct steps to help seniors and families move forward without extra noise."
               />
 
-              <div className="mt-10 grid gap-5 lg:grid-cols-3">
+              <div className="mt-10 grid gap-0 border-t border-sky-100 lg:grid-cols-3 lg:divide-x lg:divide-sky-100">
                 {simpleSteps.map((step, index) => {
                   const Icon = step.icon
                   return (
                     <article
                       key={step.title}
                       className={cx(
-                        'rounded-[1.8rem] border p-6 shadow-soft transition duration-300 hover:-translate-y-1',
-                        index === 0 && 'border-sky-100 bg-sky-50/60',
-                        index === 1 && 'border-sky-100 bg-white',
-                        index === 2 && 'border-sky-100 bg-sky-50/70',
+                        'py-6 transition duration-300 lg:px-6',
+                        index === 0 && 'lg:pr-8',
+                        index === 2 && 'lg:pl-8',
                       )}
                     >
-                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-sky-700 shadow-sm">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-sky-50 text-sky-700">
                         <Icon className="h-5 w-5" aria-hidden="true" />
                       </div>
                       <p className="mt-5 text-xs font-semibold uppercase tracking-[0.24em] text-sky-700">
@@ -805,7 +797,7 @@ export function HomePage() {
         <section className="bg-sky-50/70">
           <Container className="py-12 lg:py-14">
             <Reveal>
-              <div className="grid gap-4 rounded-[2rem] border border-sky-100 bg-white p-6 shadow-soft lg:grid-cols-[1.02fr_0.98fr] lg:items-center lg:p-8">
+              <div className="grid gap-5 border-y border-sky-100 py-6 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.28em] text-sky-700">
                     Join the SALT Family Today!
@@ -861,17 +853,17 @@ export function HomePage() {
                 </ActionButton>
               </div>
 
-              <div className="mt-10 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-                <article className="overflow-hidden rounded-[2rem] border border-sky-100 bg-white shadow-soft">
-                  <div className="grid lg:grid-cols-[0.92fr_1.08fr]">
-                    <div className="min-h-[18rem] bg-sky-50">
+              <div className="mt-10 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+                <div className="grid gap-6">
+                  <div className="grid gap-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
+                    <div className="overflow-hidden rounded-[1.6rem]">
                       <img
                         src={products[0].image}
                         alt={products[0].title}
                         className="h-full w-full object-cover"
                       />
                     </div>
-                    <div className="space-y-4 p-6 sm:p-8">
+                    <div className="space-y-4">
                       <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sky-700">
                         {products[0].badge}
                       </p>
@@ -895,56 +887,60 @@ export function HomePage() {
                       </div>
                     </div>
                   </div>
-                </article>
 
-                <div className="grid gap-6">
-                  <article className="overflow-hidden rounded-[2rem] border border-sky-100 bg-white shadow-soft">
-                    <div className="grid sm:grid-cols-[0.82fr_1.18fr]">
-                      <div className="min-h-[15rem] bg-sky-50">
-                        <img
-                          src={products[1].image}
-                          alt={products[1].title}
-                          className="h-full w-full object-cover"
-                        />
-                      </div>
-                      <div className="space-y-4 p-6 sm:p-7">
-                        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sky-700">
-                          {products[1].badge}
-                        </p>
-                        <h3 className="text-2xl font-semibold leading-tight text-slate-900">
-                          {products[1].title}
-                        </h3>
-                        <p className="text-base leading-8 text-slate-600">
-                          {products[1].summary}
-                        </p>
-                        <ActionButton
-                          href={contact.storeUrl}
-                          variant="secondary"
-                        >
-                          {products[1].cta}
-                        </ActionButton>
-                      </div>
+                  <div className="grid gap-6 lg:grid-cols-[0.88fr_1.12fr] lg:items-center">
+                    <div className="overflow-hidden rounded-[1.6rem]">
+                      <img
+                        src={products[1].image}
+                        alt={products[1].title}
+                        className="h-full w-full object-cover"
+                      />
                     </div>
-                  </article>
-
-                  <article className="rounded-[2rem] border border-sky-100 bg-[linear-gradient(135deg,#0b4b97_0%,#0f356d_100%)] p-6 text-white shadow-[0_20px_60px_rgba(11,53,109,0.22)]">
-                    <div className="flex items-center gap-3 text-blue-100">
-                      <Gift className="h-5 w-5" aria-hidden="true" />
-                      <p className="text-xs font-semibold uppercase tracking-[0.24em]">
-                        Digital downloads
+                    <div className="space-y-4">
+                      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sky-700">
+                        {products[1].badge}
                       </p>
+                      <h3 className="text-2xl font-semibold leading-tight text-slate-900">
+                        {products[1].title}
+                      </h3>
+                      <p className="text-base leading-8 text-slate-600">
+                        {products[1].summary}
+                      </p>
+                      <ActionButton
+                        href={contact.storeUrl}
+                        variant="secondary"
+                      >
+                        {products[1].cta}
+                      </ActionButton>
                     </div>
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      {['$1 Emergency Card', '$1 Medication Tracker', '$3 Hospital Checklist', '$5 Caregiver Toolkit', '$9 Emergency Bundle', '$19 Digital Planner', '$49 Family Kit'].map((item) => (
-                        <span
-                          key={item}
-                          className="rounded-full border border-white/12 bg-white/10 px-3 py-2 text-sm font-medium text-white/90"
-                        >
-                          {item}
-                        </span>
-                      ))}
-                    </div>
-                  </article>
+                  </div>
+                </div>
+
+                <div className="space-y-4 border-t border-sky-100 pt-6 lg:pt-0">
+                  <div className="flex items-center gap-3">
+                    <Gift className="h-5 w-5 text-sky-700" aria-hidden="true" />
+                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sky-700">
+                      Digital downloads
+                    </p>
+                  </div>
+                  <div className="grid gap-0 border-t border-sky-100">
+                    {[
+                      '$1 Emergency Card',
+                      '$1 Medication Tracker',
+                      '$3 Hospital Checklist',
+                      '$5 Caregiver Toolkit',
+                      '$9 Emergency Preparedness Bundle',
+                      '$19 Digital Planner',
+                      '$49 Ultimate Family Preparedness Kit',
+                    ].map((item) => (
+                      <div
+                        key={item}
+                        className="flex items-center justify-between border-b border-sky-100 py-3 text-sm font-medium text-slate-700"
+                      >
+                        <span>{item}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </Reveal>
@@ -954,19 +950,19 @@ export function HomePage() {
         <section id="guide" className="scroll-mt-28 bg-sky-50/70">
           <Container className="py-16 lg:py-20">
             <Reveal>
-              <div className="grid gap-6 lg:grid-cols-[0.98fr_1.02fr] lg:items-stretch">
-                <article className="rounded-[2rem] border border-sky-100 bg-white p-7 shadow-soft sm:p-8">
+              <div className="grid gap-10 lg:grid-cols-[0.98fr_1.02fr] lg:items-center">
+                <div className="space-y-6 lg:pr-8">
                   <p className="text-xs font-semibold uppercase tracking-[0.28em] text-sky-700">
                     Final arrangement guide
                   </p>
-                  <h2 className="mt-3 text-3xl font-semibold leading-tight text-slate-900 sm:text-4xl">
+                  <h2 className="text-3xl font-semibold leading-tight text-slate-900 sm:text-4xl">
                     Your Final Arrangement 10 Point Discussion Guide
                   </h2>
-                  <p className="mt-4 text-base leading-8 text-slate-600">
+                  <p className="text-base leading-8 text-slate-600">
                     A calm script for hard conversations and a better way to keep
                     everyone on the same page.
                   </p>
-                  <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                  <div className="grid gap-3 border-t border-sky-100 pt-5 sm:grid-cols-2">
                     {[
                       'Clarify wishes and priorities',
                       'Gather important contacts',
@@ -975,13 +971,13 @@ export function HomePage() {
                     ].map((item) => (
                       <div
                         key={item}
-                        className="rounded-[1.25rem] border border-sky-100 bg-sky-50 px-4 py-4 text-sm font-medium text-sky-900"
+                        className="border-b border-sky-100 pb-3 text-sm font-medium text-slate-700"
                       >
                         {item}
                       </div>
                     ))}
                   </div>
-                  <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                  <div className="flex flex-col gap-3 sm:flex-row">
                     <ActionButton
                       href="#contact"
                       variant="primary"
@@ -993,9 +989,9 @@ export function HomePage() {
                       Visit the Store
                     </ActionButton>
                   </div>
-                </article>
+                </div>
 
-                <article className="overflow-hidden rounded-[2rem] border border-sky-100 bg-white shadow-soft">
+                <div className="overflow-hidden rounded-[1.6rem]">
                   <div className="relative h-full min-h-[24rem]">
                     <img
                       src={products[0].image}
@@ -1012,7 +1008,7 @@ export function HomePage() {
                       </p>
                     </div>
                   </div>
-                </article>
+                </div>
               </div>
             </Reveal>
           </Container>
@@ -1027,24 +1023,24 @@ export function HomePage() {
                 summary="Commission programs, referral partnerships, and a future subscription box create room for growth without complicating the home page."
               />
 
-              <div className="mt-10 grid gap-5 lg:grid-cols-3">
+              <div className="mt-10 grid gap-8 lg:grid-cols-3 lg:gap-10">
                 {partnerPrograms.map((program) => {
                   const Icon = program.icon
                   return (
                     <article
                       key={program.title}
-                      className="rounded-[1.8rem] border border-sky-100 bg-sky-50/60 p-6 shadow-soft transition duration-300 hover:-translate-y-1"
+                      className="space-y-4 border-t border-sky-100 pt-6 transition duration-300"
                     >
-                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-sky-700 shadow-sm">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-sky-50 text-sky-700">
                         <Icon className="h-5 w-5" aria-hidden="true" />
                       </div>
-                      <h3 className="mt-5 text-2xl font-semibold leading-tight text-slate-900">
+                      <h3 className="text-2xl font-semibold leading-tight text-slate-900">
                         {program.title}
                       </h3>
-                      <p className="mt-3 text-base leading-8 text-slate-600">
+                      <p className="text-base leading-8 text-slate-600">
                         {program.summary}
                       </p>
-                      <p className="mt-4 rounded-[1.25rem] border border-sky-100 bg-white px-4 py-4 text-sm font-medium leading-7 text-sky-900">
+                      <p className="text-sm font-medium leading-7 text-sky-800">
                         {program.details}
                       </p>
                     </article>
@@ -1064,19 +1060,19 @@ export function HomePage() {
                 summary="A simple visual row of testimonials and reviews keeps trust visible without turning the page into a wall of text."
               />
 
-              <div className="mt-10 grid gap-5 lg:grid-cols-3">
+              <div className="mt-10 grid gap-8 lg:grid-cols-3">
                 {endorsements.map((item) => (
-                  <article
+                  <figure
                     key={item.label}
-                    className="overflow-hidden rounded-[1.8rem] border border-sky-100 bg-white shadow-soft"
+                    className="space-y-4"
                   >
-                    <img src={item.image} alt={item.alt} className="block w-full" />
-                    <div className="border-t border-sky-100 px-5 py-4">
+                    <img src={item.image} alt={item.alt} className="block w-full rounded-[1.6rem]" />
+                    <figcaption className="border-t border-sky-100 pt-4">
                       <p className="text-sm font-semibold text-slate-900">
                         {item.label}
                       </p>
-                    </div>
-                  </article>
+                    </figcaption>
+                  </figure>
                 ))}
               </div>
             </Reveal>
@@ -1107,16 +1103,16 @@ export function HomePage() {
                 {blogPosts.slice(0, 3).map((post) => (
                   <article
                     key={post.slug}
-                    className="overflow-hidden rounded-[1.8rem] border border-sky-100 bg-white shadow-soft"
+                    className="space-y-4"
                   >
-                    <div className="aspect-[4/3] bg-sky-50">
+                    <div className="aspect-[4/3] overflow-hidden rounded-[1.6rem] bg-sky-50">
                       <img
                         src={post.image}
                         alt={post.title}
                         className="h-full w-full object-cover"
                       />
                     </div>
-                    <div className="space-y-4 p-6">
+                    <div className="space-y-4">
                       <div className="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-sky-700">
                         <span>{post.category}</span>
                         <span className="h-1 w-1 rounded-full bg-slate-300" />
@@ -1179,41 +1175,41 @@ export function HomePage() {
                     </ActionButton>
                   </div>
 
-                  <div className="grid gap-3 sm:grid-cols-3">
-                    <div className="rounded-[1.4rem] border border-white/15 bg-white/10 p-4 backdrop-blur">
+                  <div className="grid gap-4 border-t border-white/20 pt-6 sm:grid-cols-3">
+                    <div className="space-y-2">
                       <PhoneCall className="h-5 w-5 text-blue-100" aria-hidden="true" />
-                      <p className="mt-3 text-xs font-semibold uppercase tracking-[0.24em] text-blue-100">
+                      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-blue-100">
                         Call
                       </p>
                       <a
                         href={contact.phoneHref}
-                        className="mt-2 block text-sm font-medium text-white transition hover:text-blue-100"
+                        className="block text-sm font-medium text-white transition hover:text-blue-100"
                       >
                         {contact.phoneDisplay}
                       </a>
                     </div>
-                    <div className="rounded-[1.4rem] border border-white/15 bg-white/10 p-4 backdrop-blur">
+                    <div className="space-y-2 sm:border-l sm:border-white/15 sm:pl-6">
                       <Mail className="h-5 w-5 text-blue-100" aria-hidden="true" />
-                      <p className="mt-3 text-xs font-semibold uppercase tracking-[0.24em] text-blue-100">
+                      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-blue-100">
                         Email
                       </p>
                       <a
                         href={contact.emailHref}
-                        className="mt-2 block text-sm font-medium text-white transition hover:text-blue-100"
+                        className="block text-sm font-medium text-white transition hover:text-blue-100"
                       >
                         {contact.email}
                       </a>
                     </div>
-                    <div className="rounded-[1.4rem] border border-white/15 bg-white/10 p-4 backdrop-blur">
+                    <div className="space-y-2 sm:border-l sm:border-white/15 sm:pl-6">
                       <Building2 className="h-5 w-5 text-blue-100" aria-hidden="true" />
-                      <p className="mt-3 text-xs font-semibold uppercase tracking-[0.24em] text-blue-100">
+                      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-blue-100">
                         Community
                       </p>
                       <a
                         href="https://community.seniorandlivingtoday.com/"
                         target="_blank"
                         rel="noreferrer"
-                        className="mt-2 block text-sm font-medium text-white transition hover:text-blue-100"
+                        className="block text-sm font-medium text-white transition hover:text-blue-100"
                       >
                         Join the family
                       </a>
