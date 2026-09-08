@@ -30,7 +30,7 @@ export function TermsPage() {
               heading: 'Consultation and support',
               paragraphs: [
                 'Consulting, caregiver support, community offerings, and virtual assistance are educational and organizational services. They are not a substitute for medical, legal, or emergency care.',
-                'Families should consult licensed professionals when they need medical, legal, or financial advice beyond the scope of S.A.L.T. resources.',
+                'Families should consult i    licensed professionals when they need medical, legal, or financial advice beyond the scope of S.A.L.T. resources.',
               ],
             },
             {
