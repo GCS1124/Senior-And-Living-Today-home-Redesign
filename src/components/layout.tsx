@@ -2,7 +2,6 @@ import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import {
   ArrowRight,
-  CalendarDays,
   ChevronRight,
   Mail,
   Menu,
@@ -239,11 +238,8 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-charcoal/10 bg-ivory-50/95 backdrop-blur-xl">
       <div className="border-b border-white/10 bg-charcoal text-ivory-100">
-        <Container className="flex flex-wrap items-center justify-center gap-3 py-2 text-[0.64rem] font-semibold uppercase tracking-[0.24em] sm:justify-between">
-          <span className="text-gold-200">Care. Comfort. Community. Clarity.</span>
-          <span className="hidden sm:inline">•</span>
-          <span>Free planner downloads</span>
-          <span className="hidden md:inline">•</span>
+        <Container className="flex items-center justify-between gap-4 py-2 text-[0.64rem] font-semibold uppercase tracking-[0.2em]">
+          <span className="text-gold-200">Care. Comfort. Community.</span>
           <a className="transition hover:text-gold-200" href={contact.phoneHref}>
             Call {contact.phoneDisplay}
           </a>
@@ -330,13 +326,12 @@ export function SiteHeader() {
 export function SiteFooter() {
   return (
     <footer className="border-t border-white/10 bg-charcoal text-white">
-      <Container className="py-16 lg:py-20">
-        <div className="grid gap-12 lg:grid-cols-[1.25fr_0.8fr_0.9fr_0.95fr]">
+      <Container className="py-12 lg:py-14">
+        <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr_1fr]">
           <div className="space-y-6">
             <LogoMark compact inverse />
             <p className="max-w-sm text-base leading-8 text-white/68">
-              {brand.tagline} Trusted support, planning tools, and community
-              resources for seniors, caregivers, and families.
+              Clear planning tools and compassionate support for seniors and families.
             </p>
             <div className="grid gap-3 text-sm text-white/68">
               <a href={contact.phoneHref} className="inline-flex items-center gap-2 transition hover:text-gold-200">
@@ -368,40 +363,16 @@ export function SiteFooter() {
           </div>
 
           <div>
-            <h3 className="font-heading text-3xl text-white">Resources</h3>
-            <ul className="mt-5 space-y-3 text-sm text-white/68">
-              {[
-                ['/videos/', 'Videos'],
-                ['/podcast/', 'Podcast'],
-                ['/shop/', 'Shop'],
-                ['/living-legacy-planner/', 'Living Legacy Planner'],
-                ['/blog/', 'Blog'],
-                ['/affiliate-program/', 'Affiliate Program'],
-                ['/partner-program/', 'Partner Program'],
-                ['/subscription-box/', 'Subscription Box'],
-              ].map(([to, label]) => (
-                <li key={to}>
-                  <Link className="transition hover:text-gold-200" to={to}>
-                    {label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-heading text-3xl text-white">Stay connected</h3>
+            <h3 className="font-heading text-3xl text-white">Need help?</h3>
             <p className="mt-5 text-sm leading-7 text-white/68">
-              Join the community for tips, webinars, and encouragement that
-              make senior life easier to navigate.
+              Call or email us when you need a clear next step.
             </p>
             <ActionButton
-              to="/community/"
+              to="/contact/"
               variant="secondary"
               className="mt-6 !border-gold-300/50 !bg-gold-300 !text-charcoal hover:!bg-gold-200"
             >
-              <CalendarDays className="h-4 w-4" aria-hidden="true" />
-              Join the Community
+              Contact us
             </ActionButton>
           </div>
         </div>
