@@ -9,6 +9,7 @@ import {
 import livingLegacyPlanner from '../assets/user/living-legacy-planner.png'
 import militaryPlanner from '../assets/user/military-planner.png'
 import plannerCoverSquare from '../assets/user/planner-cover-square.png'
+import dailyBloomPlanner from '../assets/user/daily-bloom-planner.png'
 import {
   brand,
   contact,
@@ -48,6 +49,14 @@ const plannerCards = [
     eyebrow: 'Second edition',
     title: 'A meaningful place for every story',
     summary: 'A thoughtful tool for conversations that matter.',
+    featured: false,
+  },
+  {
+    image: dailyBloomPlanner,
+    alt: 'The Daily Bloom A Life Balance Guide planner cover',
+    eyebrow: 'Daily reflection',
+    title: 'The Daily Bloom',
+    summary: 'A gentle guide for balance, reflection, and everyday growth.',
     featured: false,
   },
 ] as const
@@ -190,7 +199,7 @@ export function HomePage() {
                 </p>
               </div>
 
-              <div className="mt-8 grid gap-4 lg:grid-cols-3">
+              <div className="mt-8 grid gap-4 lg:grid-cols-2 xl:grid-cols-4">
                 {plannerCards.map((card) => (
                   <article
                     key={card.title}
