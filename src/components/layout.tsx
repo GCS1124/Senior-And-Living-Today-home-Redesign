@@ -127,7 +127,7 @@ export function SectionHeading({
           {eyebrow}
         </p>
       ) : null}
-        <h2 className="text-4xl font-semibold leading-[0.98] text-charcoal sm:text-5xl lg:text-[4rem]">
+        <h2 className="text-4xl font-semibold leading-[0.98] text-charcoal sm:text-5xl lg:text-[3.5rem]">
         {title}
       </h2>
       {summary ? (
@@ -417,13 +417,13 @@ export function PageHero({
 }) {
   return (
     <section className="relative overflow-hidden">
-      <Container className="grid items-center gap-10 py-14 lg:grid-cols-[1.08fr_0.92fr] lg:py-20">
-        <div className={cx('space-y-8', reverse && 'lg:order-2')}>
-          <div className="space-y-5">
-            <h1 className="max-w-3xl text-4xl font-semibold leading-[1.04] tracking-[-0.04em] text-charcoal sm:text-5xl lg:text-[4.8rem]">
+      <Container className="grid items-center gap-8 py-12 lg:grid-cols-[1.08fr_0.92fr] lg:py-16">
+        <div className={cx('space-y-6', reverse && 'lg:order-2')}>
+          <div className="space-y-4">
+            <h1 className="max-w-3xl text-4xl font-semibold leading-[1.04] tracking-[-0.04em] text-charcoal sm:text-5xl lg:text-[4.4rem]">
               {title}
             </h1>
-            <p className="max-w-2xl text-base leading-8 text-stone-600 sm:text-lg">
+            <p className="max-w-2xl text-base leading-7 text-stone-600 sm:text-lg">
               {summary}
             </p>
           </div>
@@ -447,7 +447,7 @@ export function PageHero({
             <img
               src={image}
               alt={imageAlt}
-              className="h-[28rem] w-full object-cover sm:h-[32rem]"
+              className="h-[24rem] w-full object-cover sm:h-[28rem]"
             />
           </div>
           <div className="grid gap-4 rounded-[1.5rem] border border-stone-200 bg-white p-4 shadow-soft sm:grid-cols-[1fr_0.9fr]">
@@ -455,7 +455,7 @@ export function PageHero({
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sage-700">
                 Guided support
               </p>
-              <p className="mt-2 font-heading text-2xl text-charcoal">
+              <p className="mt-2 font-heading text-xl text-charcoal">
                 Trusted help, without extra noise
               </p>
             </div>

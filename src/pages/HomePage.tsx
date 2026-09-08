@@ -110,19 +110,19 @@ export function HomePage() {
       <main>
         <section id="home" className="relative overflow-hidden bg-[#102f68] text-white">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_90%_10%,rgba(245,197,24,0.22),transparent_26%),radial-gradient(circle_at_0%_80%,rgba(68,126,215,0.3),transparent_30%)]" />
-          <Container className="relative grid items-center gap-12 py-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 lg:py-20">
+          <Container className="relative grid items-center gap-10 py-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12 lg:py-16">
             <Reveal className="max-w-2xl">
               <div className="inline-flex items-center gap-2 rounded-full border border-yellow-200/40 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-yellow-100">
                 <Sparkles className="h-4 w-4" aria-hidden="true" />
                 Care. Comfort. Community.
               </div>
-              <h1 className="mt-7 max-w-xl font-heading text-[3.5rem] font-semibold leading-[0.9] tracking-[-0.04em] text-white sm:text-6xl lg:text-[5.4rem]">
+              <h1 className="mt-6 max-w-xl font-heading text-[3.2rem] font-semibold leading-[0.9] tracking-[-0.04em] text-white sm:text-5xl lg:text-[4.6rem]">
                 Simple planning for the people you love.
               </h1>
-              <p className="mt-6 max-w-xl text-lg leading-8 text-blue-50 sm:text-xl">
+              <p className="mt-5 max-w-xl text-base leading-7 text-blue-50 sm:text-lg">
                 Trusted guidance and thoughtful tools for seniors, caregivers, and families.
               </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <ActionButton
                   to="/shop/#living-legacy-planner"
                   variant="secondary"
@@ -138,7 +138,7 @@ export function HomePage() {
                   Talk with us
                 </ActionButton>
               </div>
-              <div className="mt-10 grid max-w-lg gap-3 border-t border-white/20 pt-6 sm:grid-cols-3">
+              <div className="mt-8 grid max-w-lg gap-3 border-t border-white/20 pt-5 sm:grid-cols-3">
                 {plannerPromises.map((item) => (
                   <div key={item} className="flex items-start gap-2 text-sm font-semibold leading-6 text-white/90">
                     <Check className="mt-0.5 h-4 w-4 shrink-0 text-yellow-200" aria-hidden="true" />
@@ -149,7 +149,7 @@ export function HomePage() {
             </Reveal>
 
             <Reveal className="relative" delay={120}>
-              <div className="overflow-hidden rounded-[1.5rem] border-8 border-white/20 bg-[#27579a] shadow-[0_28px_70px_rgba(0,0,0,0.2)]">
+              <div className="image-lift overflow-hidden rounded-[1.5rem] border-8 border-white/20 bg-[#27579a] shadow-[0_28px_70px_rgba(0,0,0,0.2)]">
                 <img
                   src={homeHero.image}
                   alt="Courtney Jones, founder of Senior & Living Today, with The Living Legacy Planner"
@@ -160,34 +160,50 @@ export function HomePage() {
                 <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#2454a4]">{founder.years}</p>
                 <p className="mt-2 font-heading text-xl leading-tight">A calmer way forward.</p>
               </div>
+              <div className="absolute -right-3 bottom-7 hidden w-28 rotate-3 rounded-2xl border-4 border-white bg-[#172d75] p-1 shadow-[0_16px_30px_rgba(0,0,0,0.24)] sm:block lg:-right-6 lg:w-32">
+                <img
+                  src={plannerCoverSquare}
+                  alt="The Living Legacy Planner cover"
+                  className="aspect-[0.9/1] w-full rounded-xl object-cover"
+                />
+                <p className="px-1 py-2 text-center text-[0.58rem] font-bold uppercase leading-tight tracking-[0.12em] text-yellow-100">
+                  Plan with peace
+                </p>
+              </div>
             </Reveal>
           </Container>
         </section>
 
         <section id="about" className="scroll-mt-24 bg-[#f8f4ec]">
-          <Container className="grid gap-12 py-20 lg:grid-cols-[0.82fr_1.18fr] lg:items-center lg:py-28">
-            <Reveal className="overflow-hidden rounded-[1.5rem] border-8 border-white bg-white shadow-[0_20px_48px_rgba(23,45,117,0.12)]">
-              <img
-                src={founder.image}
-                alt={founder.name}
-                className="aspect-[0.9/1] w-full object-cover"
-              />
+          <Container className="grid gap-10 py-16 lg:grid-cols-[0.82fr_1.18fr] lg:items-center lg:gap-12 lg:py-20">
+            <Reveal className="relative">
+              <div className="image-lift overflow-hidden rounded-[1.5rem] border-8 border-white bg-white shadow-[0_20px_48px_rgba(23,45,117,0.12)]">
+                <img
+                  src={founder.image}
+                  alt={founder.name}
+                  className="aspect-[0.9/1] w-full object-cover"
+                />
+              </div>
+              <div className="absolute -bottom-5 right-5 rounded-2xl border border-[#d8d1c5] bg-white px-4 py-3 text-[#17243d] shadow-[0_14px_28px_rgba(23,45,117,0.12)] sm:right-8">
+                <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#2454a4]">Founder-led</p>
+                <p className="mt-1 font-heading text-xl leading-none">Human support</p>
+              </div>
             </Reveal>
             <Reveal delay={100}>
               <p className="home-eyebrow">About S.A.L.T.</p>
-              <h2 className="mt-4 max-w-2xl font-heading text-5xl font-semibold leading-[0.93] tracking-[-0.04em] text-[#17243d] sm:text-6xl">
+              <h2 className="mt-3 max-w-2xl font-heading text-4xl font-semibold leading-[0.93] tracking-[-0.04em] text-[#17243d] sm:text-5xl">
                 Care starts with connection.
               </h2>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-stone-600">
+              <p className="mt-5 max-w-2xl text-base leading-7 text-stone-600">
                 {founder.summary}
               </p>
-              <div className="mt-8 grid gap-3 sm:grid-cols-3">
+              <div className="mt-6 grid gap-3 sm:grid-cols-3">
                 {[
                   ['Listen first', 'Support built around real people.'],
                   ['Keep it clear', 'Helpful information without the clutter.'],
                   ['Stay connected', 'Tools that keep families close.'],
                 ].map(([title, summary]) => (
-                  <div key={title} className="rounded-2xl border border-[#d8d1c5] bg-white/70 p-4">
+                  <div key={title} className="rounded-2xl border border-[#d8d1c5] bg-white/70 p-4 transition duration-300 hover:-translate-y-1 hover:border-[#9eb8df] hover:bg-white hover:shadow-[0_14px_28px_rgba(23,45,117,0.08)]">
                     <h3 className="font-heading text-2xl leading-none text-[#17243d]">{title}</h3>
                     <p className="mt-2 text-sm leading-6 text-stone-600">{summary}</p>
                   </div>
@@ -198,34 +214,34 @@ export function HomePage() {
         </section>
 
         <section id="planner" className="scroll-mt-24 bg-[#eef4ff]">
-          <Container className="py-20 lg:py-28">
+          <Container className="py-16 lg:py-20">
             <Reveal>
-              <div className="flex flex-col gap-5 border-b border-[#b7c9e7] pb-8 lg:flex-row lg:items-end lg:justify-between">
+              <div className="flex flex-col gap-4 border-b border-[#b7c9e7] pb-6 lg:flex-row lg:items-end lg:justify-between">
                 <div>
                   <p className="home-eyebrow">The Living Legacy Planner</p>
-                  <h2 className="mt-4 max-w-2xl font-heading text-5xl font-semibold leading-[0.92] tracking-[-0.04em] text-[#17243d] sm:text-6xl">
+                  <h2 className="mt-3 max-w-2xl font-heading text-4xl font-semibold leading-[0.92] tracking-[-0.04em] text-[#17243d] sm:text-5xl">
                     One planner. More peace of mind.
                   </h2>
                 </div>
-                <p className="max-w-md text-base leading-7 text-stone-600">
+                <p className="max-w-md text-sm leading-6 text-stone-600">
                   Choose the edition that fits your family and start one page at a time.
                 </p>
               </div>
 
-              <div className="mt-10 grid gap-5 lg:grid-cols-3">
+              <div className="mt-8 grid gap-4 lg:grid-cols-3">
                 {plannerCards.map((card) => (
                   <article
                     key={card.title}
-                    className={card.featured ? 'overflow-hidden rounded-[1.5rem] border border-[#9eb8df] bg-white shadow-[0_18px_44px_rgba(23,45,117,0.12)] lg:col-span-1' : 'overflow-hidden rounded-[1.5rem] border border-[#c9d7ec] bg-white shadow-sm'}
+                    className={card.featured ? 'group flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-[#9eb8df] bg-white shadow-[0_18px_44px_rgba(23,45,117,0.12)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_54px_rgba(23,45,117,0.16)]' : 'group flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-[#c9d7ec] bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#9eb8df] hover:shadow-[0_18px_40px_rgba(23,45,117,0.12)]'}
                   >
-                    <div className="image-lift flex h-[20rem] items-center justify-center bg-[#172d75] p-5">
+                    <div className="image-lift flex h-[18rem] items-center justify-center bg-[#172d75] p-5">
                       <img src={card.image} alt={card.alt} className="h-full w-full object-contain" />
                     </div>
-                    <div className="p-6 sm:p-7">
+                    <div className="flex flex-1 flex-col p-5 sm:p-6">
                       <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#2454a4]">{card.eyebrow}</p>
-                      <h3 className="mt-3 font-heading text-3xl leading-tight text-[#17243d]">{card.title}</h3>
-                      <p className="mt-3 text-base leading-7 text-stone-600">{card.summary}</p>
-                      <ActionButton to="/shop/#living-legacy-planner" variant={card.featured ? 'primary' : 'secondary'} className="mt-6">
+                      <h3 className="mt-2 font-heading text-2xl leading-tight text-[#17243d]">{card.title}</h3>
+                      <p className="mt-2 text-sm leading-6 text-stone-600">{card.summary}</p>
+                      <ActionButton to="/shop/#living-legacy-planner" variant={card.featured ? 'primary' : 'secondary'} className="mt-5 self-start">
                         See the planner
                       </ActionButton>
                     </div>
@@ -237,20 +253,20 @@ export function HomePage() {
         </section>
 
         <section id="stories" className="scroll-mt-24 bg-white">
-          <Container className="py-20 lg:py-28">
+          <Container className="py-16 lg:py-20">
             <Reveal>
               <div className="mx-auto max-w-2xl text-center">
                 <p className="home-eyebrow">Real stories</p>
-                <h2 className="mt-4 font-heading text-5xl font-semibold leading-[0.92] tracking-[-0.04em] text-[#17243d] sm:text-6xl">
+                <h2 className="mt-3 font-heading text-4xl font-semibold leading-[0.92] tracking-[-0.04em] text-[#17243d] sm:text-5xl">
                   The moments are the message.
                 </h2>
-                <p className="mt-5 text-lg leading-8 text-stone-600">
+                <p className="mt-4 text-base leading-7 text-stone-600">
                   The plans matter because the people matter.
                 </p>
               </div>
-              <div className="mt-10 grid auto-rows-[12rem] gap-4 sm:grid-cols-2 sm:auto-rows-[14rem]">
+              <div className="mt-8 grid auto-rows-[10rem] gap-3 sm:grid-cols-2 sm:auto-rows-[12rem]">
                 {gallery.map((item) => (
-                  <figure key={item.alt} className={`group relative overflow-hidden rounded-[1.25rem] bg-stone-100 ${item.className}`}>
+                    <figure key={item.alt} className={`image-lift group relative overflow-hidden rounded-[1.25rem] bg-stone-100 ${item.className}`}>
                     <img src={item.image} alt={item.alt} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
                     <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/75 via-slate-950/20 to-transparent px-5 pb-5 pt-14 text-sm font-semibold text-white">
                       {item.caption}
@@ -263,13 +279,13 @@ export function HomePage() {
         </section>
 
         <section id="contact" className="scroll-mt-24 bg-[#102f68] text-white">
-          <Container className="grid gap-10 py-20 lg:grid-cols-[1fr_auto] lg:items-center lg:py-24">
+          <Container className="grid gap-8 py-16 lg:grid-cols-[1fr_auto] lg:items-center lg:py-20">
             <Reveal>
               <p className="text-xs font-bold uppercase tracking-[0.24em] text-yellow-200">We are here to help</p>
-              <h2 className="mt-4 max-w-2xl font-heading text-5xl font-semibold leading-[0.92] tracking-[-0.04em] sm:text-6xl">
+              <h2 className="mt-3 max-w-2xl font-heading text-4xl font-semibold leading-[0.92] tracking-[-0.04em] sm:text-5xl">
                 Need a little guidance?
               </h2>
-              <p className="mt-5 max-w-xl text-lg leading-8 text-blue-50">
+              <p className="mt-4 max-w-xl text-base leading-7 text-blue-50">
                 Call or email us. We will help you find a simple next step.
               </p>
             </Reveal>
