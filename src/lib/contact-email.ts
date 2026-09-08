@@ -107,7 +107,7 @@ export async function processContactSubmission(
 
   const result = await sendContactEmail(parsed.submission, env)
 
-  if (!result.ok) {
+  if (result.ok === false) {
     return {
       status: result.status,
       body: {

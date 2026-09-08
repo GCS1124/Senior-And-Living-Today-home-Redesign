@@ -29,7 +29,6 @@ type ActionButtonProps = {
   onClick?: () => void
   disabled?: boolean
 }
-
 export function ActionButton({
   to,
   href,
@@ -44,15 +43,15 @@ export function ActionButton({
   disabled = false,
 }: ActionButtonProps) {
   const classes = cx(
-    'inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500 focus-visible:ring-offset-2 focus-visible:ring-offset-ivory disabled:pointer-events-none disabled:opacity-60',
+    'inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold tracking-[0.01em] transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-ivory-50 disabled:pointer-events-none disabled:opacity-60',
     variant === 'primary' &&
-      'bg-sage-500 text-white shadow-soft hover:-translate-y-0.5 hover:bg-sage-600',
+      'bg-charcoal text-white shadow-lift hover:-translate-y-0.5 hover:bg-navy-700',
     variant === 'secondary' &&
-      'border border-sage-200 bg-white text-charcoal shadow-sm hover:-translate-y-0.5 hover:border-sage-400 hover:text-sage-700',
+      'border border-charcoal/15 bg-white/70 text-charcoal shadow-sm hover:-translate-y-0.5 hover:border-gold-400 hover:text-gold-700',
     variant === 'ghost' &&
-      'border border-transparent bg-transparent text-charcoal hover:bg-sage-50',
+      'border border-transparent bg-transparent text-charcoal hover:bg-gold-50',
     variant === 'link' &&
-      'px-0 py-0 text-sage-700 hover:text-sage-800',
+      'px-0 py-0 text-gold-700 hover:text-gold-800',
     className,
   )
 
@@ -125,15 +124,15 @@ export function SectionHeading({
   return (
     <div className={cx('max-w-3xl', align === 'center' && 'mx-auto text-center')}>
       {eyebrow ? (
-        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-sage-700">
+        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.26em] text-gold-700">
           {eyebrow}
         </p>
       ) : null}
-      <h2 className="text-3xl font-semibold leading-tight text-charcoal sm:text-4xl lg:text-[3.3rem]">
+        <h2 className="text-4xl font-semibold leading-[0.98] text-charcoal sm:text-5xl lg:text-[4rem]">
         {title}
       </h2>
       {summary ? (
-        <p className="mt-4 text-base leading-8 text-stone-600 sm:text-lg">
+        <p className="mt-5 text-base leading-8 text-stone-600 sm:text-lg">
           {summary}
         </p>
       ) : null}
@@ -196,16 +195,22 @@ export function Reveal({
   )
 }
 
-export function LogoMark({ compact = false }: { compact?: boolean }) {
+export function LogoMark({
+  compact = false,
+  inverse = false,
+}: {
+  compact?: boolean
+  inverse?: boolean
+}) {
   return (
     <Link
       to="/"
-      className="group inline-flex items-center gap-3 text-charcoal"
+      className={cx('group inline-flex items-center gap-3', inverse ? 'text-white' : 'text-charcoal')}
       aria-label={`${brand.name} home`}
     >
       <span
         className={cx(
-          'flex h-14 w-14 items-center justify-center overflow-hidden rounded-2xl border border-stone-300 bg-white shadow-sm transition duration-200 group-hover:-translate-y-0.5',
+          'flex h-14 w-14 items-center justify-center overflow-hidden rounded-[1.15rem] border border-gold-300/80 bg-white shadow-sm transition duration-200 group-hover:-translate-y-0.5',
           compact && 'h-12 w-12',
         )}
       >
@@ -220,7 +225,7 @@ export function LogoMark({ compact = false }: { compact?: boolean }) {
         <span className={cx('font-heading text-2xl leading-none tracking-[0.12em]', compact && 'text-xl')}>
           S.A.L.T.
         </span>
-        <span className="mt-1 text-xs uppercase tracking-[0.26em] text-stone-500">
+        <span className={cx('mt-1 text-xs uppercase tracking-[0.26em]', inverse ? 'text-white/55' : 'text-stone-500')}>
           Senior &amp; Living Today
         </span>
       </span>
@@ -232,17 +237,19 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 border-b border-stone-200/80 bg-ivory-50/95 backdrop-blur-xl">
-      <div className="border-b border-sage-100 bg-white/80">
-        <Container className="flex flex-wrap items-center justify-center gap-3 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-sage-700 sm:justify-between">
-          <span>Free Planner Downloads</span>
+    <header className="sticky top-0 z-50 border-b border-charcoal/10 bg-ivory-50/95 backdrop-blur-xl">
+      <div className="border-b border-white/10 bg-charcoal text-ivory-100">
+        <Container className="flex flex-wrap items-center justify-center gap-3 py-2 text-[0.64rem] font-semibold uppercase tracking-[0.24em] sm:justify-between">
+          <span className="text-gold-200">Care. Comfort. Community. Clarity.</span>
           <span className="hidden sm:inline">•</span>
-          <span>Book a Free Consultation</span>
+          <span>Free planner downloads</span>
           <span className="hidden md:inline">•</span>
-          <span className="hidden md:inline">Care. Comfort. Community. Clarity.</span>
+          <a className="transition hover:text-gold-200" href={contact.phoneHref}>
+            Call {contact.phoneDisplay}
+          </a>
         </Container>
       </div>
-      <Container className="flex items-center justify-between py-4">
+      <Container className="flex items-center justify-between py-3.5">
         <LogoMark />
 
         <nav className="hidden items-center gap-1 lg:flex">
@@ -253,8 +260,8 @@ export function SiteHeader() {
               onClick={() => setOpen(false)}
               className={({ isActive }) =>
                 cx(
-                  'rounded-full px-3 py-2 text-[0.85rem] font-medium text-stone-600 transition hover:bg-white hover:text-charcoal',
-                  isActive && 'bg-sage-50 text-sage-700 shadow-sm',
+                  'rounded-full px-3 py-2 text-[0.82rem] font-medium text-stone-600 transition hover:bg-white hover:text-charcoal',
+                  isActive && 'bg-white text-gold-700 shadow-sm',
                 )
               }
             >
@@ -271,7 +278,7 @@ export function SiteHeader() {
 
         <button
           type="button"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-stone-300 bg-white text-charcoal lg:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-charcoal/15 bg-white text-charcoal lg:hidden"
           onClick={() => setOpen((value) => !value)}
           aria-expanded={open}
           aria-controls="mobile-navigation"
@@ -284,7 +291,7 @@ export function SiteHeader() {
       {open ? (
         <div
           id="mobile-navigation"
-          className="border-t border-stone-200 bg-white lg:hidden"
+          className="border-t border-charcoal/10 bg-ivory-50 lg:hidden"
         >
           <Container className="space-y-4 py-4">
             <nav className="grid gap-2">
@@ -296,7 +303,7 @@ export function SiteHeader() {
                   className={({ isActive }) =>
                     cx(
                       'flex items-center justify-between rounded-2xl border border-stone-200 px-4 py-3 text-base font-medium text-charcoal',
-                      isActive && 'border-sage-300 bg-sage-50',
+                      isActive && 'border-gold-300 bg-gold-50',
                     )
                   }
                 >
@@ -322,37 +329,37 @@ export function SiteHeader() {
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-sage-100 bg-sage-50 text-charcoal">
-      <Container className="py-14">
-        <div className="grid gap-10 lg:grid-cols-[1.2fr_1fr_1fr_1fr]">
-          <div className="space-y-5">
-            <LogoMark compact />
-            <p className="max-w-sm text-base leading-8 text-stone-600">
+    <footer className="border-t border-white/10 bg-charcoal text-white">
+      <Container className="py-16 lg:py-20">
+        <div className="grid gap-12 lg:grid-cols-[1.25fr_0.8fr_0.9fr_0.95fr]">
+          <div className="space-y-6">
+            <LogoMark compact inverse />
+            <p className="max-w-sm text-base leading-8 text-white/68">
               {brand.tagline} Trusted support, planning tools, and community
-              resources for seniors and caregivers.
+              resources for seniors, caregivers, and families.
             </p>
-            <div className="grid gap-3 text-sm text-stone-600">
-              <a href={contact.phoneHref} className="inline-flex items-center gap-2 hover:text-sage-700">
-                <Phone className="h-4 w-4" />
+            <div className="grid gap-3 text-sm text-white/68">
+              <a href={contact.phoneHref} className="inline-flex items-center gap-2 transition hover:text-gold-200">
+                <Phone className="h-4 w-4 text-gold-300" />
                 {contact.phoneDisplay}
               </a>
-              <a href={contact.emailHref} className="inline-flex items-center gap-2 hover:text-sage-700">
-                <Mail className="h-4 w-4" />
+              <a href={contact.emailHref} className="inline-flex items-center gap-2 transition hover:text-gold-200">
+                <Mail className="h-4 w-4 text-gold-300" />
                 {contact.email}
               </a>
               <p className="inline-flex items-start gap-2">
-                <span className="mt-1 h-2 w-2 rounded-full bg-sage-500" />
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-300" />
                 <span>{contact.mailingAddress}</span>
               </p>
             </div>
           </div>
 
           <div>
-            <h3 className="font-heading text-2xl text-charcoal">Explore</h3>
-            <ul className="mt-4 space-y-3 text-sm text-stone-600">
+            <h3 className="font-heading text-3xl text-white">Explore</h3>
+            <ul className="mt-5 space-y-3 text-sm text-white/68">
               {navigation.slice(0, 5).map((item) => (
                 <li key={item.label}>
-                  <Link className="transition hover:text-sage-700" to={item.to}>
+                  <Link className="transition hover:text-gold-200" to={item.to}>
                     {item.label}
                   </Link>
                 </li>
@@ -361,86 +368,37 @@ export function SiteFooter() {
           </div>
 
           <div>
-            <h3 className="font-heading text-2xl text-charcoal">Resources</h3>
-            <ul className="mt-4 space-y-3 text-sm text-stone-600">
-              <li>
-                <Link className="transition hover:text-sage-700" to="/community/">
-                  Community
-                </Link>
-              </li>
-              <li>
-                <Link className="transition hover:text-sage-700" to="/podcast/">
-                  Podcast
-                </Link>
-              </li>
-              <li>
-                <Link className="transition hover:text-sage-700" to="/shop/">
-                  Shop
-                </Link>
-              </li>
-              <li>
-                <Link className="transition hover:text-sage-700" to="/living-legacy-planner/">
-                  Living Legacy Planner
-                </Link>
-              </li>
-              <li>
-                <Link className="transition hover:text-sage-700" to="/blog/">
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link className="transition hover:text-sage-700" to="/affiliate-program/">
-                  Affiliate Program
-                </Link>
-              </li>
-              <li>
-                <Link className="transition hover:text-sage-700" to="/partner-program/">
-                  Partner Program
-                </Link>
-              </li>
-              <li>
-                <Link className="transition hover:text-sage-700" to="/subscription-box/">
-                  Subscription Box
-                </Link>
-              </li>
-              <li>
-                <a
-                  className="transition hover:text-sage-700"
-                  href={contact.storeUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Store link
-                </a>
-              </li>
-              <li>
-                <Link className="transition hover:text-sage-700" to="/contact/">
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link className="transition hover:text-sage-700" to="/privacy-policy/">
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link className="transition hover:text-sage-700" to="/terms-conditions/">
-                  Terms &amp; Conditions
-                </Link>
-              </li>
+            <h3 className="font-heading text-3xl text-white">Resources</h3>
+            <ul className="mt-5 space-y-3 text-sm text-white/68">
+              {[
+                ['/videos/', 'Videos'],
+                ['/podcast/', 'Podcast'],
+                ['/shop/', 'Shop'],
+                ['/living-legacy-planner/', 'Living Legacy Planner'],
+                ['/blog/', 'Blog'],
+                ['/affiliate-program/', 'Affiliate Program'],
+                ['/partner-program/', 'Partner Program'],
+                ['/subscription-box/', 'Subscription Box'],
+              ].map(([to, label]) => (
+                <li key={to}>
+                  <Link className="transition hover:text-gold-200" to={to}>
+                    {label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           <div>
-            <h3 className="font-heading text-2xl text-charcoal">Stay Connected</h3>
-            <p className="mt-4 text-sm leading-7 text-stone-600">
+            <h3 className="font-heading text-3xl text-white">Stay connected</h3>
+            <p className="mt-5 text-sm leading-7 text-white/68">
               Join the community for tips, webinars, and encouragement that
               make senior life easier to navigate.
             </p>
             <ActionButton
               to="/community/"
               variant="secondary"
-              className="mt-5 bg-white text-charcoal"
+              className="mt-6 !border-gold-300/50 !bg-gold-300 !text-charcoal hover:!bg-gold-200"
             >
               <CalendarDays className="h-4 w-4" aria-hidden="true" />
               Join the Community
@@ -448,9 +406,19 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col gap-4 border-t border-sage-100 pt-6 text-sm text-stone-500 md:flex-row md:items-center md:justify-between">
+        <div className="mt-12 flex flex-col gap-4 border-t border-white/10 pt-6 text-sm text-white/45 md:flex-row md:items-center md:justify-between">
+          <div className="flex flex-wrap gap-x-5 gap-y-2">
+            <Link className="transition hover:text-gold-200" to="/privacy-policy/">
+              Privacy Policy
+            </Link>
+            <Link className="transition hover:text-gold-200" to="/terms-conditions/">
+              Terms &amp; Conditions
+            </Link>
+            <a className="transition hover:text-gold-200" href={contact.storeUrl} target="_blank" rel="noreferrer">
+              {contact.storeLabel}
+            </a>
+          </div>
           <p>© 2025 Senior &amp; Living Today. All rights reserved.</p>
-          <p>Care. Comfort. Community. Clarity.</p>
         </div>
       </Container>
     </footer>

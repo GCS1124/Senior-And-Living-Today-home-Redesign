@@ -1,4 +1,6 @@
-import { processContactSubmission } from '../src/lib/contact-email'
+/// <reference types="node" />
+
+import { processContactSubmission } from '../src/lib/contact-email.js'
 
 export default async function handler(request: Request): Promise<Response> {
   if (request.method === 'OPTIONS') {

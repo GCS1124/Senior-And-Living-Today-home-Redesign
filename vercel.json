@@ -39,6 +39,26 @@
       "source": "/terms/",
       "destination": "/terms-conditions/",
       "permanent": true
+    },
+    {
+      "source": "/resource-center/",
+      "destination": "/resources/",
+      "permanent": true
+    },
+    {
+      "source": "/video-learning-center/",
+      "destination": "/videos/",
+      "permanent": true
+    },
+    {
+      "source": "/consultation-center/",
+      "destination": "/consultations/",
+      "permanent": true
+    },
+    {
+      "source": "/store/",
+      "destination": "/shop/",
+      "permanent": true
     }
   ],
   "rewrites": [
@@ -48,4 +68,3 @@
     }
   ]
 }
-
