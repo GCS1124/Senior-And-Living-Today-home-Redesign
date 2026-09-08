@@ -107,7 +107,7 @@ export function HomePage() {
       />
       <SiteHeader />
 
-      <main>
+        <main id="main-content">
         <section id="home" className="relative overflow-hidden bg-[#102f68] text-white">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_90%_10%,rgba(245,197,24,0.22),transparent_26%),radial-gradient(circle_at_0%_80%,rgba(68,126,215,0.3),transparent_30%)]" />
           <Container className="relative grid items-center gap-10 py-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12 lg:py-16">
@@ -124,7 +124,7 @@ export function HomePage() {
               </p>
               <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <ActionButton
-                  to="/shop/#living-legacy-planner"
+                  to="/living-legacy-planner/"
                   variant="secondary"
                   className="!border-yellow-300 !bg-yellow-300 !text-[#102f68] hover:!bg-yellow-200"
                 >
@@ -241,7 +241,7 @@ export function HomePage() {
                       <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#2454a4]">{card.eyebrow}</p>
                       <h3 className="mt-2 font-heading text-2xl leading-tight text-[#17243d]">{card.title}</h3>
                       <p className="mt-2 text-sm leading-6 text-stone-600">{card.summary}</p>
-                      <ActionButton to="/shop/#living-legacy-planner" variant={card.featured ? 'primary' : 'secondary'} className="mt-5 self-start">
+                      <ActionButton to="/living-legacy-planner/" variant={card.featured ? 'primary' : 'secondary'} className="mt-5 self-start">
                         See the planner
                       </ActionButton>
                     </div>

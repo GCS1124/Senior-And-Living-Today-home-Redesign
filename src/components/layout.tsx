@@ -236,7 +236,8 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 border-b border-charcoal/10 bg-ivory-50/95 backdrop-blur-xl">
+    <>
+      <header className="sticky top-0 z-50 border-b border-charcoal/10 bg-ivory-50/95 backdrop-blur-xl">
       <div className="border-b border-white/10 bg-charcoal text-ivory-100">
         <Container className="flex items-center justify-between gap-4 py-2 text-[0.64rem] font-semibold uppercase tracking-[0.2em]">
           <span className="text-gold-200">Care. Comfort. Community.</span>
@@ -256,7 +257,7 @@ export function SiteHeader() {
               onClick={() => setOpen(false)}
               className={({ isActive }) =>
                 cx(
-                  'rounded-full px-3 py-2 text-[0.82rem] font-medium text-stone-600 transition hover:bg-white hover:text-charcoal',
+                  'rounded-full px-3 py-2 text-sm font-medium text-stone-600 transition hover:bg-white hover:text-charcoal',
                   isActive && 'bg-white text-gold-700 shadow-sm',
                 )
               }
@@ -284,7 +285,7 @@ export function SiteHeader() {
         </button>
       </Container>
 
-      {open ? (
+        {open ? (
         <div
           id="mobile-navigation"
           className="border-t border-charcoal/10 bg-ivory-50 lg:hidden"
@@ -318,8 +319,9 @@ export function SiteHeader() {
             </ActionButton>
           </Container>
         </div>
-      ) : null}
-    </header>
+        ) : null}
+      </header>
+    </>
   )
 }
 

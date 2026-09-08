@@ -35,7 +35,7 @@ export const contact = {
 export const navigation = [
   { label: 'Home', to: '/' },
   { label: 'About', to: '/about/' },
-  { label: 'Planner', to: '/shop/#living-legacy-planner' },
+  { label: 'Planner', to: '/living-legacy-planner/' },
   { label: 'Community', to: '/community/' },
   { label: 'Contact', to: '/contact/' },
 ] as const
