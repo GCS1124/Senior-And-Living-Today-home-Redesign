@@ -75,19 +75,16 @@ const photoGallery = [
   {
     image: familyPorch,
     alt: 'Two friends smiling together on a porch',
-    label: 'Together',
-    className: 'lg:row-span-2',
+    className: '',
   },
   {
     image: seniorDinner,
     alt: 'A senior woman smiling during a meal',
-    label: 'Celebration',
     className: '',
   },
   {
     image: coupleOutdoors,
     alt: 'A couple enjoying time together outdoors',
-    label: 'Side by side',
     className: '',
   },
 ] as const
@@ -254,23 +251,17 @@ export function HomePage() {
             <Reveal>
               <div className="flex flex-col gap-4 border-b border-[#d8e2f1] pb-6 lg:flex-row lg:items-end lg:justify-between">
                 <div>
-                  <p className="home-eyebrow">Life at S.A.L.T.</p>
+                  <p className="home-eyebrow">Shared moments</p>
                   <h2 className="mt-3 max-w-2xl font-heading text-4xl font-semibold leading-[0.92] tracking-[-0.04em] text-[#17243d] sm:text-5xl">
-                    The people make the plan.
+                    Moments worth remembering.
                   </h2>
                 </div>
-                <p className="max-w-sm text-base leading-7 text-stone-600">
-                  Warm moments, shared with care.
-                </p>
               </div>
-              <div className="mt-8 grid auto-rows-[14rem] gap-4 lg:grid-cols-2 lg:grid-rows-2">
+              <div className="mt-8 grid gap-5 lg:grid-cols-3">
                 {photoGallery.map((item) => (
-                  <figure key={item.alt} className={`image-lift group relative overflow-hidden rounded-[1.5rem] border-8 border-white bg-[#eef4ff] shadow-[0_18px_42px_rgba(23,45,117,0.14)] ${item.className}`}>
-                    <img src={item.image} alt={item.alt} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
-                    <div className="pointer-events-none absolute inset-2 rounded-[1rem] border border-white/60" />
-                    <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#102f68]/80 via-[#102f68]/20 to-transparent px-5 pb-5 pt-14 text-sm font-semibold text-white">
-                      {item.label}
-                    </figcaption>
+                  <figure key={item.alt} className={`image-lift group relative aspect-[4/3] overflow-hidden rounded-[1.5rem] border-8 border-white bg-[#eef4ff] p-2 shadow-[0_18px_42px_rgba(23,45,117,0.14)] ${item.className}`}>
+                    <img src={item.image} alt={item.alt} className="h-full w-full rounded-[1rem] object-contain transition duration-700" />
+                    <div className="pointer-events-none absolute inset-3 rounded-[0.85rem] border border-white/70" />
                   </figure>
                 ))}
               </div>
