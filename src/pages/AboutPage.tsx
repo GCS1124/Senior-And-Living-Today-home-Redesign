@@ -79,7 +79,7 @@ export function AboutPage() {
                 <img
                   src={founder.image}
                   alt="Courtney Jones, founder of Senior & Living Today"
-                  className="h-[31rem] w-full object-cover sm:h-[35rem]"
+                  className="h-[31rem] w-full bg-[#eee8dd] object-contain sm:h-[35rem]"
                 />
               </div>
               <div className="rounded-[1.7rem] border border-stone-200 bg-white/96 p-5 shadow-soft backdrop-blur">

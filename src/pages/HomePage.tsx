@@ -174,7 +174,7 @@ export function HomePage() {
                 <img
                   src={founder.image}
                   alt={founder.name}
-                  className="aspect-[0.9/1] w-full object-cover"
+                  className="aspect-[0.9/1] w-full bg-[#eee8dd] object-contain"
                 />
               </div>
               <div className="absolute -bottom-5 right-5 rounded-2xl border border-[#d8d1c5] bg-white px-4 py-3 text-[#17243d] shadow-[0_14px_28px_rgba(23,45,117,0.12)] sm:right-8">

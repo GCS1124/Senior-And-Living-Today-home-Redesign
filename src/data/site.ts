@@ -1,5 +1,5 @@
 import heroCareImage from '../assets/live/courtney.jpg'
-import courtneyPortrait from '../assets/live/courtney.jpg'
+import courtneyPortrait from '../assets/user/courtney-jones-portrait.png'
 import plannerFlatlay from '../assets/live/planner.webp'
 import relicsBook from '../assets/live/relics.jpg'
 import communityPhoto from '../assets/live/blog-social.webp'

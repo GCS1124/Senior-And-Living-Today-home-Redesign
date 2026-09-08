@@ -63,7 +63,7 @@ export function ContactPage() {
                 <img
                   src={founder.image}
                   alt="Courtney Jones ready to help families with senior-care questions"
-                  className="h-[31rem] w-full object-cover sm:h-[35rem]"
+                  className="h-[31rem] w-full bg-[#eee8dd] object-contain sm:h-[35rem]"
                 />
               </div>
               <div className="rounded-[1.6rem] border border-stone-200 bg-white/96 p-5 shadow-soft backdrop-blur">
