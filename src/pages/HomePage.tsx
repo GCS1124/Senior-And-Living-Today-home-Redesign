@@ -6,11 +6,6 @@ import {
   Sparkles,
 } from 'lucide-react'
 
-import familyPorch from '../assets/user/family-porch.png'
-import familyMemory from '../assets/user/family-memory.png'
-import seniorDinner from '../assets/user/senior-dinner.png'
-import coupleOutdoors from '../assets/user/couple-outdoors.png'
-import familyTable from '../assets/user/family-table.png'
 import livingLegacyPlanner from '../assets/user/living-legacy-planner.png'
 import militaryPlanner from '../assets/user/military-planner.png'
 import plannerCoverSquare from '../assets/user/planner-cover-square.png'
@@ -54,39 +49,6 @@ const plannerCards = [
     title: 'A meaningful place for every story',
     summary: 'A thoughtful tool for conversations that matter.',
     featured: false,
-  },
-] as const
-
-const gallery = [
-  {
-    image: familyTable,
-    alt: 'Three generations smiling together at home',
-    caption: 'The people and memories that matter most.',
-    className: 'sm:col-span-2 sm:row-span-2',
-  },
-  {
-    image: seniorDinner,
-    alt: 'Senior woman smiling during a meal',
-    caption: 'Joy belongs in every season of life.',
-    className: '',
-  },
-  {
-    image: coupleOutdoors,
-    alt: 'Couple enjoying time together outdoors',
-    caption: 'A life well lived is worth celebrating.',
-    className: '',
-  },
-  {
-    image: familyMemory,
-    alt: 'A daughter sharing a warm moment with her mother',
-    caption: 'Support feels better when it feels personal.',
-    className: 'sm:col-span-2',
-  },
-  {
-    image: familyPorch,
-    alt: 'Two friends smiling together on a porch',
-    caption: 'Every good plan starts with a human conversation.',
-    className: 'sm:col-span-2',
   },
 ] as const
 
@@ -246,32 +208,6 @@ export function HomePage() {
                       </ActionButton>
                     </div>
                   </article>
-                ))}
-              </div>
-            </Reveal>
-          </Container>
-        </section>
-
-        <section id="stories" className="scroll-mt-24 bg-white">
-          <Container className="py-16 lg:py-20">
-            <Reveal>
-              <div className="mx-auto max-w-2xl text-center">
-                <p className="home-eyebrow">Real stories</p>
-                <h2 className="mt-3 font-heading text-4xl font-semibold leading-[0.92] tracking-[-0.04em] text-[#17243d] sm:text-5xl">
-                  The moments are the message.
-                </h2>
-                <p className="mt-4 text-base leading-7 text-stone-600">
-                  The plans matter because the people matter.
-                </p>
-              </div>
-              <div className="mt-8 grid auto-rows-[10rem] gap-3 sm:grid-cols-2 sm:auto-rows-[12rem]">
-                {gallery.map((item) => (
-                    <figure key={item.alt} className={`image-lift group relative overflow-hidden rounded-[1.25rem] bg-stone-100 ${item.className}`}>
-                    <img src={item.image} alt={item.alt} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
-                    <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/75 via-slate-950/20 to-transparent px-5 pb-5 pt-14 text-sm font-semibold text-white">
-                      {item.caption}
-                    </figcaption>
-                  </figure>
                 ))}
               </div>
             </Reveal>
