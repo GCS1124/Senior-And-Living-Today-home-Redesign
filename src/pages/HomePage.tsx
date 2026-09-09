@@ -97,37 +97,37 @@ const photoGallery = [
   {
     image: familyPorch,
     alt: 'Two friends smiling together on a porch',
-    className: '',
+    className: 'aspect-[4/3] md:col-span-2',
   },
   {
     image: seniorDinner,
     alt: 'A senior woman smiling during a meal',
-    className: '',
+    className: 'aspect-[4/3] md:aspect-[3/4]',
   },
   {
     image: coupleOutdoors,
     alt: 'A couple enjoying time together outdoors',
-    className: '',
+    className: 'aspect-[4/3] md:aspect-[3/4]',
   },
   {
     image: gardenGroup,
     alt: 'Friends smiling together in a garden',
-    className: '',
+    className: 'aspect-[4/3] md:col-span-2',
   },
   {
     image: gardenFamily,
     alt: 'Friends enjoying a sunny garden day',
-    className: '',
+    className: 'aspect-[4/3] md:col-span-2',
   },
   {
     image: gardenBench,
     alt: 'Courtney Jones sharing a moment with two women in a garden',
-    className: '',
+    className: 'aspect-[4/3] md:aspect-[3/4] md:col-start-2',
   },
   {
     image: parkCommunity,
     alt: 'A group of friends together in a park',
-    className: '',
+    className: 'aspect-[4/3] md:aspect-[3/4] md:col-start-3',
   },
 ] as const
 
@@ -325,13 +325,15 @@ export function HomePage() {
                   </h2>
                 </div>
               </div>
-              <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              <div className="mt-8 grid items-start gap-6 sm:grid-cols-2 md:grid-cols-4">
                 {photoGallery.map((item) => (
-                  <figure key={item.alt} className={`image-lift group relative aspect-[4/3] overflow-hidden rounded-[1.75rem] border-[10px] border-white bg-[#f8f4ec] p-2 shadow-[0_18px_42px_rgba(23,45,117,0.14)] ${item.className}`}>
-                    <div className="relative h-full overflow-hidden rounded-[1.1rem] bg-[#f6f0e5]">
+                  <figure key={item.alt} className={`image-lift group relative overflow-hidden rounded-[2rem] border border-[#d9cbaa] bg-gradient-to-br from-white via-[#fbf8f1] to-[#eee5d6] p-3 shadow-[0_24px_55px_rgba(23,45,117,0.13)] ring-1 ring-black/[0.03] transition duration-300 hover:-translate-y-1 hover:border-[#c5a15d] hover:shadow-[0_30px_65px_rgba(23,45,117,0.18)] ${item.className}`}>
+                    <div className="relative h-full overflow-hidden rounded-[1.35rem] bg-[#f6f0e5]">
                       <img src={item.image} alt="" aria-hidden="true" className="absolute inset-0 h-full w-full scale-110 object-cover opacity-30 blur-2xl saturate-75 transition duration-700 group-hover:scale-[1.15]" />
                       <img src={item.image} alt={item.alt} className="relative z-10 h-full w-full object-contain transition duration-700" />
-                      <div className="pointer-events-none absolute inset-3 rounded-[0.85rem] border border-white/80" />
+                      <div className="pointer-events-none absolute inset-3 rounded-[1.1rem] border border-white/90" />
+                      <div className="pointer-events-none absolute inset-5 rounded-[0.95rem] border border-[#c5a15d]/30" />
+                      <span className="pointer-events-none absolute right-5 top-5 z-20 h-2.5 w-2.5 rounded-full bg-[#c5a15d] shadow-[0_0_0_4px_rgba(197,161,93,0.18)]" />
                     </div>
                   </figure>
                 ))}
