@@ -17,8 +17,6 @@ import relicsCenturyPlanner from '../assets/user/relics-century-planner.png'
 import familyPorch from '../assets/user/family-porch.png'
 import seniorDinner from '../assets/user/senior-dinner.png'
 import coupleOutdoors from '../assets/user/couple-outdoors.png'
-import gardenGroup from '../assets/user/garden-group.png'
-import gardenFamily from '../assets/user/garden-family.png'
 import gardenBench from '../assets/user/garden-bench.png'
 import parkCommunity from '../assets/user/park-community.png'
 import {
@@ -108,16 +106,6 @@ const photoGallery = [
     image: coupleOutdoors,
     alt: 'A couple enjoying time together outdoors',
     className: 'aspect-[4/3] md:aspect-[3/4]',
-  },
-  {
-    image: gardenGroup,
-    alt: 'Friends smiling together in a garden',
-    className: 'aspect-[4/3] md:col-span-2',
-  },
-  {
-    image: gardenFamily,
-    alt: 'Friends enjoying a sunny garden day',
-    className: 'aspect-[4/3] md:col-span-2',
   },
   {
     image: gardenBench,
