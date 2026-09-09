@@ -162,7 +162,7 @@ export function HomePage() {
                 <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#2454a4]">{founder.years}</p>
                 <p className="mt-2 font-heading text-xl leading-tight">A calmer way forward.</p>
               </div>
-              <div className="absolute -right-3 bottom-7 hidden w-28 rotate-3 rounded-2xl border-4 border-white bg-[#172d75] p-1 shadow-[0_16px_30px_rgba(0,0,0,0.24)] sm:block lg:-right-6 lg:w-32">
+              <div className="absolute -right-3 bottom-7 hidden w-28 rotate-3 rounded-2xl border-4 border-white bg-[#fbfaf7] p-1 shadow-[0_16px_30px_rgba(0,0,0,0.24)] sm:block lg:-right-6 lg:w-32">
                 <img
                   src={plannerCoverSquare}
                   alt="The Living Legacy Planner cover"
@@ -263,7 +263,7 @@ export function HomePage() {
                     className="group"
                   >
                     <Link to="/living-legacy-planner/" className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5c518] focus-visible:ring-offset-4">
-                      <div className={`image-lift flex h-[18rem] items-center justify-center rounded-[1.5rem] bg-[#172d75] p-5 shadow-[0_16px_36px_rgba(23,45,117,0.12)] transition duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_22px_44px_rgba(23,45,117,0.18)] ${card.featured ? 'ring-2 ring-[#f5c518] ring-offset-2 ring-offset-[#eef4ff]' : ''}`}>
+                      <div className={`image-lift flex h-[18rem] items-center justify-center rounded-[1.5rem] border border-[#d7dfec] bg-[#fbfaf7] p-5 shadow-[0_16px_36px_rgba(23,45,117,0.1)] transition duration-300 group-hover:-translate-y-1 group-hover:border-[#9eb8df] group-hover:shadow-[0_22px_44px_rgba(23,45,117,0.16)] ${card.featured ? 'ring-2 ring-[#f5c518] ring-offset-2 ring-offset-[#eef4ff]' : ''}`}>
                         <img src={card.image} alt={card.alt} className="h-full w-full object-contain" />
                       </div>
                       <div className="px-1 pt-4">
