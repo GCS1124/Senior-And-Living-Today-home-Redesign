@@ -325,11 +325,14 @@ export function HomePage() {
                   </h2>
                 </div>
               </div>
-              <div className="mt-8 grid gap-5 lg:grid-cols-3 xl:grid-cols-4">
+              <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {photoGallery.map((item) => (
-                  <figure key={item.alt} className={`image-lift group relative aspect-[4/3] overflow-hidden rounded-[1.5rem] border-8 border-white bg-[#eef4ff] p-2 shadow-[0_18px_42px_rgba(23,45,117,0.14)] ${item.className}`}>
-                    <img src={item.image} alt={item.alt} className="h-full w-full rounded-[1rem] object-contain transition duration-700" />
-                    <div className="pointer-events-none absolute inset-3 rounded-[0.85rem] border border-white/70" />
+                  <figure key={item.alt} className={`image-lift group relative aspect-[4/3] overflow-hidden rounded-[1.75rem] border-[10px] border-white bg-[#f8f4ec] p-2 shadow-[0_18px_42px_rgba(23,45,117,0.14)] ${item.className}`}>
+                    <div className="relative h-full overflow-hidden rounded-[1.1rem] bg-[#f6f0e5]">
+                      <img src={item.image} alt="" aria-hidden="true" className="absolute inset-0 h-full w-full scale-110 object-cover opacity-30 blur-2xl saturate-75 transition duration-700 group-hover:scale-[1.15]" />
+                      <img src={item.image} alt={item.alt} className="relative z-10 h-full w-full object-contain transition duration-700" />
+                      <div className="pointer-events-none absolute inset-3 rounded-[0.85rem] border border-white/80" />
+                    </div>
                   </figure>
                 ))}
               </div>
