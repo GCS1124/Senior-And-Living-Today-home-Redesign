@@ -16,6 +16,10 @@ import dailyBloomPlanner from '../assets/user/daily-bloom-planner.png'
 import familyPorch from '../assets/user/family-porch.png'
 import seniorDinner from '../assets/user/senior-dinner.png'
 import coupleOutdoors from '../assets/user/couple-outdoors.png'
+import gardenGroup from '../assets/user/garden-group.png'
+import gardenFamily from '../assets/user/garden-family.png'
+import gardenBench from '../assets/user/garden-bench.png'
+import parkCommunity from '../assets/user/park-community.png'
 import {
   brand,
   contact,
@@ -94,6 +98,26 @@ const photoGallery = [
   {
     image: coupleOutdoors,
     alt: 'A couple enjoying time together outdoors',
+    className: '',
+  },
+  {
+    image: gardenGroup,
+    alt: 'Friends smiling together in a garden',
+    className: '',
+  },
+  {
+    image: gardenFamily,
+    alt: 'Friends enjoying a sunny garden day',
+    className: '',
+  },
+  {
+    image: gardenBench,
+    alt: 'Courtney Jones sharing a moment with two women in a garden',
+    className: '',
+  },
+  {
+    image: parkCommunity,
+    alt: 'A group of friends together in a park',
     className: '',
   },
 ] as const
@@ -292,7 +316,7 @@ export function HomePage() {
                   </h2>
                 </div>
               </div>
-              <div className="mt-8 grid gap-5 lg:grid-cols-3">
+              <div className="mt-8 grid gap-5 lg:grid-cols-3 xl:grid-cols-4">
                 {photoGallery.map((item) => (
                   <figure key={item.alt} className={`image-lift group relative aspect-[4/3] overflow-hidden rounded-[1.5rem] border-8 border-white bg-[#eef4ff] p-2 shadow-[0_18px_42px_rgba(23,45,117,0.14)] ${item.className}`}>
                     <img src={item.image} alt={item.alt} className="h-full w-full rounded-[1rem] object-contain transition duration-700" />
