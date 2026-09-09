@@ -100,7 +100,7 @@ const photoGallery = [
   {
     image: seniorDinner,
     alt: 'A senior woman smiling during a meal',
-    className: 'aspect-[4/3]',
+    className: 'aspect-[3/4]',
   },
   {
     image: coupleOutdoors,
