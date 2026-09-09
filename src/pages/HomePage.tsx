@@ -13,6 +13,7 @@ import livingLegacyPlanner from '../assets/user/living-legacy-planner.png'
 import militaryPlanner from '../assets/user/military-planner.png'
 import plannerCoverSquare from '../assets/user/planner-cover-square.png'
 import dailyBloomPlanner from '../assets/user/daily-bloom-planner.png'
+import relicsCenturyPlanner from '../assets/user/relics-century-planner.png'
 import familyPorch from '../assets/user/family-porch.png'
 import seniorDinner from '../assets/user/senior-dinner.png'
 import coupleOutdoors from '../assets/user/couple-outdoors.png'
@@ -68,6 +69,14 @@ const plannerCards = [
     eyebrow: 'Daily reflection',
     title: 'The Daily Bloom',
     summary: 'A gentle guide for balance, reflection, and everyday growth.',
+    featured: false,
+  },
+  {
+    image: relicsCenturyPlanner,
+    alt: 'Relics of the Century planner cover by Courtney Ray Jones',
+    eyebrow: 'Memory keeping',
+    title: 'Relics of the Century',
+    summary: 'A place to preserve the stories, objects, and memories that matter.',
     featured: false,
   },
 ] as const
