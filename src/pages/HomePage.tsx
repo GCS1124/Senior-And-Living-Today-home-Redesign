@@ -100,22 +100,22 @@ const photoGallery = [
   {
     image: seniorDinner,
     alt: 'A senior woman smiling during a meal',
-    className: 'aspect-[4/3] md:aspect-[3/4]',
+    className: 'aspect-[4/3]',
   },
   {
     image: coupleOutdoors,
     alt: 'A couple enjoying time together outdoors',
-    className: 'aspect-[4/3] md:aspect-[3/4]',
+    className: 'aspect-[4/3]',
   },
   {
     image: gardenBench,
     alt: 'Courtney Jones sharing a moment with two women in a garden',
-    className: 'aspect-[4/3] md:aspect-[3/4] md:col-start-2',
+    className: 'aspect-[4/3]',
   },
   {
     image: parkCommunity,
     alt: 'A group of friends together in a park',
-    className: 'aspect-[4/3] md:aspect-[3/4] md:col-start-3',
+    className: 'aspect-[4/3]',
   },
 ] as const
 
@@ -313,7 +313,7 @@ export function HomePage() {
                   </h2>
                 </div>
               </div>
-              <div className="mt-8 grid items-start gap-6 sm:grid-cols-2 md:grid-cols-4">
+              <div className="mt-8 grid items-start gap-6 sm:grid-cols-2 md:grid-cols-3">
                 {photoGallery.map((item) => (
                   <figure key={item.alt} className={`image-lift group relative overflow-hidden rounded-[2rem] border border-[#d9cbaa] bg-gradient-to-br from-white via-[#fbf8f1] to-[#eee5d6] p-3 shadow-[0_24px_55px_rgba(23,45,117,0.13)] ring-1 ring-black/[0.03] transition duration-300 hover:-translate-y-1 hover:border-[#c5a15d] hover:shadow-[0_30px_65px_rgba(23,45,117,0.18)] ${item.className}`}>
                     <div className="relative h-full overflow-hidden rounded-[1.35rem] bg-[#f6f0e5]">
