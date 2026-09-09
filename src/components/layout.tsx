@@ -42,7 +42,7 @@ export function ActionButton({
   disabled = false,
 }: ActionButtonProps) {
   const classes = cx(
-    'inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold tracking-[0.01em] transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-ivory-50 disabled:pointer-events-none disabled:opacity-60',
+    'inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-3 text-base font-semibold tracking-[0.01em] transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-ivory-50 disabled:pointer-events-none disabled:opacity-60',
     variant === 'primary' &&
       'bg-charcoal text-white shadow-lift hover:-translate-y-0.5 hover:bg-navy-700',
     variant === 'secondary' &&
@@ -237,9 +237,9 @@ export function SiteHeader() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-charcoal/10 bg-ivory-50/95 backdrop-blur-xl">
+      <header className="sticky top-0 z-50 border-b border-charcoal/10 bg-ivory-50/95 shadow-[0_8px_28px_rgba(23,36,61,0.06)] backdrop-blur-xl">
       <div className="border-b border-white/10 bg-charcoal text-ivory-100">
-        <Container className="flex items-center justify-between gap-4 py-2 text-[0.64rem] font-semibold uppercase tracking-[0.2em]">
+        <Container className="flex items-center justify-between gap-4 py-2.5 text-[0.72rem] font-semibold uppercase tracking-[0.16em]">
           <span className="text-gold-200">Care. Comfort. Community.</span>
           <a className="transition hover:text-gold-200" href={contact.phoneHref}>
             Call {contact.phoneDisplay}
@@ -257,7 +257,7 @@ export function SiteHeader() {
               onClick={() => setOpen(false)}
               className={({ isActive }) =>
                 cx(
-                  'rounded-full px-3 py-2 text-sm font-medium text-stone-600 transition hover:bg-white hover:text-charcoal',
+                  'rounded-full px-3.5 py-2.5 text-base font-medium text-stone-600 transition hover:bg-white hover:text-charcoal',
                   isActive && 'bg-white text-gold-700 shadow-sm',
                 )
               }

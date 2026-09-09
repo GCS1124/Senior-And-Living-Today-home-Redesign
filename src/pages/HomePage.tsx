@@ -1,9 +1,12 @@
 import {
   Check,
+  BookOpen,
+  HandHeart,
   Mail,
   Phone,
   ShieldCheck,
   Sparkles,
+  UserRound,
 } from 'lucide-react'
 
 import livingLegacyPlanner from '../assets/user/living-legacy-planner.png'
@@ -69,6 +72,12 @@ const plannerPromises = [
   'Large, clear pages',
   'Simple prompts',
   'Family-friendly planning',
+] as const
+
+const quickStartLinks = [
+  { label: 'Meet Courtney', to: '#about', icon: UserRound },
+  { label: 'Choose a planner', to: '#planner', icon: BookOpen },
+  { label: 'Get support', to: '#contact', icon: HandHeart },
 ] as const
 
 const photoGallery = [
@@ -166,6 +175,32 @@ export function HomePage() {
             </Reveal>
           </Container>
         </section>
+
+        <nav
+          aria-label="Start here"
+          className="relative z-10 border-b border-[#d7c77e]/70 bg-[#fff8d8] shadow-[0_12px_30px_rgba(23,45,117,0.08)]"
+        >
+          <Container className="flex flex-col gap-3 py-4 sm:flex-row sm:items-center sm:justify-between lg:py-5">
+            <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#956d32]">
+              Start here
+            </p>
+            <div className="grid gap-2 sm:flex sm:flex-wrap sm:justify-end">
+              {quickStartLinks.map(({ label, to, icon: Icon }) => (
+                <a
+                  key={label}
+                  href={to}
+                  className="group inline-flex min-h-11 items-center gap-2 rounded-full border border-[#d7c77e] bg-white/70 px-4 py-2 text-base font-semibold text-[#17243d] transition duration-200 hover:-translate-y-0.5 hover:border-[#2454a4] hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2454a4] focus-visible:ring-offset-2 focus-visible:ring-offset-[#fff8d8]"
+                >
+                  <Icon className="h-4 w-4 text-[#2454a4]" aria-hidden="true" />
+                  {label}
+                  <span className="text-[#2454a4] transition-transform group-hover:translate-x-0.5" aria-hidden="true">
+                    →
+                  </span>
+                </a>
+              ))}
+            </div>
+          </Container>
+        </nav>
 
         <section id="about" className="scroll-mt-24 bg-[#f8f4ec]">
           <Container className="grid gap-10 py-16 lg:grid-cols-[0.82fr_1.18fr] lg:items-center lg:gap-12 lg:py-20">
