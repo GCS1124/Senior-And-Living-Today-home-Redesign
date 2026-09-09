@@ -289,17 +289,17 @@ export function HomePage() {
                 </p>
               </div>
 
-              <div className="mt-8 grid gap-x-5 gap-y-8 lg:grid-cols-2 xl:grid-cols-4">
+              <div className="mt-8 grid gap-x-5 gap-y-8 lg:grid-cols-2 xl:grid-cols-5">
                 {plannerCards.map((card) => (
                   <article
                     key={card.title}
-                    className="group"
+                    className="group min-w-0"
                   >
                     <Link to="/living-legacy-planner/" className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f5c518] focus-visible:ring-offset-4">
-                      <div className={`image-lift flex h-[18rem] items-center justify-center rounded-[1.5rem] border border-[#d7dfec] bg-[#fbfaf7] p-5 shadow-[0_16px_36px_rgba(23,45,117,0.1)] transition duration-300 group-hover:-translate-y-1 group-hover:border-[#9eb8df] group-hover:shadow-[0_22px_44px_rgba(23,45,117,0.16)] ${card.featured ? 'ring-2 ring-[#f5c518] ring-offset-2 ring-offset-[#eef4ff]' : ''}`}>
+                      <div className={`image-lift flex h-[18rem] items-center justify-center rounded-[1.5rem] border border-[#d7dfec] bg-[#fbfaf7] p-5 shadow-[0_16px_36px_rgba(23,45,117,0.1)] transition duration-300 group-hover:-translate-y-1 group-hover:border-[#9eb8df] group-hover:shadow-[0_22px_44px_rgba(23,45,117,0.16)] xl:h-[17rem] ${card.featured ? 'ring-2 ring-[#f5c518] ring-offset-2 ring-offset-[#eef4ff]' : ''}`}>
                         <img src={card.image} alt={card.alt} className="h-full w-full object-contain" />
                       </div>
-                      <div className="px-1 pt-4">
+                      <div className="min-h-[5.75rem] px-1 pt-4">
                         <div className="flex items-center justify-between gap-3">
                           <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#2454a4]">{card.eyebrow}</p>
                           <span className="text-sm font-semibold text-[#2454a4] transition group-hover:text-[#172d75]">View edition <span aria-hidden="true">→</span></span>
