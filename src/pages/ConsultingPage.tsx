@@ -177,7 +177,6 @@ export function ConsultingPage() {
             </Reveal>
           </Container>
         </section>
-*****/---k
         <section className="bg-ivory-50">
           <Container className="py-16 lg:py-20">
             <Reveal>
