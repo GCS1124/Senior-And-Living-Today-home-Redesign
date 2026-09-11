@@ -39,16 +39,16 @@ export function ServiceCard({
   return (
     <Link
       to={href}
-      className="group rounded-[1.6rem] border border-stone-200 bg-white p-6 shadow-[0_15px_50px_rgba(86,67,41,0.06)] transition duration-300 hover:-translate-y-1 hover:border-sage-300 hover:shadow-soft"
+      className="premium-card group relative overflow-hidden p-6 sm:p-7"
     >
-      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-sage-100 text-sage-800">
+      <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-navy-900 text-gold-200 shadow-[0_12px_24px_-16px_rgba(13,43,87,0.9)]">
         {iconMap[icon]}
       </div>
       <h3 className="mt-5 font-heading text-3xl leading-tight text-charcoal">
         {title}
       </h3>
       <p className="mt-3 text-base leading-7 text-stone-600">{summary}</p>
-      <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-sage-700 transition group-hover:text-sage-800">
+      <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-navy-700 transition group-hover:text-navy-900">
         Learn more
         <Sparkles className="h-4 w-4" aria-hidden="true" />
       </span>
@@ -78,17 +78,19 @@ export function ProductCard({
   return (
     <article
       className={cx(
-        'grid overflow-hidden rounded-[1.9rem] border border-stone-200 bg-white shadow-[0_18px_60px_rgba(86,67,41,0.08)] lg:grid-cols-[0.95fr_1.05fr]',
-        featured && 'border-sage-200',
+        'premium-card grid overflow-hidden lg:grid-cols-[0.95fr_1.05fr]',
+        featured && 'border-gold-300/70 ring-1 ring-gold-300/30',
       )}
     >
-      <div className="relative min-h-[18rem] bg-ivory-50">
-        <img src={image} alt={title} className="h-full w-full object-cover" />
-        <div className="absolute left-4 top-4 rounded-full bg-charcoal/85 px-3 py-1 text-xs font-semibold tracking-[0.18em] text-white backdrop-blur">
+      <div className="relative min-h-[18rem] bg-gradient-to-br from-ivory-50 to-navy-50 p-4 sm:p-5">
+        <div className="image-frame h-full min-h-[16rem] overflow-hidden p-2">
+          <img src={image} alt={title} className="h-full w-full object-cover" />
+        </div>
+        <div className="absolute left-7 top-7 rounded-full bg-charcoal/90 px-3 py-1 text-xs font-semibold tracking-[0.18em] text-white backdrop-blur">
           {badge}
         </div>
       </div>
-      <div className="flex flex-col justify-between p-6 sm:p-8">
+      <div className="flex flex-col justify-between p-7 sm:p-9">
         <div>
           <h3 className="font-heading text-3xl leading-tight text-charcoal">
             {title}
@@ -129,18 +131,18 @@ export function BlogCard({
   return (
     <Link
       to={href}
-      className="group overflow-hidden rounded-[1.6rem] border border-stone-200 bg-white shadow-[0_15px_50px_rgba(86,67,41,0.05)] transition duration-300 hover:-translate-y-1 hover:shadow-soft"
+      className="premium-card group overflow-hidden"
     >
-      <div className="h-52 overflow-hidden bg-ivory-50">
+      <div className="image-lift m-3 h-52 overflow-hidden rounded-[1.3rem] bg-ivory-50 sm:m-4">
         <img
           src={image}
           alt={title}
           className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
         />
       </div>
-      <div className="space-y-3 p-6">
+      <div className="space-y-3 p-6 pt-3 sm:p-7 sm:pt-3">
         <div className="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-sage-700">
-          <span>{category}</span>
+          <span className="text-navy-700">{category}</span>
           <span className="h-1 w-1 rounded-full bg-stone-300" />
           <span>{date}</span>
           <span className="h-1 w-1 rounded-full bg-stone-300" />
@@ -150,7 +152,7 @@ export function BlogCard({
           {title}
         </h3>
         <p className="text-base leading-7 text-stone-600">{excerpt}</p>
-        <span className="inline-flex items-center gap-2 text-sm font-semibold text-sage-700 transition group-hover:text-sage-800">
+        <span className="inline-flex items-center gap-2 text-sm font-semibold text-navy-700 transition group-hover:text-navy-900">
           Read more
           <MessagesSquare className="h-4 w-4" aria-hidden="true" />
         </span>
@@ -190,12 +192,12 @@ export function FaqList({
       {items.map((item) => (
         <details
           key={item.question}
-          className="group rounded-[1.4rem] border border-stone-200 bg-white p-5 shadow-sm"
+          className="premium-card group p-5 sm:p-6"
         >
           <summary className="cursor-pointer list-none font-semibold text-charcoal">
             <span className="flex items-center justify-between gap-4">
               <span>{item.question}</span>
-              <span className="text-sage-700 transition group-open:rotate-45">+</span>
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gold-100 text-navy-900 transition group-open:rotate-45">+</span>
             </span>
           </summary>
           <p className="mt-4 text-base leading-7 text-stone-600">{item.answer}</p>
@@ -320,7 +322,7 @@ export function ContactForm({
 
   return (
     <form
-      className="rounded-[2rem] border border-stone-200 bg-white p-6 shadow-[0_20px_80px_rgba(86,67,41,0.07)] sm:p-8"
+      className="premium-card p-6 sm:p-9"
       onSubmit={handleSubmit}
     >
       <div className="grid gap-5 md:grid-cols-2">
@@ -332,7 +334,7 @@ export function ContactForm({
             onChange={(event) =>
               setFormData((current) => ({ ...current, name: event.target.value }))
             }
-            className="rounded-2xl border border-stone-300 bg-white px-4 py-3 text-base text-charcoal outline-none transition placeholder:text-stone-400 focus:border-sage-400 focus:ring-2 focus:ring-sage-200"
+            className="rounded-2xl border border-stone-300 bg-ivory-50/60 px-4 py-3 text-base text-charcoal outline-none transition placeholder:text-stone-400 focus:border-navy-500 focus:bg-white focus:ring-2 focus:ring-navy-100"
             placeholder="Your name"
           />
         </label>
@@ -345,7 +347,7 @@ export function ContactForm({
             onChange={(event) =>
               setFormData((current) => ({ ...current, email: event.target.value }))
             }
-            className="rounded-2xl border border-stone-300 bg-white px-4 py-3 text-base text-charcoal outline-none transition placeholder:text-stone-400 focus:border-sage-400 focus:ring-2 focus:ring-sage-200"
+            className="rounded-2xl border border-stone-300 bg-ivory-50/60 px-4 py-3 text-base text-charcoal outline-none transition placeholder:text-stone-400 focus:border-navy-500 focus:bg-white focus:ring-2 focus:ring-navy-100"
             placeholder="you@example.com"
           />
         </label>
@@ -356,7 +358,7 @@ export function ContactForm({
             onChange={(event) =>
               setFormData((current) => ({ ...current, phone: event.target.value }))
             }
-            className="rounded-2xl border border-stone-300 bg-white px-4 py-3 text-base text-charcoal outline-none transition placeholder:text-stone-400 focus:border-sage-400 focus:ring-2 focus:ring-sage-200"
+            className="rounded-2xl border border-stone-300 bg-ivory-50/60 px-4 py-3 text-base text-charcoal outline-none transition placeholder:text-stone-400 focus:border-navy-500 focus:bg-white focus:ring-2 focus:ring-navy-100"
             placeholder="(555) 555-5555"
           />
         </label>
@@ -374,7 +376,7 @@ export function ContactForm({
                   setServiceOpen(true)
                 }
               }}
-              className="flex w-full items-center justify-between rounded-2xl border border-stone-300 bg-white px-4 py-3 text-left text-base text-charcoal outline-none transition focus:border-sage-400 focus:ring-2 focus:ring-sage-200"
+              className="flex w-full items-center justify-between rounded-2xl border border-stone-300 bg-ivory-50/60 px-4 py-3 text-left text-base text-charcoal outline-none transition focus:border-navy-500 focus:bg-white focus:ring-2 focus:ring-navy-100"
             >
               <span className="min-w-0 truncate">{formData.serviceInterest}</span>
               <ChevronDown
@@ -432,7 +434,7 @@ export function ContactForm({
           onChange={(event) =>
             setFormData((current) => ({ ...current, message: event.target.value }))
           }
-          className="rounded-2xl border border-stone-300 bg-white px-4 py-3 text-base text-charcoal outline-none transition placeholder:text-stone-400 focus:border-sage-400 focus:ring-2 focus:ring-sage-200"
+          className="rounded-2xl border border-stone-300 bg-ivory-50/60 px-4 py-3 text-base text-charcoal outline-none transition placeholder:text-stone-400 focus:border-navy-500 focus:bg-white focus:ring-2 focus:ring-navy-100"
           placeholder="Tell us a little about what you need."
         />
       </label>

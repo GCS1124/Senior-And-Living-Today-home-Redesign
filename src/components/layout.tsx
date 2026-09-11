@@ -42,9 +42,9 @@ export function ActionButton({
   disabled = false,
 }: ActionButtonProps) {
   const classes = cx(
-    'inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-3 text-base font-semibold tracking-[0.01em] transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-ivory-50 disabled:pointer-events-none disabled:opacity-60',
+    'inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-3 text-base font-semibold tracking-[0.01em] shadow-[0_14px_30px_-18px_rgba(23,36,61,0.7)] transition duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-ivory-50 disabled:pointer-events-none disabled:opacity-60',
     variant === 'primary' &&
-      'bg-charcoal text-white shadow-lift hover:-translate-y-0.5 hover:bg-navy-700',
+      'bg-charcoal text-white hover:bg-navy-700',
     variant === 'secondary' &&
       'border border-charcoal/15 bg-white/70 text-charcoal shadow-sm hover:-translate-y-0.5 hover:border-gold-400 hover:text-gold-700',
     variant === 'ghost' &&
@@ -106,7 +106,7 @@ export function Container({
   children: ReactNode
   className?: string
 }) {
-  return <div className={cx('site-shell', className)}>{children}</div>
+  return <div className={cx('site-shell relative', className)}>{children}</div>
 }
 
 export function SectionHeading({
@@ -121,15 +121,21 @@ export function SectionHeading({
   align?: 'left' | 'center'
 }) {
   return (
-    <div className={cx('max-w-3xl', align === 'center' && 'mx-auto text-center')}>
+    <div
+      className={cx(
+        'section-heading max-w-3xl',
+        align === 'center' && 'section-heading--center mx-auto text-center',
+      )}
+    >
       {eyebrow ? (
         <p className="mb-3 text-sm font-semibold uppercase tracking-[0.26em] text-gold-700">
           {eyebrow}
         </p>
       ) : null}
-        <h2 className="text-4xl font-semibold leading-[0.98] text-charcoal sm:text-5xl lg:text-[3.5rem]">
+      <h2 className="text-4xl font-semibold leading-[0.98] text-charcoal sm:text-5xl lg:text-[3.5rem]">
         {title}
       </h2>
+      <span className="section-heading-rule" aria-hidden="true" />
       {summary ? (
         <p className="mt-5 text-base leading-8 text-stone-600 sm:text-lg">
           {summary}
@@ -237,11 +243,11 @@ export function SiteHeader() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-charcoal/10 bg-ivory-50/95 shadow-[0_8px_28px_rgba(23,36,61,0.06)] backdrop-blur-xl">
-      <Container className="flex items-center justify-between py-3.5">
+      <header className="site-header sticky top-0 z-50 border-b border-charcoal/10 bg-ivory-50/95 backdrop-blur-xl">
+      <Container className="flex items-center justify-between py-4">
         <LogoMark />
 
-        <nav className="hidden items-center gap-1 lg:flex">
+        <nav className="hidden items-center gap-1 rounded-full border border-charcoal/8 bg-white/60 p-1 lg:flex">
           {navigation.map((item) => (
             <NavLink
               key={item.label}
@@ -250,7 +256,7 @@ export function SiteHeader() {
               className={({ isActive }) =>
                 cx(
                   'rounded-full px-3.5 py-2.5 text-base font-medium text-stone-600 transition hover:bg-white hover:text-charcoal',
-                  isActive && 'bg-white text-gold-700 shadow-sm',
+                  isActive && 'bg-charcoal text-white shadow-sm hover:bg-charcoal hover:text-white',
                 )
               }
             >
@@ -273,7 +279,7 @@ export function SiteHeader() {
 
         <button
           type="button"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-charcoal/15 bg-white text-charcoal lg:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-charcoal/15 bg-white text-charcoal shadow-sm lg:hidden"
           onClick={() => setOpen((value) => !value)}
           aria-expanded={open}
           aria-controls="mobile-navigation"
@@ -327,8 +333,8 @@ export function SiteHeader() {
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-white/10 bg-charcoal text-white">
-      <Container className="py-12 lg:py-14">
+    <footer className="site-footer border-t border-white/10 bg-charcoal text-white">
+      <Container className="relative z-10 py-14 lg:py-16">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr_1fr]">
           <div className="space-y-6">
             <LogoMark compact inverse />
@@ -397,8 +403,8 @@ export function PageHero({
   reverse?: boolean
 }) {
   return (
-    <section className="relative overflow-hidden">
-      <Container className="grid items-center gap-8 py-12 lg:grid-cols-[1.08fr_0.92fr] lg:py-16">
+    <section className="page-hero relative overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(255,213,58,0.2),_transparent_30%),linear-gradient(135deg,_rgba(255,255,255,0.82),_rgba(238,244,255,0.76))]">
+      <Container className="grid items-center gap-10 py-14 lg:grid-cols-[1.08fr_0.92fr] lg:py-20">
         <div className={cx('space-y-6', reverse && 'lg:order-2')}>
           <div className="space-y-4">
             <h1 className="max-w-3xl text-4xl font-semibold leading-[1.04] tracking-[-0.04em] text-charcoal sm:text-5xl lg:text-[4.4rem]">
@@ -424,7 +430,7 @@ export function PageHero({
         </div>
 
         <div className={cx('space-y-4', reverse && 'lg:order-1')}>
-          <div className="relative overflow-hidden rounded-[2rem] border border-white/70 bg-white shadow-soft">
+          <div className="image-frame relative overflow-hidden">
             <img
               src={image}
               alt={imageAlt}
