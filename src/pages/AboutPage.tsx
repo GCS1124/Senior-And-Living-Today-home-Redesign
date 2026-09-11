@@ -1,348 +1,185 @@
-import { HandHeart, ShieldCheck, Sparkles } from 'lucide-react'
+import { HandHeart, ShieldCheck, UsersRound } from 'lucide-react'
 
-import { founder, products } from '../data/site'
+import aboutCommunity from '../assets/user/about-community.png'
+import coupleOutdoors from '../assets/user/couple-outdoors.png'
+import familyPorch from '../assets/user/family-porch.png'
+import gardenBench from '../assets/user/garden-bench.png'
+import parkCommunity from '../assets/user/park-community.png'
+import plannerCoverSquare from '../assets/user/planner-cover-square.png'
+import relicsCenturyPlanner from '../assets/user/relics-century-planner.png'
+import seniorDinner from '../assets/user/senior-dinner.png'
 import { organizationSchema } from '../data/schema'
-import {
-  ActionButton,
-  Container,
-  Reveal,
-  SectionHeading,
-  SiteFooter,
-  SiteHeader,
-} from '../components/layout'
-import { BulletList, ProductCard } from '../components/content'
+import { ActionButton, Container, Reveal, SiteFooter, SiteHeader } from '../components/layout'
 import { Seo } from '../components/seo'
 
-const principles = [
+const whyChooseCards = [
   {
-    icon: <HandHeart className="h-6 w-6" />,
-    title: 'Compassion first',
-    text: 'Every recommendation starts with the person, the family, and the pressure they are carrying right now.',
+    icon: <HandHeart className="h-7 w-7" aria-hidden="true" />,
+    title: 'Kindness and Compassion',
+    text:
+      'Step into our world and experience the warmth of Courtney’s compassion—a hallmark of our approach to Senior Living in USA . Her genuine kindness brings joy and comfort to seniors and their families alike. Every interaction is infused with empathy, ensuring that no one feels alone on their journey. With Courtney leading the way, you’ll find a sanctuary of care and understanding.',
   },
   {
-    icon: <ShieldCheck className="h-6 w-6" />,
-    title: 'Trusted guidance',
-    text: 'Families get plain-language support they can use without sorting through noise or jargon.',
+    icon: <ShieldCheck className="h-7 w-7" aria-hidden="true" />,
+    title: 'Courteous Expertise',
+    text:
+      'Courtney’s expertise goes beyond traditional senior care. She understands the unique challenges seniors face and provides personalized strategies to address them with grace and courtesy. Whether you’re navigating Senior Living in USA options or seeking guidance on aging in place, Courtney and her team are here to help. With her by your side, you’ll feel confident and supported every step of the way.',
   },
   {
-    icon: <Sparkles className="h-6 w-6" />,
-    title: 'Practical clarity',
-    text: 'The work turns uncertainty into a clearer plan, with tools that feel calm and usable.',
+    icon: <UsersRound className="h-7 w-7" aria-hidden="true" />,
+    title: 'A True Leader',
+    text:
+      'Courtney is more than a leader—she’s a beacon of inspiration for our team and the families we serve. Fearless, compassionate, and always leading by example, she ensures that S.A.L.T. isn’t just a business but a sanctuary of caring hearts united in our mission. Under Courtney’s guidance, we’re dedicated to making a meaningful difference in the lives of seniors across America.',
   },
+] as const
+
+const storyImages = [
+  { src: familyPorch, className: 'md:col-span-7 md:row-span-2 aspect-[4/3]' },
+  { src: seniorDinner, className: 'md:col-span-5 aspect-[3/4]' },
+  { src: coupleOutdoors, className: 'md:col-span-5 aspect-[4/3]' },
+  { src: gardenBench, className: 'md:col-span-4 aspect-[3/4]' },
+  { src: parkCommunity, className: 'md:col-span-8 aspect-[4/3]' },
 ] as const
 
 export function AboutPage() {
   return (
     <>
       <Seo
-        title="About S.A.L.T."
-        description="Learn about Courtney Jones and the mission behind Senior & Living Today, a trusted resource for seniors, caregivers, and families."
-        canonical="/about/"
+        title="Trusted Senior Living in USA"
+        description="Empowering Seniors with Compassionate Senior Living in USA"
+        canonical="/senior-living-in-usa/"
         jsonLd={organizationSchema()}
       />
       <SiteHeader />
-      <main>
-        <section className="relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,237,173,0.28),_transparent_28%),radial-gradient(circle_at_bottom_right,_rgba(46,106,234,0.11),_transparent_26%)]" />
-          <Container className="grid items-center gap-12 py-16 lg:grid-cols-[1.02fr_0.98fr] lg:py-20">
-            <Reveal className="relative z-10 space-y-8">
-              <div className="space-y-6">
-                <p className="text-xs font-semibold uppercase tracking-[0.26em] text-sage-700">
-                  Founder story
-                </p>
-                <h1 className="max-w-3xl text-4xl font-semibold leading-[1.02] tracking-[-0.045em] text-charcoal sm:text-5xl lg:text-[4.8rem]">
-                  A trusted senior-care resource built on compassion and
-                  clarity
-                </h1>
-                <p className="max-w-2xl text-base leading-8 text-stone-600 sm:text-lg">
-                  Senior & Living Today exists to enrich the lives of seniors
-                  and caregivers through expert guidance, community support,
-                  planning tools, and trusted resources.
-                </p>
-              </div>
-
-              <div className="flex flex-col gap-3 sm:flex-row">
-                <ActionButton
-                  to="/contact/?service=Senior%20Care%20Consulting"
-                  variant="primary"
-                >
-                  Book a Free Consultation
-                </ActionButton>
-                <ActionButton to="/living-legacy-planner/" variant="secondary">
-                  View the Planner
-                </ActionButton>
-              </div>
-            </Reveal>
-
-            <Reveal className="space-y-4">
-              <div className="relative overflow-hidden rounded-[2.3rem] border border-white/80 bg-white shadow-soft">
-                <img
-                  src={founder.image}
-                  alt="Courtney Jones, founder of Senior & Living Today"
-                  className="h-[31rem] w-full bg-[#eee8dd] object-contain sm:h-[35rem]"
-                />
-              </div>
-              <div className="rounded-[1.7rem] border border-stone-200 bg-white/96 p-5 shadow-soft backdrop-blur">
-                <div className="grid gap-4 sm:grid-cols-3">
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sage-700">
-                      Founder
-                    </p>
-                    <p className="mt-2 font-heading text-2xl text-charcoal">
-                      Courtney Jones
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sage-700">
-                      Experience
-                    </p>
-                    <p className="mt-2 text-base leading-7 text-stone-600">
-                      30+ years helping families navigate senior care decisions.
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sage-700">
-                      Focus
-                    </p>
-                    <p className="mt-2 text-base leading-7 text-stone-600">
-                      Planning tools, community, and compassionate guidance.
-                    </p>
-                  </div>
+      <main className="overflow-hidden">
+        <section className="relative bg-ivory-50">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_18%,_rgba(255,204,64,0.22),_transparent_27%),radial-gradient(circle_at_90%_82%,_rgba(39,73,130,0.14),_transparent_32%)]" />
+          <Container className="relative grid items-center gap-12 py-14 sm:py-20 lg:grid-cols-[0.98fr_1.02fr] lg:gap-16 lg:py-24">
+            <Reveal>
+              <div className="relative overflow-hidden rounded-[2.4rem] border border-gold-300/70 bg-[#eee8dd] p-2 shadow-[0_24px_70px_rgba(23,36,61,0.18)] sm:p-3">
+                <div className="rounded-[1.9rem] border border-white/90 bg-white p-2 shadow-inner sm:p-3">
+                  <img
+                    src={aboutCommunity}
+                    alt="Senior Living in USA , Home Care Assistance"
+                    className="aspect-[4/3] w-full rounded-[1.35rem] object-cover"
+                  />
                 </div>
+                <span className="absolute right-7 top-7 h-3 w-3 rounded-full bg-gold-400 shadow-[0_0_0_7px_rgba(255,204,64,0.18)]" />
               </div>
+            </Reveal>
+
+            <Reveal className="max-w-2xl" delay={100}>
+              <p className="mb-5 inline-flex rounded-full bg-gold-300 px-4 py-1.5 text-sm font-semibold text-charcoal">
+                About Us
+              </p>
+              <h1 className="max-w-2xl text-4xl font-semibold leading-[1.04] tracking-[-0.045em] text-charcoal sm:text-5xl lg:text-[4.45rem]">
+                Empowering Seniors with Compassionate Senior Living in USA
+              </h1>
+              <p className="mt-7 max-w-2xl text-base leading-8 text-stone-700 sm:text-lg">
+                At S.A.L.T (Senior and Living Today) we’re proud to be led by Courtney Jones, a passionate advocate for seniors.Courtney founded S.A.L.T to provide trusted resources and innovative solutions for seniors and their care providers all across the USA. Her mission is simple yet powerful: to create a supportive community where seniors and those that care for them feel valued , repected and cared for.
+              </p>
+              <ActionButton
+                href="https://community.seniorandlivingtoday.com"
+                target="_blank"
+                rel="noreferrer"
+                variant="primary"
+                className="mt-8 bg-gold-300 !text-charcoal hover:bg-gold-200"
+              >
+                Discover the Community
+              </ActionButton>
             </Reveal>
           </Container>
         </section>
 
-        <section className="border-y border-stone-200 bg-white/80">
-          <Container className="py-6">
+        <section className="relative bg-[#1b3158] py-16 text-white sm:py-24">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_20%,_rgba(255,204,64,0.17),_transparent_28%),linear-gradient(135deg,rgba(13,29,55,0.35),transparent_58%)]" />
+          <Container className="relative">
             <Reveal>
-              <div className="grid gap-3 rounded-[1.6rem] bg-sage-50 p-4 md:grid-cols-4 md:gap-0 md:divide-x md:divide-stone-200 md:p-0">
-                {['Care.', 'Comfort.', 'Community.', 'Clarity.'].map((item) => (
-                  <div
-                    key={item}
-                    className="flex items-center justify-center rounded-[1.2rem] px-4 py-4 text-xl font-semibold text-charcoal md:rounded-none"
-                  >
-                    {item}
-                  </div>
-                ))}
-              </div>
+              <h2 className="max-w-3xl text-4xl font-semibold leading-[1.02] tracking-[-0.04em] sm:text-5xl lg:text-[4.2rem]">
+                Why Choose us
+              </h2>
             </Reveal>
-            <p className="mt-4 text-center text-base leading-7 text-stone-600">
-              S.A.L.T. exists to help seniors and caregivers feel informed,
-              respected, prepared, and connected.
-            </p>
-          </Container>
-        </section>
-
-        <section className="bg-ivory-50">
-          <Container className="py-16 lg:py-20">
-            <Reveal>
-              <div className="grid gap-8 lg:grid-cols-3">
-                {principles.map((item) => (
-                  <div
-                    key={item.title}
-                    className="rounded-[1.9rem] border border-stone-200 bg-white p-6 shadow-soft"
-                  >
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-sage-100 text-sage-800">
-                      {item.icon}
+            <div className="mt-12 grid gap-6 lg:grid-cols-3">
+              {whyChooseCards.map((card, index) => (
+                <Reveal key={card.title} delay={index * 90} className="h-full">
+                  <article className="relative flex h-full flex-col rounded-[2rem] border border-white/15 bg-white p-7 text-center text-charcoal shadow-[0_18px_45px_rgba(5,18,42,0.18)] sm:p-9">
+                    <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#1b3158] text-white ring-8 ring-gold-300/20">
+                      {card.icon}
                     </div>
-                    <h3 className="mt-5 font-heading text-3xl text-charcoal">
-                      {item.title}
+                    <h3 className="mt-8 text-2xl font-semibold leading-tight sm:text-3xl">
+                      {card.title}
                     </h3>
-                    <p className="mt-3 text-base leading-7 text-stone-600">
-                      {item.text}
+                    <p className="mt-5 text-base leading-8 text-stone-700 sm:text-lg">
+                      {card.text}
                     </p>
-                  </div>
-                ))}
+                  </article>
+                </Reveal>
+              ))}
+            </div>
+          </Container>
+        </section>
+
+        <section className="bg-stone-100">
+          <Container className="grid items-center gap-12 py-16 sm:py-24 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+            <Reveal>
+              <div className="relative grid grid-cols-2 gap-4 rounded-[2.5rem] border border-gold-300/70 bg-[#f8f3e9] p-5 shadow-[0_24px_70px_rgba(23,36,61,0.14)] sm:gap-6 sm:p-8">
+                <div className="absolute left-1/2 top-1/2 h-[78%] w-px -translate-x-1/2 -translate-y-1/2 bg-gold-300/60" />
+                <div className="rounded-[1.7rem] border border-white bg-white p-3 shadow-[0_12px_30px_rgba(23,36,61,0.1)] sm:p-4">
+                  <img
+                    src={plannerCoverSquare}
+                    alt="The Living Legacy Planner"
+                    className="aspect-[3/4] w-full object-contain"
+                  />
+                </div>
+                <div className="rounded-[1.7rem] border border-white bg-white p-3 shadow-[0_12px_30px_rgba(23,36,61,0.1)] sm:p-4">
+                  <img
+                    src={relicsCenturyPlanner}
+                    alt="Relics of the Century"
+                    className="aspect-[3/4] w-full object-contain"
+                  />
+                </div>
               </div>
+            </Reveal>
+
+            <Reveal delay={100}>
+              <p className="max-w-2xl text-xl leading-9 text-stone-700 sm:text-2xl sm:leading-10">
+                <strong className="font-semibold text-charcoal">Embrace Warmth, Respect, and Attention to Detail-</strong> At S.A.L.T., we’re committed to making every moment sweeter for seniors and those who care for them. Led by Courtney, our tight-knit team is driven by a shared mission of spreading kindness and compassion through thoughtful Senior Living in Dayton resources. From personalized consulting to curated tools, we’re here to support you and your loved ones every step of the way.
+              </p>
+              <ActionButton
+                href="https://www.amazon.com"
+                target="_blank"
+                rel="noreferrer"
+                variant="primary"
+                className="mt-8 bg-gold-300 !text-charcoal hover:bg-gold-200"
+              >
+                Buy a Book Now
+              </ActionButton>
             </Reveal>
           </Container>
         </section>
 
-        <section>
-          <Container className="py-16 lg:py-20">
+        <section className="bg-white">
+          <Container className="py-16 sm:py-24">
             <Reveal>
-              <div className="grid gap-8 lg:grid-cols-[0.98fr_1.02fr]">
-                <div className="overflow-hidden rounded-[2rem] border border-stone-200 bg-white shadow-soft">
-                  <div className="aspect-[4/3] bg-ivory-50">
-                    <img
-                      src={products[0].image}
-                      alt={products[0].title}
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                  <div className="space-y-4 p-6 sm:p-8">
-                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sage-700">
-                      Why the planner was created
-                    </p>
-                    <h2 className="font-heading text-4xl text-charcoal">
-                      {products[0].title}
-                    </h2>
-                    <p className="text-base leading-8 text-stone-600">
-                      The planner exists because families needed one calm place
-                      to hold wishes, notes, memories, and the details that are
-                      easy to lose when life gets busy.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="grid gap-6">
-                  <div className="rounded-[2rem] border border-stone-200 bg-charcoal p-6 text-white shadow-soft sm:p-8">
-                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sage-300">
-                      Community impact
-                    </p>
-                    <h2 className="mt-3 font-heading text-4xl leading-tight">
-                      The work extends beyond one product
-                    </h2>
-                    <p className="mt-4 text-base leading-8 text-stone-300">
-                      S.A.L.T. is designed to feel like a support system:
-                      consulting, community, resources, and tools that help
-                      people move forward with less friction.
-                    </p>
-                  </div>
-
-                  <div className="rounded-[2rem] border border-stone-200 bg-white p-6 shadow-soft sm:p-8">
-                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sage-700">
-                      What the site preserves
-                    </p>
-                    <BulletList
-                      items={[
-                        'Courtney Jones as founder and senior care advocate',
-                        'The Living Legacy Planner and Relics of the Century',
-                        'Community support, webinars, and caregiver resources',
-                        'The original contact details and store link',
-                      ]}
-                      className="mt-4"
-                    />
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-          </Container>
-        </section>
-
-        <section>
-          <Container className="py-16 lg:py-20">
-            <Reveal>
-              <div className="grid gap-10 lg:grid-cols-[0.94fr_1.06fr]">
-                <div className="space-y-8">
-                  <SectionHeading
-                    eyebrow="Our mission"
-                    title="Enriching the lives of seniors and caregivers"
-                    summary="The mission of S.A.L.T. is to help families feel informed, respected, prepared, and connected through every stage of the aging journey."
-                  />
-                  <BulletList
-                    items={[
-                      'Consulting that helps families understand choices',
-                      'Community spaces that welcome seniors and caregivers',
-                      'Planning tools that preserve wishes, stories, and details',
-                      'Resources that turn uncertainty into a calm, shared plan',
-                    ]}
-                  />
-                  <div className="flex flex-col gap-3 sm:flex-row">
-                    <ActionButton
-                      to="/contact/?service=Senior%20Care%20Consulting"
-                      variant="primary"
-                    >
-                      Contact Us
-                    </ActionButton>
-                    <ActionButton to="/resources/" variant="secondary">
-                      Explore Resources
-                    </ActionButton>
-                  </div>
-                </div>
-
-                <div className="grid gap-6">
-                  <div className="rounded-[2rem] border border-stone-200 bg-white p-6 shadow-soft sm:p-8">
-                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sage-700">
-                      What Courtney brings to the work
-                    </p>
-                    <h3 className="mt-3 font-heading text-3xl text-charcoal">
-                      {founder.name}
-                    </h3>
-                    <p className="mt-4 text-base leading-8 text-stone-600">
-                      {founder.title}. {founder.years}. Courtney&apos;s background
-                      as a senior care advocate gives S.A.L.T. a grounded,
-                      compassionate point of view that families can trust.
-                    </p>
-                  </div>
-
-                  <div className="overflow-hidden rounded-[2rem] border border-stone-200 bg-white shadow-soft">
-                    <div className="grid gap-0 lg:grid-cols-[0.92fr_1.08fr]">
-                      <div className="bg-charcoal p-8 text-white">
-                        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sage-300">
-                          The Living Legacy Planner
-                        </p>
-                        <h3 className="mt-3 font-heading text-4xl leading-tight">
-                          One of the main offers the site preserves
-                        </h3>
-                        <p className="mt-4 text-base leading-8 text-stone-300">
-                          The planner helps families document wishes, stories,
-                          and important details in one thoughtful place.
-                        </p>
-                        <ActionButton
-                          to="/shop/#living-legacy-planner"
-                          variant="secondary"
-                          className="mt-6 bg-white text-charcoal"
-                          icon={false}
-                        >
-                          Explore the Planner
-                        </ActionButton>
-                      </div>
+              <h2 className="max-w-3xl text-4xl font-semibold leading-[1.02] tracking-[-0.04em] text-charcoal sm:text-5xl lg:text-[4.2rem]">
+                Real Stories, True Smiles
+              </h2>
+              <div className="mt-10 grid gap-6 md:grid-cols-12 md:auto-rows-[11rem]">
+                {storyImages.map((image, index) => (
+                  <div
+                    key={image.src}
+                    className={`group relative overflow-hidden rounded-[2rem] border border-gold-300/70 bg-[#f8f3e9] p-3 shadow-[0_18px_46px_rgba(23,36,61,0.12)] sm:p-4 ${image.className}`}
+                  >
+                    <div className="relative h-full overflow-hidden rounded-[1.45rem] border border-white bg-white p-1.5 sm:p-2">
                       <img
-                        src={products[0].image}
-                        alt={products[0].title}
-                        className="h-full min-h-[18rem] w-full object-cover"
+                        src={image.src}
+                        alt={`Untitled design (${6 - index})`}
+                        className="h-full w-full rounded-[1.1rem] object-cover transition duration-500 group-hover:scale-[1.03]"
                       />
+                      <span className="absolute right-4 top-4 h-3 w-3 rounded-full bg-gold-400 shadow-[0_0_0_6px_rgba(255,204,64,0.2)]" />
                     </div>
                   </div>
-                </div>
-              </div>
-            </Reveal>
-          </Container>
-        </section>
-
-        <section className="bg-ivory-50">
-          <Container className="py-16 lg:py-20">
-            <Reveal>
-              <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-                <SectionHeading
-                  eyebrow="What we preserve"
-                  title="The existing mission and major offers remain visible"
-                  summary="The redesign keeps the core story and major offers from the current site, while presenting them in a calmer, easier-to-navigate structure."
-                />
-                <ActionButton to="/shop/" variant="link" icon={false}>
-                  Visit the Store
-                </ActionButton>
-              </div>
-              <div className="mt-10 grid gap-6 lg:grid-cols-2">
-                {products.map((product) => (
-                  <ProductCard key={product.slug} {...product} />
                 ))}
-              </div>
-            </Reveal>
-          </Container>
-        </section>
-
-        <section>
-          <Container className="py-16 lg:py-20">
-            <Reveal>
-              <div className="flex flex-col items-start justify-between gap-5 rounded-[2rem] border border-stone-200 bg-white p-6 shadow-soft sm:flex-row sm:items-center">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sage-700">
-                    Next step
-                  </p>
-                  <h3 className="mt-3 font-heading text-3xl text-charcoal">
-                    Ready to talk through your situation?
-                  </h3>
-                </div>
-                <ActionButton
-                  to="/contact/?service=Senior%20Care%20Consulting"
-                  variant="primary"
-                >
-                  Book a Free Consultation
-                </ActionButton>
               </div>
             </Reveal>
           </Container>

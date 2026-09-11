@@ -50,6 +50,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about/" element={<AboutPage />} />
+        <Route path="/senior-living-in-usa/" element={<AboutPage />} />
         <Route path="/resources/" element={<ResourcesPage />} />
         <Route path="/resource-center/" element={<Navigate to="/resources/" replace />} />
         <Route path="/resources/:slug/" element={<ResourceCategoryPage />} />
@@ -87,7 +88,6 @@ export default function App() {
         <Route path="/contact-us-home-care-assistance/" element={<Navigate to="/contact/" replace />} />
         <Route path="/elderly-caregiver-services/" element={<Navigate to="/caregiver-support/" replace />} />
         <Route path="/consultancy-elderly-in-home-care/" element={<Navigate to="/consulting/" replace />} />
-        <Route path="/senior-living-in-usa/" element={<Navigate to="/services/" replace />} />
         <Route path="/over-55-communities-is-55-the-right-limit-for-you/" element={<Navigate to="/blog/over-55-communities-is-55-the-right-limit-for-you/" replace />} />
         <Route path="/discover-the-ultimate-guide-for-seniors-embrace-the-living-legacy-planner/" element={<Navigate to="/blog/discover-the-ultimate-guide-for-seniors-embrace-the-living-legacy-planner/" replace />} />
         <Route path="/buy-the-essential-guide-for-seniors-the-living-legacy-planner/" element={<Navigate to="/blog/buy-the-essential-guide-for-seniors-the-living-legacy-planner/" replace />} />

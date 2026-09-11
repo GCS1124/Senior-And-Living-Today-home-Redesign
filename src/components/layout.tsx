@@ -238,14 +238,6 @@ export function SiteHeader() {
   return (
     <>
       <header className="sticky top-0 z-50 border-b border-charcoal/10 bg-ivory-50/95 shadow-[0_8px_28px_rgba(23,36,61,0.06)] backdrop-blur-xl">
-      <div className="border-b border-white/10 bg-charcoal text-ivory-100">
-        <Container className="flex items-center justify-between gap-4 py-2.5 text-[0.72rem] font-semibold uppercase tracking-[0.16em]">
-          <span className="text-gold-200">Care. Comfort. Community.</span>
-          <a className="transition hover:text-gold-200" href={contact.phoneHref}>
-            Call {contact.phoneDisplay}
-          </a>
-        </Container>
-      </div>
       <Container className="flex items-center justify-between py-3.5">
         <LogoMark />
 
@@ -268,8 +260,14 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <ActionButton to="/contact/" variant="primary">
-            Book a Free Consultation
+          <ActionButton
+            href="https://community.seniorandlivingtoday.com"
+            target="_blank"
+            rel="noreferrer"
+            variant="primary"
+            className="bg-gold-300 !text-charcoal hover:bg-gold-200"
+          >
+            Login / Sign up
           </ActionButton>
         </div>
 
@@ -310,12 +308,14 @@ export function SiteHeader() {
               ))}
             </nav>
             <ActionButton
-              to="/contact/"
+              href="https://community.seniorandlivingtoday.com"
+              target="_blank"
+              rel="noreferrer"
               variant="primary"
               className="w-full"
               onClick={() => setOpen(false)}
             >
-              Book a Free Consultation
+              Login / Sign up
             </ActionButton>
           </Container>
         </div>
@@ -333,9 +333,26 @@ export function SiteFooter() {
           <div className="space-y-6">
             <LogoMark compact inverse />
             <p className="max-w-sm text-base leading-8 text-white/68">
-              Clear planning tools and compassionate support for seniors and families.
+              S.A.L.T – Senior and Living Today aims to enhance seniors’ quality of life through compassion driven care led by Courtney.
             </p>
-            <div className="grid gap-3 text-sm text-white/68">
+          </div>
+
+          <div>
+            <h3 className="font-heading text-3xl text-white">QUICK LINKS</h3>
+            <ul className="mt-5 space-y-3 text-sm text-white/68">
+              <li><Link className="transition hover:text-gold-200" to="/">Home</Link></li>
+              <li><Link className="transition hover:text-gold-200" to="/contact/">Contact</Link></li>
+              <li><Link className="transition hover:text-gold-200" to="/senior-living-in-usa/">About Us</Link></li>
+              <li><Link className="transition hover:text-gold-200" to="/shop/">Shop Now</Link></li>
+              <li><Link className="transition hover:text-gold-200" to="/blog/">Blogs</Link></li>
+              <li><Link className="transition hover:text-gold-200" to="/privacy-policy/">Privacy Policy</Link></li>
+              <li><Link className="transition hover:text-gold-200" to="/terms-conditions/">Terms &amp; Conditions</Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-heading text-3xl text-white">OUR CONTACT</h3>
+            <div className="mt-5 grid gap-3 text-sm text-white/68">
               <a href={contact.phoneHref} className="inline-flex items-center gap-2 transition hover:text-gold-200">
                 <Phone className="h-4 w-4 text-gold-300" />
                 {contact.phoneDisplay}
@@ -346,52 +363,14 @@ export function SiteFooter() {
               </a>
               <p className="inline-flex items-start gap-2">
                 <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-300" />
-                <span>{contact.mailingAddress}</span>
+                <span>P O box 15 Dayton, Ohio 45404</span>
               </p>
             </div>
-          </div>
-
-          <div>
-            <h3 className="font-heading text-3xl text-white">Explore</h3>
-            <ul className="mt-5 space-y-3 text-sm text-white/68">
-              {navigation.slice(0, 5).map((item) => (
-                <li key={item.label}>
-                  <Link className="transition hover:text-gold-200" to={item.to}>
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-heading text-3xl text-white">Need help?</h3>
-            <p className="mt-5 text-sm leading-7 text-white/68">
-              Call or email us when you need a clear next step.
-            </p>
-            <ActionButton
-              to="/contact/"
-              variant="secondary"
-              className="mt-6 !border-gold-300/50 !bg-gold-300 !text-charcoal hover:!bg-gold-200"
-            >
-              Contact us
-            </ActionButton>
           </div>
         </div>
 
         <div className="mt-12 flex flex-col gap-4 border-t border-white/10 pt-6 text-sm text-white/45 md:flex-row md:items-center md:justify-between">
-          <div className="flex flex-wrap gap-x-5 gap-y-2">
-            <Link className="transition hover:text-gold-200" to="/privacy-policy/">
-              Privacy Policy
-            </Link>
-            <Link className="transition hover:text-gold-200" to="/terms-conditions/">
-              Terms &amp; Conditions
-            </Link>
-            <a className="transition hover:text-gold-200" href={contact.storeUrl} target="_blank" rel="noreferrer">
-              {contact.storeLabel}
-            </a>
-          </div>
-          <p>© 2025 Senior &amp; Living Today. All rights reserved.</p>
+          <p>© Copyright 2025 | Senior and living today powered by Global Creative Services</p>
         </div>
       </Container>
     </footer>

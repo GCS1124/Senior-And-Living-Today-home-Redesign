@@ -34,10 +34,10 @@ export const contact = {
 
 export const navigation = [
   { label: 'Home', to: '/' },
-  { label: 'About', to: '/about/' },
-  { label: 'Planner', to: '/living-legacy-planner/' },
-  { label: 'Community', to: '/community/' },
-  { label: 'Contact', to: '/contact/' },
+  { label: 'Whom We Serve', to: '/elderly-caregiver-services/' },
+  { label: 'Services', to: '/services/' },
+  { label: 'About Us', to: '/senior-living-in-usa/' },
+  { label: 'Contact Us', to: '/contact/' },
 ] as const
 
 export const homeHero = {
