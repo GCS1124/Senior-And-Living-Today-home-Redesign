@@ -114,11 +114,13 @@ export function SectionHeading({
   summary,
   eyebrow,
   align = 'left',
+  tone = 'dark',
 }: {
   title: string
   summary?: string
   eyebrow?: string
   align?: 'left' | 'center'
+  tone?: 'dark' | 'light'
 }) {
   return (
     <div
@@ -128,16 +130,31 @@ export function SectionHeading({
       )}
     >
       {eyebrow ? (
-        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.26em] text-gold-700">
+        <p
+          className={cx(
+            'mb-3 text-sm font-semibold uppercase tracking-[0.26em]',
+            tone === 'light' ? 'text-gold-200' : 'text-gold-700',
+          )}
+        >
           {eyebrow}
         </p>
       ) : null}
-      <h2 className="text-4xl font-semibold leading-[0.98] text-charcoal sm:text-5xl lg:text-[3.5rem]">
+      <h2
+        className={cx(
+          'text-4xl font-semibold leading-[0.98] sm:text-5xl lg:text-[3.5rem]',
+          tone === 'light' ? 'text-white' : 'text-charcoal',
+        )}
+      >
         {title}
       </h2>
       <span className="section-heading-rule" aria-hidden="true" />
       {summary ? (
-        <p className="mt-5 text-base leading-8 text-stone-600 sm:text-lg">
+        <p
+          className={cx(
+            'mt-5 text-base leading-8 sm:text-lg',
+            tone === 'light' ? 'text-white/70' : 'text-stone-600',
+          )}
+        >
           {summary}
         </p>
       ) : null}

@@ -81,15 +81,16 @@ export function CaregiverSupportPage() {
       />
       <SiteHeader />
       <main>
-        <section className="relative overflow-hidden">
+        <section className="page-hero relative overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(200,169,106,0.14),_transparent_28%),radial-gradient(circle_at_bottom_right,_rgba(141,155,131,0.12),_transparent_30%)]" />
-          <Container className="grid gap-12 py-16 lg:grid-cols-[1fr_0.98fr] lg:py-20">
-            <Reveal className="space-y-8">
+          <Container className="grid items-start gap-10 py-14 sm:py-16 lg:grid-cols-[0.92fr_1.08fr] lg:gap-14 lg:py-20">
+            <Reveal className="space-y-7 lg:pt-8">
               <div className="space-y-6">
                 <p className="text-xs font-semibold uppercase tracking-[0.26em] text-sage-700">
                   Caregiver support
                 </p>
-                <h1 className="max-w-3xl text-4xl font-semibold leading-[1.02] tracking-[-0.045em] text-charcoal sm:text-5xl lg:text-[4.8rem]">
+                <span className="block h-1 w-16 rounded-full bg-gradient-to-r from-gold-400 to-navy-500" aria-hidden="true" />
+                <h1 className="max-w-2xl text-4xl font-semibold leading-[1.02] tracking-[-0.045em] text-charcoal sm:text-5xl lg:text-[4.55rem]">
                   {data.title}
                 </h1>
                 <p className="max-w-2xl text-base leading-8 text-stone-600 sm:text-lg">
@@ -113,7 +114,7 @@ export function CaregiverSupportPage() {
                 {['Private support', 'Roundtables', 'Practical tools'].map((item) => (
                   <div
                     key={item}
-                    className="rounded-[1.4rem] border border-stone-200 bg-white px-4 py-4 text-sm leading-7 text-stone-600 shadow-sm"
+                    className="premium-card flex min-h-[4.3rem] items-center px-4 py-4 text-sm leading-7 text-stone-600"
                   >
                     {item}
                   </div>
@@ -121,17 +122,17 @@ export function CaregiverSupportPage() {
               </div>
             </Reveal>
 
-            <Reveal className="space-y-4">
-              <div className="overflow-hidden rounded-[2.4rem] border border-white/80 bg-white p-4 shadow-[0_24px_60px_rgba(16,35,63,0.14)]">
-                <div className="grid gap-4 lg:grid-cols-[0.88fr_1.12fr]">
-                  <div className="rounded-[1.8rem] bg-charcoal p-6 text-white">
+            <Reveal className="space-y-4 lg:pt-2">
+              <div className="premium-card overflow-hidden border-white/90 bg-white/85 p-3 shadow-[0_28px_72px_-34px_rgba(16,35,63,0.38)] backdrop-blur sm:p-4">
+                <div className="grid gap-3 lg:grid-cols-[0.92fr_1.08fr]">
+                  <div className="rounded-[1.8rem] bg-gradient-to-br from-[#10233f] via-[#142b4f] to-[#1c477e] p-6 text-white sm:p-7">
                     <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sage-300">
                       Caregiver rhythm
                     </p>
-                    <h2 className="mt-3 font-heading text-4xl leading-tight text-white">
+                    <h2 className="mt-4 !text-[2.65rem] font-heading leading-[0.98] tracking-[-0.035em] text-white sm:!text-[3.1rem]">
                       Support for the day-to-day weight of caregiving
                     </h2>
-                    <div className="mt-6 space-y-4">
+                    <div className="mt-7 space-y-3">
                       {[
                         'Talk it through',
                         'Get practical tools',
@@ -139,9 +140,9 @@ export function CaregiverSupportPage() {
                       ].map((item, index) => (
                         <div
                           key={item}
-                          className="flex items-center gap-3 rounded-[1.3rem] border border-white/10 bg-white/8 px-4 py-4 backdrop-blur"
+                          className="flex items-center gap-3 rounded-[1.2rem] border border-white/15 bg-white/8 px-4 py-3.5 backdrop-blur transition hover:border-gold-300/50 hover:bg-white/12"
                         >
-                          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-sage-500 text-sm font-semibold text-white">
+                          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#6d96d3] text-sm font-semibold text-white shadow-sm">
                             {index + 1}
                           </span>
                           <span className="text-base leading-7 text-white/85">{item}</span>
@@ -149,14 +150,14 @@ export function CaregiverSupportPage() {
                       ))}
                     </div>
                   </div>
-                  <div className="overflow-hidden rounded-[1.8rem] bg-ivory-50">
+                  <div className="image-lift overflow-hidden rounded-[1.8rem] bg-ivory-50">
                     <img
                       src={data.image}
                       alt={data.title}
-                      className="h-full min-h-[18rem] w-full object-cover"
+                      className="h-full min-h-[22rem] w-full object-cover"
                     />
                   </div>
-                  <div className="rounded-[1.8rem] bg-sage-50 p-6">
+                  <div className="rounded-[1.8rem] bg-sage-50 p-6 shadow-inner">
                     <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sage-700">
                       The tone
                     </p>
@@ -165,7 +166,7 @@ export function CaregiverSupportPage() {
                       caregivers carry.
                     </p>
                   </div>
-                  <div className="rounded-[1.8rem] bg-ivory-50 p-6">
+                  <div className="rounded-[1.8rem] bg-ivory-50 p-6 shadow-inner">
                     <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sage-700">
                       The outcome
                     </p>
@@ -176,7 +177,7 @@ export function CaregiverSupportPage() {
                   </div>
                 </div>
               </div>
-              <div className="rounded-[1.6rem] border border-stone-200 bg-white/96 p-5 shadow-soft backdrop-blur">
+              <div className="premium-card border-gold-300/30 bg-white/85 p-5 backdrop-blur">
                 <div className="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-sage-700">
                   <span>Support</span>
                   <span className="h-1 w-1 rounded-full bg-stone-300" />
@@ -196,7 +197,7 @@ export function CaregiverSupportPage() {
           <Container className="py-16 lg:py-20">
             <Reveal>
               <div className="grid gap-8 lg:grid-cols-[0.94fr_1.06fr]">
-                <div className="rounded-[2.2rem] border border-stone-200 bg-white p-6 shadow-soft sm:p-8">
+                <div className="premium-card p-6 sm:p-9">
                   <SectionHeading
                     eyebrow="Why this matters"
                     title="Caregiving should not feel like carrying everything alone"
@@ -207,11 +208,12 @@ export function CaregiverSupportPage() {
                   </div>
                 </div>
 
-                <div className="rounded-[2.2rem] border border-[#18304f] bg-[#10233f] p-6 text-white shadow-[0_24px_70px_rgba(16,35,63,0.22)] sm:p-8">
+                <div className="premium-card border-[#18304f] bg-gradient-to-br from-[#10233f] to-[#17386b] p-6 text-white shadow-[0_28px_78px_-34px_rgba(16,35,63,0.62)] sm:p-9">
                   <div className="flex items-center justify-between gap-4">
                     <SectionHeading
                       eyebrow="What support can look like"
                       title="A calmer support lane for busy caregivers"
+                      tone="light"
                     />
                     <Clock3 className="h-6 w-6 shrink-0 text-[#d2a85b]" aria-hidden="true" />
                   </div>
@@ -222,7 +224,7 @@ export function CaregiverSupportPage() {
                       return (
                         <article
                           key={item.title}
-                          className="rounded-[1.5rem] border border-white/10 bg-white/8 p-5 backdrop-blur"
+                          className="rounded-[1.5rem] border border-white/15 bg-white/8 p-5 backdrop-blur transition hover:-translate-y-1 hover:border-gold-300/50 hover:bg-white/12"
                         >
                           <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-sage-700 shadow-sm">
                             <Icon className="h-5 w-5" aria-hidden="true" />
@@ -247,7 +249,7 @@ export function CaregiverSupportPage() {
           <Container className="py-16 lg:py-20">
             <Reveal>
               <div className="grid gap-8 lg:grid-cols-[1fr_0.94fr]">
-                <div className="rounded-[2.2rem] border border-stone-200 bg-white p-6 shadow-soft sm:p-8">
+                <div className="premium-card p-6 sm:p-9">
                   <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sage-700">
                     How it works
                   </p>
@@ -258,7 +260,7 @@ export function CaregiverSupportPage() {
                     {processBlocks.map((item, index) => (
                       <div
                         key={item.title}
-                        className="flex gap-4 rounded-[1.3rem] bg-ivory-50 px-4 py-4 text-base leading-7 text-stone-600"
+                        className="flex gap-4 rounded-[1.3rem] border border-gold-300/20 bg-ivory-50 px-4 py-4 text-base leading-7 text-stone-600 transition hover:-translate-y-0.5 hover:border-gold-300/50 hover:bg-white"
                       >
                         <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-sage-500 text-sm font-semibold text-white">
                           {index + 1}
@@ -272,7 +274,7 @@ export function CaregiverSupportPage() {
                   </div>
                 </div>
 
-                <div className="rounded-[2.2rem] border border-stone-200 bg-white p-6 shadow-soft sm:p-8">
+                <div className="premium-card p-6 sm:p-9">
                   <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sage-700">
                     Best fit
                   </p>
@@ -287,14 +289,14 @@ export function CaregiverSupportPage() {
                     ].map((item) => (
                       <div
                         key={item}
-                        className="flex items-start gap-3 rounded-[1.2rem] bg-sage-50 px-4 py-4 text-base leading-7 text-stone-600"
+                        className="flex items-start gap-3 rounded-[1.2rem] border border-navy-100 bg-sage-50 px-4 py-4 text-base leading-7 text-stone-600 transition hover:-translate-y-0.5 hover:border-navy-200 hover:bg-white"
                       >
                         <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-sage-700" />
                         <span>{item}</span>
                       </div>
                     ))}
                   </div>
-                  <div className="mt-6 rounded-[1.5rem] border border-stone-200 bg-charcoal p-5 text-white">
+                  <div className="mt-6 rounded-[1.5rem] border border-navy-700/40 bg-charcoal p-5 text-white shadow-inner">
                     <p className="text-sm leading-7 text-stone-300">
                       The goal is not to make caregiving perfect. It is to make
                       it feel less lonely and more manageable.
@@ -310,7 +312,7 @@ export function CaregiverSupportPage() {
           <Container className="py-16 lg:py-20">
             <Reveal>
               <div className="grid gap-8 lg:grid-cols-[0.92fr_1.08fr]">
-                <div className="rounded-[2.2rem] border border-stone-200 bg-charcoal p-6 text-white shadow-soft sm:p-8">
+                <div className="premium-card border-navy-700/40 bg-gradient-to-br from-charcoal to-navy-900 p-6 text-white shadow-[0_28px_78px_-34px_rgba(16,35,63,0.58)] sm:p-9">
                   <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sage-300">
                     FAQ
                   </p>
@@ -338,7 +340,7 @@ export function CaregiverSupportPage() {
         <section>
           <Container className="py-14">
             <Reveal>
-              <div className="flex flex-col items-start justify-between gap-5 rounded-[2rem] border border-stone-200 bg-white p-6 shadow-soft sm:flex-row sm:items-center">
+              <div className="premium-card flex flex-col items-start justify-between gap-5 bg-white p-6 sm:flex-row sm:items-center sm:p-7">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sage-700">
                     Next step
