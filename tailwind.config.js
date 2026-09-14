@@ -58,7 +58,7 @@ export default {
       },
       fontFamily: {
         sans: ['Manrope', 'system-ui', 'sans-serif'],
-        heading: ['Lora', 'Georgia', 'serif'],
+        heading: ['Manrope', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
         soft: '0 26px 70px -42px rgba(32, 48, 47, 0.38)',
