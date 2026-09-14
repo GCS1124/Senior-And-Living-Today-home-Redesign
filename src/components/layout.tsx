@@ -141,7 +141,7 @@ export function SectionHeading({
       ) : null}
       <h2
         className={cx(
-          'text-4xl font-semibold leading-[0.98] sm:text-5xl lg:text-[3.5rem]',
+          'text-3xl font-semibold leading-[1.02] sm:text-4xl lg:text-[3rem]',
           tone === 'light' ? 'text-white' : 'text-charcoal',
         )}
       >
@@ -151,7 +151,7 @@ export function SectionHeading({
       {summary ? (
         <p
           className={cx(
-            'mt-5 text-base leading-8 sm:text-lg',
+            'mt-5 text-base leading-7 sm:text-lg',
             tone === 'light' ? 'text-white/70' : 'text-stone-600',
           )}
         >
@@ -424,7 +424,7 @@ export function PageHero({
       <Container className="grid items-center gap-10 py-14 lg:grid-cols-[1.08fr_0.92fr] lg:py-20">
         <div className={cx('space-y-6', reverse && 'lg:order-2')}>
           <div className="space-y-4">
-            <h1 className="max-w-3xl text-4xl font-semibold leading-[1.04] tracking-[-0.04em] text-charcoal sm:text-5xl lg:text-[4.4rem]">
+            <h1 className="max-w-3xl text-3xl font-semibold leading-[1.08] tracking-[-0.035em] text-charcoal sm:text-4xl lg:text-[3.75rem]">
               {title}
             </h1>
             <p className="max-w-2xl text-base leading-7 text-stone-600 sm:text-lg">
