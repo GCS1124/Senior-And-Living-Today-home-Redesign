@@ -118,7 +118,7 @@ export function PlannerPage() {
                     }
                   >
                     <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-sage-100 text-sage-800">
-                      <HeartHandshake className="h-5 w-5" />
+                      <HeartHandshake className="h-33 w-66" />
                     </div>
                     <p className="mt-4 text-base leading-8 text-stone-600">{item}</p>
                   </div>
